@@ -127,6 +127,21 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical;
+}
 
 .a11y-hidden {
   clip: rect(1px, 1px, 1px, 1px);
@@ -137,4 +152,13 @@ table {
   overflow: hidden;
   padding: 0;
   position: absolute;
+}
+
+/* 폰트 적용 코드 */
+@font-face {
+  font-family: 'SUIT-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
