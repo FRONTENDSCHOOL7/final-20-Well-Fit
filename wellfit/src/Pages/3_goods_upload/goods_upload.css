@@ -1,0 +1,56 @@
+body {
+}
+
+.div-uploadHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 48px;
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+.btn-back {
+  width: 22px;
+  height: 22px;
+  margin-top: 13px;
+  margin-left: 16px;
+}
+.btn-upload {
+  width: 90px;
+  height: 32px;
+  background-color: #9ec1f1;
+  color: #ffffff;
+  border-radius: 32px;
+  margin-top: 8px;
+  margin-right: 16px;
+}
+
+.btn-upload:active {
+  background-color: #004aad;
+}
+
+.div-productPicture {
+  position: relative;
+}
+.btn-attachPicture {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background-color: #c4c4c4;
+  border-radius: 100%;
+  left: 274px;
+  bottom: 12px;
+}
+
+.form-addProduct {
+  display: flex;
+  flex-direction: column;
+  margin: 34px;
+}
+
+.img-productAdd {
+  width: 322px;
+  height: 204px;
+}
+
+/* 인풋 사이 25px 간격 */
