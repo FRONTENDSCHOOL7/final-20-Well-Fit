@@ -177,6 +177,22 @@ input[type='number']::-webkit-out-spin-button {
   appearance: none;
 }
 
+input {
+  -webkit-appearance: none;
+
+  -moz-appearance: none;
+
+  appearance: none;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-out-spin-button {
+  -webkit-appearance: none;
+
+  -moz-appearance: none;
+
+  appearance: none;
+}
+
 .a11y-hidden {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
