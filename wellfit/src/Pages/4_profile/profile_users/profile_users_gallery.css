@@ -1,0 +1,198 @@
+body {
+  background-color: #e5e5e5;
+  margin: 0 auto;
+  width: 390px;
+}
+* {
+  font-family: 'SUIT-Regular';
+}
+
+/* header 부분 */
+.profile-header {
+  border-bottom: 1px solid #dbdbdb;
+}
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 12px 13px 16px;
+  background-color: #fefefe;
+}
+.search-bar .btn-goback {
+  width: 22px;
+  height: 22px;
+  background-image: url('../../../../images/icon-arrow-left.svg');
+  vertical-align: middle;
+}
+.search-bar .btn-toggle {
+  width: 24px;
+  height: 24px;
+  background-image: url('../../../../images/icon-\ more-vertical.svg');
+  vertical-align: middle;
+}
+
+/* section 부분 */
+.section-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fefefe;
+  padding: 30px 0;
+  gap: 16px;
+}
+
+/* 팔로워 프로필 팔로잉 */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.followers,
+.followings {
+  text-align: center;
+  padding-bottom: 6px;
+}
+.followers.count {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000000;
+}
+.content {
+  color: #767676;
+  font-size: 10px;
+  font-weight: 400;
+}
+.followings.count {
+  font-size: 18px;
+  font-weight: 700;
+  color: #767676;
+}
+
+/* 이름, 계정, 소개 부분 */
+.profile-data-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.content-name {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  padding-bottom: 6px;
+}
+.content-accountName {
+  color: #767676;
+  font-size: 12px;
+  font-weight: 400;
+  padding-bottom: 16px;
+}
+.content-explain {
+  color: #767676;
+  font-size: 14px;
+  font-weight: 400;
+  padding-bottom: 16px;
+}
+
+/* 채팅, 팔로우, 공유 버튼 */
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.btn-chatting,
+.btn-share {
+  width: 34px;
+  height: 34px;
+  border-radius: 30px;
+  border: 1px solid #dbdbdb;
+}
+.btn-follow {
+  width: 120px;
+  height: 34px;
+  border-radius: 30px;
+  background: #515fec;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.btn-follow:active {
+  width: 120px;
+  height: 34px;
+  border-radius: 30px;
+  background: #515fec;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* gallery형으로 바뀔때 바뀌는 부분 */
+.change-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* 판매 중인 상품 부분  */
+.store-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #fff;
+  padding: 20px 0;
+  padding-left: 16px;
+}
+.item-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* overflow-x: scroll; */
+  overflow: hidden;
+}
+.store-wrapper > p {
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+}
+.item-name {
+  padding-top: 6px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+}
+.item-price {
+  padding-top: 4px;
+  color: #515fec;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* list형, 갤러리형 선택 */
+.listAlbum-wrapper {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 0.5px solid #dbdbdb;
+  margin-top: 6px;
+}
+.turnBtn-wrapper {
+  margin-left: auto;
+  padding-top: 8px;
+  padding-right: 13px;
+  padding-bottom: 7px;
+}
+main {
+  background-color: #fff;
+}

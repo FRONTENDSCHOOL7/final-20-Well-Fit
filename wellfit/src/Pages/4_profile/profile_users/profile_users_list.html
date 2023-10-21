@@ -31,7 +31,7 @@
           <p class="followers count">2950</p>
           <p class="followers content">followers</p>
         </span>
-        <img src="./images/profile.svg" alt="프로필로고" />
+        <img src="../../../../images/basic-profile.svg" alt="프로필로고" />
         <span class="span-followings">
           <p class="followings count">128</p>
           <p class="followings content">followings</p>
@@ -44,7 +44,7 @@
         <span class="content-name">웰핏 헬스공장</span>
         <span class="content-accountName">@wellfit_MINJAE</span>
         <span class="content-explain"
-          >엘핏 스포츠 강습권 전국 거래, 저렴한 강습권</span
+          >엘핏 스포츠 강습권, 전국 거래, 저렴한 강습권</span
         >
       </div>
 
@@ -52,16 +52,18 @@
       <h2 class="a11y-hidden">채팅, 팔로우, 공유 버튼</h2>
       <div class="btn-wrapper">
         <button type="button" class="btn-chatting">
-          <img src="./images/icon-message-circle.svg" alt="채팅 하기" />
+          <img
+            src="../../../../images/icon-message-circle-1.svg"
+            alt="채팅 하기"
+          />
         </button>
         <button type="submit" class="btn-follow">팔로우</button>
         <button type="button" class="btn-share">
-          <img src="./images/icon-share.svg" alt="공유 하기" />
+          <img src="../../../../images/icon-share.svg" alt="공유 하기" />
         </button>
       </div>
     </section>
 
-    <!-- 이 아래부턴 gallery로 바뀌면 바뀌는 부분이라서 section으로 따로 묶음 -->
     <section class="change-wrapper">
       <!-- 판매중인 상품 -->
       <h2 class="a11y-hidden">판매중인 상품 목록</h2>
@@ -69,43 +71,77 @@
         <p>판매 중인 상품</p>
         <ul class="item-list">
           <li class="item">
-            <img src="./images/item_1.png" alt="아이템1" />
+            <img src="../images/item_1.png" alt="아이템1" />
             <span class="item-name">웰핏 프로틴 감귤</span>
             <span class="item-price">35,000원</span>
           </li>
           <li class="item">
-            <img src="./images/item_2.png" alt="아이템2" />
+            <img src="../images/item_2.png" alt="아이템2" />
             <span class="item-name">웰핏 프로틴 한라봉</span>
             <span class="item-price">45,000원</span>
           </li>
           <li class="item">
-            <img src="./images/item_3.png" alt="아이템3" />
+            <img src="../images/item_3.png" alt="아이템3" />
             <span class="item-name">감귤 복압 벨트</span>
             <span class="item-price">25,000원</span>
           </li>
         </ul>
       </article>
 
+      <!-- 이 아래부턴 gallery로 바뀌면 바뀌는 부분 -->
       <!-- 메인 글 피드 부분 -->
       <main>
         <!-- list형, 갤러리형 선택 -->
         <article class="listAlbum-wrapper">
           <section class="turnBtn-wrapper">
             <button type="button">
-              <img src="./images/icon-post-list-on.svg" alt="리스트형-on" />
+              <img
+                src="../../../../images/icon-post-list-on.svg"
+                alt="리스트형-on"
+              />
             </button>
             <button type="button">
-              <img src="./images/icon-post-album-off.svg" alt="앨범형-off" />
+              <img
+                src="../../../../images/icon-post-album-off.svg"
+                alt="앨범형-off"
+              />
             </button>
           </section>
         </article>
+
         <!-- 글쓴이 프로필 정보 -->
-        <article class="profile-writer">
+        <article class="profile-writter">
           <img src="../../../../images/basic-profile-small.svg" alt="프로필" />
+          <span class="profile-info-wrapper">
+            <p class="profile-info-name">웰핏 헬스 공장</p>
+            <p class="profile-info-account">@wellfit_MINJAE</p>
+          </span>
         </article>
-        글쓰기 피드
+
+        <h2 class="a11y-hidden">글쓰기 피드 부분</h2>
+        <article class="writting-wrapper">
+          <span class="writting-contents"
+            >옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
+            이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는
+            풍부하게 뛰노는 인생의 힘있다.</span
+          >
+          <img src="../images/item_4.png" alt="피드 사진" />
+
+          <div class="writting-btn-wrapper">
+            <span
+              ><button type="submit" class="writting-btn-like"></button>
+              <span class="writting-btn-like-count">58</span>
+            </span>
+            <span>
+              <button type="submit" class="writting-btn-chatting"></button>
+              <span class="writting-btn-chatting-count">12</span>
+            </span>
+          </div>
+
+          <p class="date-content">2020년 10월 21일</p>
+        </article>
       </main>
     </section>
-    <footer></footer>
+    <footer>하단바</footer>
   </body>
 </html>
