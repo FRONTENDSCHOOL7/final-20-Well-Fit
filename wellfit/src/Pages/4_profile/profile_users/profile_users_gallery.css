@@ -196,3 +196,32 @@ body {
 main {
   background-color: #fff;
 }
+
+/* 앨범 부분 디자인 */
+.container-album {
+  display: grid;
+  width: 358px;
+  height: 358px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+
+  margin: 0 auto;
+  padding-bottom: 30px;
+  padding-top: 16px;
+}
+.container-album > span {
+  position: relative;
+}
+.many-img {
+  position: absolute;
+  right: 0%;
+}
+/* footer 하단바 */
+footer {
+  height: 60px;
+  background-color: #fefefe;
+  border: 1px solid black;
+}
