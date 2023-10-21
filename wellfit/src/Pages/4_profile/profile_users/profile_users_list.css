@@ -22,13 +22,13 @@ body {
 .search-bar .btn-goback {
   width: 22px;
   height: 22px;
-  background-image: url('./images/icon-arrow-left.svg');
+  background-image: url('../../../../images/icon-arrow-left.svg');
   vertical-align: middle;
 }
 .search-bar .btn-toggle {
   width: 24px;
   height: 24px;
-  background-image: url('./images/icon-\ more-vertical.svg');
+  background-image: url('../../../../images/icon-\ more-vertical.svg');
   vertical-align: middle;
 }
 
@@ -143,7 +143,6 @@ body {
 }
 
 /* 판매 중인 상품 부분  */
-
 .store-wrapper {
   display: flex;
   flex-direction: column;
@@ -195,4 +194,90 @@ body {
 }
 main {
   background-color: #fff;
+}
+
+/* 글쓴이 프로필 정보란 */
+.profile-writter {
+  display: flex;
+  gap: 12px;
+  padding-left: 20px;
+  padding-top: 16px;
+}
+.profile-writter > img {
+  width: 42px;
+  height: 42px;
+}
+
+.profile-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile-info-name {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+}
+.profile-info-account {
+  color: #767676;
+  font-size: 12px;
+  font-weight: 400;
+  padding-top: 4px;
+}
+
+/* 글쓰기 피드 본문 부분 */
+.writting-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 70px;
+  padding-right: 16px;
+  padding: 16px 16px 30px 70px;
+}
+.writting-contents {
+  color: #000;
+  font-family: 'SUIT-Regular';
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.writting-btn-wrapper {
+  display: flex;
+}
+.writting-btn-like {
+  width: 20px;
+  height: 20px;
+  background-image: url('../../../../images/icon-heart.svg');
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.writting-btn-chatting {
+  width: 20px;
+  height: 20px;
+  background-image: url('../../../../images/icon-message-circle.svg');
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 6px;
+  margin-left: 16px;
+}
+.writting-btn-like-count,
+.writting-btn-chatting-count {
+  color: #767676;
+  font-size: 14px;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.date-content {
+  color: #767676;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+/* footer 하단바 */
+footer {
+  height: 60px;
+  background-color: #fefefe;
+  border: 1px solid black;
 }

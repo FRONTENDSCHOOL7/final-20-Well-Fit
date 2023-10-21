@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>profile_users_gallery</title>
+    <link rel="stylesheet" href="../../../../common/css/reset.css" />
+    <link rel="stylesheet" href="./profile_users_gallery.css" />
+  </head>
+  <body>
+    <h1 class="a11y-hidden">유저 프로필 페이지 (gallery버전)</h1>
+    <!-- header 부분 마크업 -->
+    <h2 class="a11y-hidden">뒤로가기 버튼과 토글버튼</h2>
+    <header class="profile-header">
+      <div class="search-bar">
+        <button type="button" class="btn-goback">
+          <span class="a11y-hidden">뒤로가기</span>
+        </button>
+        <button type="button" class="btn-toggle">
+          <span class="a11y-hidden">토글</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 프로필, 팔로우 부분 section 마크업 -->
+    <h2 class="a11y-hidden">프로필, 팔로우 부분</h2>
+    <section class="section-wrapper">
+      <!--팔로워 프로필 팔로잉-->
+      <div class="profile-wrapper">
+        <span class="span-followers">
+          <p class="followers count">2950</p>
+          <p class="followers content">followers</p>
+        </span>
+        <img src="../../../../images/basic-profile.svg" alt="프로필로고" />
+        <span class="span-followings">
+          <p class="followings count">128</p>
+          <p class="followings content">followings</p>
+        </span>
+      </div>
+
+      <!-- 이름, 계정, 소개 부분 -->
+      <h2 class="a11y-hidden">이름, 계정, 소개 부분</h2>
+      <div class="profile-data-wrapper">
+        <span class="content-name">웰핏 헬스공장</span>
+        <span class="content-accountName">@wellfit_MINJAE</span>
+        <span class="content-explain"
+          >엘핏 스포츠 강습권, 전국 거래, 저렴한 강습권</span
+        >
+      </div>
+
+      <!-- 채팅, 팔로우, 공유 버튼 -->
+      <h2 class="a11y-hidden">채팅, 팔로우, 공유 버튼</h2>
+      <div class="btn-wrapper">
+        <button type="button" class="btn-chatting">
+          <img
+            src="../../../../images/icon-message-circle-1.svg"
+            alt="채팅 하기"
+          />
+        </button>
+        <button type="submit" class="btn-follow">팔로우</button>
+        <button type="button" class="btn-share">
+          <img src="../../../../images/icon-share.svg" alt="공유 하기" />
+        </button>
+      </div>
+    </section>
+
+    <!-- 이 아래부턴 gallery로 바뀌면 바뀌는 부분이라서 section으로 따로 묶음 -->
+    <section class="change-wrapper">
+      <!-- 판매중인 상품 -->
+      <h2 class="a11y-hidden">판매중인 상품 목록</h2>
+      <article class="store-wrapper">
+        <p>판매 중인 상품</p>
+        <ul class="item-list">
+          <li class="item">
+            <img src="../images/item_1.png" alt="아이템1" />
+            <span class="item-name">웰핏 프로틴 감귤</span>
+            <span class="item-price">35,000원</span>
+          </li>
+          <li class="item">
+            <img src="../images/item_2.png" alt="아이템2" />
+            <span class="item-name">웰핏 프로틴 한라봉</span>
+            <span class="item-price">45,000원</span>
+          </li>
+          <li class="item">
+            <img src="../images/item_3.png" alt="아이템3" />
+            <span class="item-name">감귤 복압 벨트</span>
+            <span class="item-price">25,000원</span>
+          </li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- 메인 글 피드 부분 -->
+    <main>
+      <!-- list형, 갤러리형 선택 -->
+      <article class="listAlbum-wrapper">
+        <section class="turnBtn-wrapper">
+          <button type="button">
+            <img
+              src="../../../../images/icon-post-list-off.svg"
+              alt="리스트형-off"
+            />
+          </button>
+          <button type="button">
+            <img
+              src="../../../../images/icon-post-album-on.svg"
+              alt="앨범형-on"
+            />
+          </button>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
