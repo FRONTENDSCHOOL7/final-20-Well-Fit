@@ -142,7 +142,9 @@ textarea {
   vertical-align: top;
   resize: vertical;
 }
-
+a {
+  text-decoration: none;
+}
 input {
   -webkit-appearance: none;
 
