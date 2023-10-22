@@ -3,6 +3,9 @@
   height: 820px;
   margin: 0 auto;
   border: 1px solid #dbdbdb;
+
+  /* 게시물 많아지면 스크롤 생성 */
+  overflow: hidden;
 }
 
 * {
@@ -22,6 +25,10 @@
 
 .home-page-content {
   padding: 20px 16px;
+
+  /* 게시물 많아지면 스크롤 생성 */
+  overflow: scroll;
+  height: 100%;
 }
 
 .home-page-content ol li {
