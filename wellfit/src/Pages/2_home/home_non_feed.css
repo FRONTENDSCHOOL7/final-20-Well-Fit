@@ -6,6 +6,10 @@
   font-size: 14px;
 }
 
+* {
+  font-family: 'SUIT-Regular';
+}
+
 /* header 시작 */
 .home-non-feed-page-header {
   border-bottom: 1px solid #dbdbdb;
