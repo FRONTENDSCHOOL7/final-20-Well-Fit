@@ -1,4 +1,5 @@
-body {
+* {
+  font-family: 'SUIT-Regular';
 }
 
 .div-uploadHeader {
@@ -18,14 +19,17 @@ body {
 .btn-upload {
   width: 90px;
   height: 32px;
-  background-color: #9ec1f1;
   color: #ffffff;
   border-radius: 32px;
   margin-top: 8px;
   margin-right: 16px;
 }
 
-.btn-upload:active {
+.btn-upload:disabled {
+  background-color: #9ec1f1;
+}
+
+.btn-upload:enabled {
   background-color: #004aad;
 }
 
@@ -39,18 +43,41 @@ body {
   background-color: #c4c4c4;
   border-radius: 100%;
   left: 274px;
-  bottom: 12px;
+  bottom: 42px;
 }
 
+.form-addProduct h2 {
+  margin-bottom: 18px;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.form-addProduct input {
+  border: none;
+  border-bottom: 1px solid #dbdbdb;
+
+  padding-top: 9px;
+  padding-bottom: 9px;
+  margin-bottom: 16px;
+}
 .form-addProduct {
   display: flex;
   flex-direction: column;
   margin: 34px;
+  margin-top: 30px;
+  color: var(--767676, #767676);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-
+.form-addProduct ::placeholder {
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--DBDBDB, #dbdbdb);
+}
 .img-productAdd {
   width: 322px;
   height: 204px;
+  margin-bottom: 30px;
 }
-
-/* 인풋 사이 25px 간격 */
