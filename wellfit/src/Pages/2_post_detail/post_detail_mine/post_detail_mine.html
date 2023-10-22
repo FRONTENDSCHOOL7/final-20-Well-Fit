@@ -168,31 +168,28 @@
                 </div>
               </div>
             </li>
-            <li>
-              <div class="comment">
-                <img
-                  src="../../../../images/basic-profile-small.svg"
-                  alt="프로필 사진"
-                  class="img-comment-profile"
-                />
-                <div class="comment-content-wrapper">
-                  <div class="comment-info">
-                    <div>
-                      <strong>서귀포시 무슨 농장</strong>
-                      <!-- datetime은 나중에 js로 채울예정 -->
-                      <time datetime="">· 5분 전</time>
-                    </div>
-                    <button type="button" class="btn-comment-toggle">
-                      <span class="a11y-hidden">토글</span>
-                    </button>
-                  </div>
-                  <p class="comment-text">게시글 답글 ~~ !! 최고최고</p>
-                </div>
-              </div>
-            </li>
           </ol>
         </section>
       </main>
+
+      <footer class="footer-comment-write">
+        <form class="footer-comment-wrapper" action="#">
+          <img
+            src="../../../../images/basic-profile-small.svg"
+            alt="프로필 사진"
+          />
+          <div class="input-comment-wrapper">
+            <label for="input-comment" class="a11y-hidden">댓글 입력</label>
+            <input
+              type="text"
+              id="input-comment"
+              class="input-comment"
+              placeholder="댓글 입력하기..."
+            />
+          </div>
+          <button class="btn-comment-submit">게시</button>
+        </form>
+      </footer>
     </div>
   </body>
 </html>
