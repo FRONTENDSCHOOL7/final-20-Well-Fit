@@ -13,6 +13,7 @@
         <button class="btn-back" type="button">
           <img src="../../../img/backBtn.svg" alt="뒤로가기 버튼" />
         </button>
+        <!-- 기본 disabled, 필수 input 입력힌 후에 enabled로 변경  -->
         <button class="btn-upload" type="submit">저장</button>
       </div>
 
@@ -24,6 +25,8 @@
             <img src="../../../img/picture_s.svg" alt="사진 첨부 버튼" />
           </button>
         </div>
+
+        <!-- 2자~15자 글자수 제한 -->
         <label for="productName">전문 분야</label>
         <input
           type="text"
@@ -31,16 +34,18 @@
           id="productName"
           placeholder="2-15자 이내여야 합니다."
         />
+        <!-- 숫자만, 최대 숫자 10,000,000 -->
+
         <label for="productPrice">수강료</label>
         <input
-          type="text"
+          type="number"
           name="productPrice"
           id="productPrice"
           placeholder="1시간당 수강료를 입력해주세요."
         />
         <label for="productURL">판매 링크</label>
         <input
-          type="text"
+          type="url"
           name="productURL"
           id="productURL"
           placeholder="URL을 입력해주세요."
