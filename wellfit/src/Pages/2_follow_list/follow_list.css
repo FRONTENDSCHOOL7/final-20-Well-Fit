@@ -9,6 +9,10 @@
   overflow: hidden;
 }
 
+* {
+  font-family: 'SUIT-Regular';
+}
+
 /* header 시작 */
 .follow-list-page-header {
   border-bottom: 1px solid #dbdbdb;

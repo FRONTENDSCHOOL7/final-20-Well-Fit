@@ -8,6 +8,9 @@
   /* 화면 넘치면 숨김 */
   overflow: hidden;
 }
+* {
+  font-family: 'SUIT-Regular';
+}
 
 /* header 시작 */
 .post-detail-mine-page-header {
