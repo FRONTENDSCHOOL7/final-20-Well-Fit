@@ -7,35 +7,37 @@ body {
 
 .modal-wrapper {
   margin: 0 auto;
-  width: 390px;
-  height: 138px;
+  width: 252px;
+  height: 110px;
+  border-radius: 10px;
   background-color: #fff;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
 }
-.mark-wrapper {
-  position: relative;
-  height: 36px;
-  width: 100%;
+
+.logout-alert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
 }
-.mark {
-  position: absolute;
-  width: 50px;
-  height: 4px;
-  background-color: #dbdbdb;
-  top: 50%;
-  right: 50%;
-  transform: translateX(50%);
+.btn-wrapper {
+  display: flex;
 }
-.btn-delete,
-.btn-fix {
-  width: 100%;
+.btn-cancel,
+.btn-logout {
+  width: 126px;
   height: 46px;
-  box-sizing: border-box;
-  text-align: left;
-  padding-left: 26px;
+  border-top: 0.5px solid #dbdbdb;
 
   color: #000;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
+}
+.btn-logout {
+  border-left: 0.5px solid #dbdbdb;
+  color: #004aad;
 }
