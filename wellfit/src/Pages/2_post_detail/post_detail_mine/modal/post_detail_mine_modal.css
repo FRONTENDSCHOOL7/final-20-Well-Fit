@@ -18,6 +18,7 @@ body {
   height: 4px;
   background-color: #dbdbdb;
   margin: 0 auto 16px;
+  border-radius: 5px;
 }
 
 .btn-delete {
