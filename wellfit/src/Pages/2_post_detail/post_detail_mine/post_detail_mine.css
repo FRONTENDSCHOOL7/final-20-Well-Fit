@@ -136,8 +136,6 @@ hr {
 .section-comment {
   padding: 20px 16px;
   /* overflow: scroll; */
-
-  border: 1px solid red;
 }
 
 .section-comment .comment {
@@ -173,11 +171,10 @@ hr {
 /* footer 시작 */
 .footer-comment-write {
   position: absolute;
-  width: 100%;
   bottom: 0;
+  width: 100%;
 }
 .footer-comment-wrapper {
-  border: 1px solid red;
   padding: 12.5px 16px 12px 16px;
   display: flex;
   align-items: center;
@@ -198,3 +195,9 @@ hr {
   color: #c4c4c4;
 }
 /* footer 끝 */
+
+/* 댓글이 많아져도 스크롤이 생기지 않아서 height 값을 고정했음 */
+main .section-comment {
+  height: 235px;
+  overflow: scroll;
+}
