@@ -1,0 +1,80 @@
+body {
+}
+
+.div-uploadHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 48px;
+  border-bottom: 0.5px solid #dbdbdb;
+  top: 0px;
+  position: sticky;
+}
+
+.btn-back {
+  width: 22px;
+  height: 22px;
+  margin-top: 13px;
+  margin-left: 16px;
+}
+.btn-upload {
+  width: 90px;
+  height: 32px;
+  background-color: #9ec1f1;
+  color: #ffffff;
+  border-radius: 32px;
+  margin-top: 8px;
+  margin-right: 16px;
+}
+
+.btn-upload:active {
+  background-color: #004aad;
+}
+
+.div-posting {
+  display: flex;
+}
+.img-uploadProfile {
+  width: 42px;
+  height: 42px;
+  margin: 16px;
+  margin-right: 13px;
+}
+.textarea-post {
+  flex-shrink: 0;
+  border: none;
+  width: 304px;
+  height: 54px;
+  margin-top: 31px;
+  margin-right: 16px;
+  resize: none;
+}
+
+.btn-attachPicture {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #004aad;
+  border-radius: 100%;
+  left: 324px;
+  bottom: 20px;
+}
+.div-postImg {
+  position: relative;
+}
+.img-postingImg {
+  width: 304px;
+  height: 228px;
+  margin-left: 70px;
+  border-radius: 10px;
+  border: 0.5px;
+}
+
+.btn-imgDelete {
+  position: absolute;
+  top: 6px;
+  left: 346px;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../img/delete2.png);
+}
