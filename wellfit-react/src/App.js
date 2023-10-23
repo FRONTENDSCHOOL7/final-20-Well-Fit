@@ -23,12 +23,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  return (
-    <>
-      <GlobalStyle />
-      <MainHeader />
-      <Footer />
-    </>
-  );
+  return <div>hello world</div>;
 }
 export default App;
