@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../../common/css/reset.css" />
+    <link rel="stylesheet" href="./post_detail_mine.css" />
+    <title>Post Detail Page</title>
+  </head>
+  <body>
+    <div class="post-detail-mine-page">
+      <!-- post detail mine page의 헤더 -->
+      <h1 class="a11y-hidden">게시글과 댓글 페이지</h1>
+      <header class="post-detail-mine-page-header">
+        <h2 class="a11y-hidden">뒤로가기 버튼과 토글버튼</h2>
+        <div class="search-bar">
+          <button type="button" class="btn-goback">
+            <span class="a11y-hidden">뒤로가기</span>
+          </button>
+          <button type="button" class="btn-toggle">
+            <span class="a11y-hidden">토글</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- post detail mine page의 내용 -->
+      <main class="post-detail-mine-content">
+        <!-- 게시물 섹션 -->
+        <article class="post">
+          <h2 class="a11y-hidden">게시물 자세히보기</h2>
+          <div class="img-profile">
+            <img src="../../../../images/basic-profile-small.svg" alt="" />
+          </div>
+          <section class="feed">
+            <div class="feed-header">
+              <p class="feed-title">애월읍 위니브 감귤농장</p>
+              <p class="feed-writer">&#64;weniv_Mandarin</p>
+              <button type="button" class="btn-post-toggle">
+                <span class="a11y-hidden">토글</span>
+              </button>
+            </div>
+            <div class="feed-content">
+              <p>
+                옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여,
+                뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할
+                넣는 풍부하게 뛰노는 인생의 힘있다.
+              </p>
+              <img
+                class="img-feed"
+                src="../images/unsplash_FWtiv70Z_ZY.png"
+                alt=""
+              />
+            </div>
+            <div class="feed-info">
+              <div class="icons">
+                <div class="hearts">
+                  <button class="btn-hearts">
+                    <span class="a11y-hidden">좋아요 버튼</span>
+                  </button>
+                  <span>58</span>
+                </div>
+                <div class="comments">
+                  <button class="btn-comments">
+                    <span class="a11y-hidden">댓글목록 보기</span>
+                  </button>
+                  <span>12</span>
+                </div>
+              </div>
+              <time datetime="2020-10-21">2020년 10월 21일</time>
+            </div>
+          </section>
+        </article>
+
+        <!-- 게시물, 댓글목록 구분선 -->
+        <hr />
+
+        <!-- 댓글목록 섹션 -->
+        <!-- 스크롤이 나타나지 않음 !!!@!@!@!@ -->
+        <section class="section-comment">
+          <h3 class="a11y-hidden">댓글 목록</h3>
+          <ol>
+            <li>
+              <div class="comment">
+                <img
+                  src="../../../../images/basic-profile-small.svg"
+                  alt="프로필 사진"
+                  class="img-comment-profile"
+                />
+                <div class="comment-content-wrapper">
+                  <div class="comment-info">
+                    <div>
+                      <strong>서귀포시 무슨 농장</strong>
+                      <!-- datetime은 나중에 js로 채울예정 -->
+                      <time datetime="">· 5분 전</time>
+                    </div>
+                    <button type="button" class="btn-comment-toggle">
+                      <span class="a11y-hidden">토글</span>
+                    </button>
+                  </div>
+                  <p class="comment-text">게시글 답글 ~~ !! 최고최고</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="comment">
+                <img
+                  src="../../../../images/basic-profile-small.svg"
+                  alt="프로필 사진"
+                  class="img-comment-profile"
+                />
+                <div class="comment-content-wrapper">
+                  <div class="comment-info">
+                    <div>
+                      <strong>서귀포시 무슨 농장</strong>
+                      <!-- datetime은 나중에 js로 채울예정 -->
+                      <time datetime="">· 5분 전</time>
+                    </div>
+                    <button type="button" class="btn-comment-toggle">
+                      <span class="a11y-hidden">토글</span>
+                    </button>
+                  </div>
+                  <p class="comment-text">게시글 답글 ~~ !! 최고최고</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="comment">
+                <img
+                  src="../../../../images/basic-profile-small.svg"
+                  alt="프로필 사진"
+                  class="img-comment-profile"
+                />
+                <div class="comment-content-wrapper">
+                  <div class="comment-info">
+                    <div>
+                      <strong>서귀포시 무슨 농장</strong>
+                      <!-- datetime은 나중에 js로 채울예정 -->
+                      <time datetime="">· 5분 전</time>
+                    </div>
+                    <button type="button" class="btn-comment-toggle">
+                      <span class="a11y-hidden">토글</span>
+                    </button>
+                  </div>
+                  <p class="comment-text">게시글 답글 ~~ !! 최고최고</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="comment">
+                <img
+                  src="../../../../images/basic-profile-small.svg"
+                  alt="프로필 사진"
+                  class="img-comment-profile"
+                />
+                <div class="comment-content-wrapper">
+                  <div class="comment-info">
+                    <div>
+                      <strong>서귀포시 무슨 농장</strong>
+                      <!-- datetime은 나중에 js로 채울예정 -->
+                      <time datetime="">· 5분 전</time>
+                    </div>
+                    <button type="button" class="btn-comment-toggle">
+                      <span class="a11y-hidden">토글</span>
+                    </button>
+                  </div>
+                  <p class="comment-text">게시글 답글 ~~ !! 최고최고</p>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </section>
+      </main>
+
+      <!-- footer -->
+      <footer class="footer-comment-write">
+        <form class="footer-comment-wrapper" action="#">
+          <img
+            src="../../../../images/basic-profile-small.svg"
+            alt="프로필 사진"
+          />
+          <div class="input-comment-wrapper">
+            <label for="input-comment" class="a11y-hidden">댓글 입력</label>
+            <input
+              type="text"
+              id="input-comment"
+              class="input-comment"
+              placeholder="댓글 입력하기..."
+            />
+          </div>
+          <button class="btn-comment-submit">게시</button>
+        </form>
+      </footer>
+    </div>
+  </body>
+</html>

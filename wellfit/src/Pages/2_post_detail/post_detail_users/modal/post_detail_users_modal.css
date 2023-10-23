@@ -1,0 +1,28 @@
+* {
+  font-family: 'SUIT-Regular';
+}
+body {
+  background-color: #e5e5e5;
+}
+
+.modal-delete {
+  background-color: #fff;
+  width: 390px;
+  margin: 0 auto;
+  padding-top: 16px;
+  border-radius: 10px 10px 0 0;
+}
+
+.modal-line {
+  width: 50px;
+  height: 4px;
+  background-color: #dbdbdb;
+  margin: 0 auto 16px;
+  border-radius: 5px;
+}
+
+.btn-delete {
+  padding: 14px 0 14px 26px;
+  text-align: left;
+  width: 100%;
+}
