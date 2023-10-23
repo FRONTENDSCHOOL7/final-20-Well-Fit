@@ -8,6 +8,8 @@
   width: 100%;
   height: 48px;
   border-bottom: 0.5px solid #dbdbdb;
+  top: 0px;
+  position: sticky;
 }
 
 .btn-back {
