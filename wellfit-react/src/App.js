@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import reset from '../src/resetcss/reset.css';
 import Footer from './Components/common/Footer/Footer';
 import MainHeader from './Components/common/Header/MainHeader';
+import Footer from './Components/common/Footer/Footer';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -23,6 +24,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  return <div>hello world</div>;
+  return (
+    <>
+      <GlobalStyle />
+      <MainHeader />
+      <Footer />
+    </>
+  );
 }
 export default App;
