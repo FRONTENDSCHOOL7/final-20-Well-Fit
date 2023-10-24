@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from '../src/resetcss/reset.css';
-import PageHome from './Pages/Home/PageHome';
+// import PageHome from './Pages/Home/PageHome';
+import PageSearch from './Pages/Search/PageSearch';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -25,7 +26,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <PageHome />
+      <PageSearch />
     </>
   );
 }
