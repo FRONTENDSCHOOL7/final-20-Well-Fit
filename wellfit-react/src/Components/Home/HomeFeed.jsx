@@ -68,16 +68,16 @@ const StyledHomeFeed = styled.li`
 export default function HomeFeed() {
   return (
     <StyledHomeFeed>
-      <h3 class="a11y-hidden">펄로우한 계정 게시물</h3>
-      <div class="img-profile">
+      <h3 className="a11y-hidden">펄로우한 계정 게시물</h3>
+      <div className="img-profile">
         <img src="../../../images/basic-profile-small.svg" alt="프로필 사진" />
       </div>
-      <section class="feed">
-        <div class="feed-header">
-          <p class="feed-title">애월읍 위니브 감귤농장</p>
-          <p class="feed-writer">&#64;weniv_Mandarin</p>
+      <section className="feed">
+        <div className="feed-header">
+          <p className="feed-title">애월읍 위니브 감귤농장</p>
+          <p className="feed-writer">&#64;weniv_Mandarin</p>
         </div>
-        <div class="feed-content">
+        <div className="feed-content">
           <p>
             옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
             이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는
@@ -86,17 +86,17 @@ export default function HomeFeed() {
           {/* 조건부 렌더링 : 이미지 데이터가 있을경우에 렌더링*/}
           <img src={feedImage} alt="피드 사진" />
         </div>
-        <div class="feed-info">
-          <div class="icons">
-            <div class="hearts">
-              <button class="btn-hearts">
-                <span class="a11y-hidden">좋아요 버튼</span>
+        <div className="feed-info">
+          <div className="icons">
+            <div className="hearts">
+              <button className="btn-hearts">
+                <span className="a11y-hidden">좋아요 버튼</span>
               </button>
               <span>58</span>
             </div>
-            <div class="comments">
-              <button class="btn-comments">
-                <span class="a11y-hidden">댓글목록 보기</span>
+            <div className="comments">
+              <button className="btn-comments">
+                <span className="a11y-hidden">댓글목록 보기</span>
               </button>
               <span>12</span>
             </div>

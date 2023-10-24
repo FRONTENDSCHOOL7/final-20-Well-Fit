@@ -32,17 +32,17 @@ const StyledSearchUserItem = styled.li`
 export default function SearchUserItem() {
   return (
     <StyledSearchUserItem>
-      <article class="search-result">
-        <h3 class="a11y-hidden">검색된 유저</h3>
-        <div class="img-profile">
+      <article className="search-result">
+        <h3 className="a11y-hidden">검색된 유저</h3>
+        <div className="img-profile">
           <img
             src="../../../images/basic-profile-small.svg"
             alt="프로필 사진"
           />
         </div>
-        <div class="user-info">
-          <p class="user-name">애월읍 위니브 감귤농장</p>
-          <p class="user-email">&#64; weniv_Mandarin</p>
+        <div className="user-info">
+          <p className="user-name">애월읍 위니브 감귤농장</p>
+          <p className="user-email">&#64; weniv_Mandarin</p>
         </div>
       </article>
     </StyledSearchUserItem>

@@ -28,9 +28,9 @@ const StyledSearchPageHeader = styled.header`
 export default function SearchHeader() {
   return (
     <StyledSearchPageHeader>
-      <div class="search-bar">
-        <button type="button" class="btn-goback"></button>
-        <label for="input-search" class="a11y-hidden">
+      <div className="search-bar">
+        <button type="button" className="btn-goback"></button>
+        <label for="input-search" className="a11y-hidden">
           계정 검색
         </label>
         <input type="text" id="input-search" placeholder="계정 검색" />
