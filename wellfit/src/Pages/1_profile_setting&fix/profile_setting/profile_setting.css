@@ -1,0 +1,81 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+.main-profile {
+  margin: 0 auto;
+}
+.main-profile h1 {
+  text-align: center;
+  font-size: 24px;
+  padding-top: 30px;
+}
+
+.main-profile p {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.img-profile {
+  display: block;
+  position: relative;
+  margin: 30px auto 30px;
+  width: 110px;
+  height: 110px;
+}
+.img-profile::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  height: 36px;
+  background: url(./images/upload-file.svg) no-repeat center / 3.6px 3.6px;
+}
+.inp-imgfile {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+.div-inp {
+  display: flex;
+  flex-direction: column;
+  width: 322px;
+  margin: 16px 0;
+}
+.div-inp label {
+  font-size: 12px;
+}
+.div-inp input {
+  height: 32px;
+  border: 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.btn-login {
+  width: 323px;
+  height: 44px;
+  padding: 13px 0;
+  border-radius: 44px;
+  font-size: 14px;
+  background-color: #004aad;
+}
+.div-op {
+  display: flex;
+  flex-direction: column;
+  width: 322px;
+  margin-bottom: 30px;
+}
+.div-op select {
+  padding: 10px;
+  font-size: 12px;
+}
+.btn-login {
+  color: #fff;
+  width: 322px;
+  height: 44px;
+  padding: 13px 0;
+  border-radius: 44px;
+  font-size: 14px;
+  background-color: #004aad;
+}

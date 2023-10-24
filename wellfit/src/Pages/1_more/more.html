@@ -5,68 +5,139 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>well-fit</title>
+    <link rel="stylesheet" href="../../../common/css/reset.css" />
+    <link rel="stylesheet" href="./more.css" />
   </head>
   <body>
-    <header>
-      <button>뒤로가기</button>
-      <button>설정</button>
-    </header>
-    <main>
-      <section>
-        <div>
-          <div>
-            <div>
-              <strong>날짜</strong>
-              <p>요일</p>
+    <div class="page">
+      <header class="header">
+        <button class="btn-back">
+          <img src="../../../images/icon- more-vertical.svg" alt="뒤로가기" />
+        </button>
+        <button class="btn-modal">
+          <img
+            src="../../../images/icon- more-vertical.svg more-vertical.svg"
+            alt="더보기"
+          />
+        </button>
+      </header>
+      <main class="main-more">
+        <h1 class="a11y-hidden">더보기</h1>
+        <section class="section-widget">
+          <div class="container">
+            <div class="today">
+              <div class="calendar">
+                <strong>24</strong>
+                <p>화요일</p>
+              </div>
+              <div>
+                <p>To Do List</p>
+                <ul>
+                  <li>물 많이 마시기</li>
+                  <li>걷기</li>
+                  <li>뛰기</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <p>오늘의 목표</p>
-              <ul>
-                <li>물 많이 마시기</li>
-                <li>걷기</li>
-                <li>뛰기</li>
-              </ul>
+            <div class="small-widget">
+              <p>추천 음악</p>
+              <a href=""><img src="./images/music.svg" alt="음악" /></a>
+            </div>
+            <div class="small-widget">
+              <p>칼로리 계산기</p>
+              <a href=""
+                ><img src="./images/calorie.svg" alt="칼로가 계산"
+              /></a>
+            </div>
+            <div class="part">
+              <p>운동 부위 추천</p>
+              <div class="part-body">
+                <a href=""
+                  ><img src="./images/leg.svg" alt="하체" />
+                  <div>하체</div></a
+                >
+                <a href=""
+                  ><img src="./images/shoulder.svg" alt="어깨" />
+                  <div>어깨</div></a
+                >
+                <a href=""
+                  ><img src="./images/chest.svg" alt="가슴" />
+                  <div>가슴</div></a
+                >
+                <a href=""
+                  ><img src="./images/back.svg" alt="등" />
+                  <div>등</div></a
+                >
+              </div>
             </div>
           </div>
-          <div>
-            <p>추천 음악</p>
-            <a href=""></a>
+        </section>
+        <section class="section-category">
+          <h2>카테고리</h2>
+          <div class="category">
+            <div class="icon-cate">
+              <a href=""
+                ><img src="./images/location.svg" alt="위치 찾기" />
+                <div class="cate-txt">위치 찾기</div></a
+              >
+            </div>
+            <div class="icon-cate">
+              <a href=""
+                ><img src="./images/tip.svg" alt="꿀팁" />
+                <div class="cate-txt">꿀팁</div></a
+              >
+            </div>
+            <div class="icon-cate">
+              <a href=""
+                ><img src="./images/partner.svg" alt="파트너 찾기" />
+                <div class="cate-txt">파트너 찾기</div></a
+              >
+            </div>
+            <div class="icon-cate">
+              <a href=""
+                ><img src="./images/challenge.svg" alt="챌린지" />
+                <div class="cate-txt">챌린지</div></a
+              >
+            </div>
+            <div class="icon-cate">
+              <a href=""
+                ><img src="./images/store.svg" alt="스토어" />
+                <div class="cate-txt">스토어</div></a
+              >
+            </div>
+            <div class="icon-cate">
+              <a href=""
+                ><img src="./images/check.svg" alt="출석체크" />
+                <div class="cate-txt">출석 체크</div></a
+              >
+            </div>
           </div>
-          <div>
-            <p>칼로리 계산기</p>
-            <a href=""></a>
-          </div>
-          <div>
-            <p>운동 부위 추천</p>
-            <ul>
-              <li><a href="">하체</a></li>
-              <li><a href="">어깨</a></li>
-              <li><a href="">가슴</a></li>
-              <li><a href="">등</a></li>
-            </ul>
-          </div>
+        </section>
+      </main>
+      <footer>
+        <div class="tapbar">
+          <button>
+            <img src="../../../images/icon-home.svg" alt="홈" />
+            <div>홈</div>
+          </button>
+          <button>
+            <img src="../../../images/icon-message-circle-1.svg" alt="채팅" />
+            <div>채팅</div>
+          </button>
+          <button>
+            <img src="../../../images/icon-edit.svg" alt="게시물 작성" />
+            <div>게시물 작성</div>
+          </button>
+          <button>
+            <img src="../../../images/icon-user.svg" alt="프로필" />
+            <div>프로필</div>
+          </button>
+          <button>
+            <img src="../../../images/icon-more-square.svg" alt="더보기" />
+            <div>더보기</div>
+          </button>
         </div>
-      </section>
-      <section>
-        <h3>카테고리</h3>
-        <ul>
-          <li><a href="">위치 찾기</a></li>
-          <li><a href="">꿀팁</a></li>
-          <li><a href="">파트너 찾기</a></li>
-          <li><a href="">챌린지</a></li>
-          <li><a href="">스토어</a></li>
-          <li><a href="">출석 체크</a></li>
-        </ul>
-      </section>
-    </main>
-    <footer>
-      <ul>
-        <li><a href="">홈</a></li>
-        <li><a href="">채팅</a></li>
-        <li><a href="">게시물 작성</a></li>
-        <li><a href="">프로필</a></li>
-        <li><a href="">더보기</a></li>
-      </ul>
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>

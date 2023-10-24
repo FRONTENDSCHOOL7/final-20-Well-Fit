@@ -1,0 +1,42 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+.main-login {
+  margin: 0 auto;
+}
+.main-login h1 {
+  padding-top: 30px;
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 24px;
+}
+.div-inp {
+  display: flex;
+  flex-direction: column;
+  width: 322px;
+  margin: 16px 0;
+}
+.div-inp label {
+  font-size: 12px;
+}
+.div-inp input {
+  height: 32px;
+  border: 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.div-inp input:focus {
+  border-bottom: 1px solid #004aad;
+}
+.form-login section {
+  margin-bottom: 3px;
+}
+.btn-login {
+  color: #fff;
+  width: 322px;
+  height: 44px;
+  padding: 13px 0;
+  border-radius: 44px;
+  font-size: 14px;
+  background-color: #004aad;
+}
