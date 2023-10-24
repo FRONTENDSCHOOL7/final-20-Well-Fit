@@ -2,7 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 import reset from '../src/resetcss/reset.css';
 // import PageHome from './Pages/Home/PageHome';
 // import PageSearch from './Pages/Search/PageSearch';
-import PageFollow from './Pages/Follow/PageFollow';
+// import PageFollow from './Pages/Follow/PageFollow';
+// import PageChattingList from './Pages/Chatting/PageChattingList';
+import PagePost from './Pages/Post/PagePost';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -27,7 +29,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <PageFollow />
+      <PagePost />
     </>
   );
 }
