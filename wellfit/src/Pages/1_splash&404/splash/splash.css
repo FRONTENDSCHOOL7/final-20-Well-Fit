@@ -1,0 +1,16 @@
+body {
+  background-color: #fffd8c;
+}
+.main-splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.main-splash img {
+  width: 200px;
+  height: 200px;
+}

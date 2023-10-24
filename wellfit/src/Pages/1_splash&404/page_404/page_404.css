@@ -1,0 +1,22 @@
+.main-not {
+  position: relative;
+  margin: 200px auto;
+  text-align: center;
+}
+
+.main-not p {
+  color: #767676;
+  font-size: 14px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.btn-return {
+  color: #fff;
+  width: 120px;
+  height: 44px;
+  padding: 13px 0;
+  border-radius: 44px;
+  font-size: 14px;
+  background-color: #004aad;
+}

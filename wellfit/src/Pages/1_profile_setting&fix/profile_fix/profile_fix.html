@@ -5,50 +5,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>well-fit</title>
+    <link rel="stylesheet" href="../../../common/css/reset.css" />
+    <link rel="stylesheet" href="./profile_fix.css" />
   </head>
   <body>
-    <header>
-      <button>뒤로가기</button>
-      <button>저장</button>
-    </header>
-    <article>
-      <section>
-        <div>
-          <img src="" />
-          <div>
-            <label for="user-profile"></label>
-            <input id="user-profile" type="file" />
-          </div>
-        </div>
-      </section>
-      <section>
-        <form>
-          <div>
-            <label for="user-name">사용자 이름</label>
-            <input
-              id="user-name"
-              type="text"
-              placeholder="2~10자 이내여야 합니다."
-            />
-          </div>
-          <div>
-            <label for="user-id">계정 ID</label>
-            <input
-              id="user-id"
-              type="text"
-              placeholder="영문, 숫자, 특수문자(,),(_)만 사용 가능합니다."
-            />
-          </div>
-          <div>
-            <label for="user-info">소개</label>
-            <input
-              id="user-info"
-              type="text"
-              placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
-            />
-          </div>
-        </form>
-      </section>
-    </article>
+    <div class="page">
+      <header class="header">
+        <button class="btn-back">
+          <img src="../../../../images/icon-arrow-left.svg" alt="뒤로가기" />
+        </button>
+        <button class="btn-save">저장</button>
+      </header>
+      <div class="wrap">
+        <main class="main-profile">
+          <h1 class="a11y-hidden">프로필 설정</h1>
+          <form>
+            <div>
+              <label class="img-profile" for="upload-img"
+                ><img
+                  src="../../../../images/basic-profile.svg"
+                  alt="기본 프로필"
+              /></label>
+              <input class="inp-imgfile" id="upload-img" type="file" />
+            </div>
+            <div class="div-inp">
+              <label for="user-name">사용자 이름</label>
+              <input
+                id="user-name"
+                type="text"
+                placeholder="2~10자 이내여야 합니다."
+              />
+            </div>
+            <div class="div-inp">
+              <label for="user-id">계정 ID</label>
+              <input
+                id="user-id"
+                type="text"
+                placeholder="영문, 숫자, 특수문자(,),(_)만 사용 가능합니다."
+              />
+            </div>
+            <div class="div-inp">
+              <label for="user-info">소개</label>
+              <input
+                id="user-info"
+                type="text"
+                placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
+              />
+            </div>
+            <div class="div-inp">
+              <label for="user-cm">키</label>
+              <input
+                id="user-cm"
+                type="number"
+                placeholder="키를 입력해 주세요. (예: 178)"
+              />
+            </div>
+            <div class="div-inp">
+              <label for="user-kg">몸무게</label>
+              <input
+                id="user-kg"
+                type="number"
+                placeholder="몸무게를 입력해 주세요. (예: 78)"
+              />
+            </div>
+            <div class="div-op">
+              <select>
+                <option>나이</option>
+                <option>10대 이상</option>
+                <option>20대 이상</option>
+                <option>30대 이상</option>
+                <option>40대 이상</option>
+                <option>50대 이상</option>
+                <option>60대 이상</option>
+              </select>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
   </body>
 </html>
