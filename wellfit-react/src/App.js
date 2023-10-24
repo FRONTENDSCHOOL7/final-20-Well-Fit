@@ -1,12 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from '../src/resetcss/reset.css';
 import Footer from './Components/common/Footer/Footer';
-import MainHeader from './Components/common/Header/MainHeader';
-import PageProfileModification from './Pages/Profile/PageProfileModification';
-import ProfileHeader from './Pages/Profile/ProfileHeader';
-import PageMore from './Pages/More/PageMore';
-import PageSnsLogin from './Pages/Login/PageSnsLogin';
-import PageSignup from './Pages/Signup/PageSignup';
+import PageMineProfile from './Pages/Profile/PageMineProfile';
+import PageUsersProfile from './Pages/Profile/PageUsersProfile';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -21,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'SUIT-Regular', sans-serif; /* 사용할 폰트 지정 */
     margin: 0 auto;
     width: 390px;
-    background-color: #fff;
+    background-color: #dbdbdb;
   }
 
   ${reset}
@@ -31,8 +27,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <MainHeader />
-      <PageMore />
+      <PageMineProfile />
+      {/* <PageUsersProfile /> */}
       <Footer />
     </>
   );
