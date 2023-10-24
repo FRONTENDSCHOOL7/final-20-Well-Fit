@@ -1,12 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
-const StyledProfileUsers = styled.section`
+const StyledProfileMine = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fefefe;
+  width: 390px;
+  background-color: #ffffff;
   padding: 30px 0;
   gap: 16px;
 
@@ -62,48 +63,30 @@ const StyledProfileUsers = styled.section`
     font-weight: 400;
     padding-bottom: 16px;
   }
-
-  /* 채팅, 팔로우, 공유 버튼 */
+  /* 프로필 수정, 상품 등록 부분 */
   & .btn-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
-  & .btn-chatting,
-  .btn-share {
-    width: 34px;
+  & .btn-fix {
+    width: 120px;
     height: 34px;
     border-radius: 30px;
     border: 1px solid #dbdbdb;
   }
-  & .btn-follow {
-    width: 120px;
+  & .btn-add {
+    width: 100px;
     height: 34px;
     border-radius: 30px;
-    background: #515fec;
-
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  & .btn-follow:active {
-    width: 120px;
-    height: 34px;
-    border-radius: 30px;
-    background: #515fec;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: underline;
+    border: 1px solid #dbdbdb;
   }
 `;
 
-export default function ProfileUsers() {
+export default function ProfileMine() {
   return (
-    <StyledProfileUsers>
+    <StyledProfileMine>
       {/* 팔로워 프로필 팔로잉 */}
       <div className="profile-wrapper">
         <span className="span-followers">
@@ -127,22 +110,16 @@ export default function ProfileUsers() {
         </span>
       </div>
 
-      {/* 채팅, 팔로우, 공유 버튼 */}
+      {/* 프로필 수정, 상품 등록 부분 */}
       <h2 className="a11y-hidden">채팅, 팔로우, 공유 버튼</h2>
       <div className="btn-wrapper">
-        <button type="button" className="btn-chatting">
-          <img
-            src="../../../../images/icon-message-circle-1.svg"
-            alt="채팅 하기"
-          />
+        <button type="button" className="btn-fix">
+          프로필 수정
         </button>
-        <button type="submit" className="btn-follow">
-          팔로우
-        </button>
-        <button type="button" className="btn-share">
-          <img src="../../../../images/icon-share.svg" alt="공유 하기" />
+        <button type="submit" className="btn-add">
+          상품 등록
         </button>
       </div>
-    </StyledProfileUsers>
+    </StyledProfileMine>
   );
 }
