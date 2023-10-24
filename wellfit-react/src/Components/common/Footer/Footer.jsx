@@ -5,9 +5,9 @@ const StyledMainFooter = styled.footer`
   & .tapbar {
     display: flex;
     justify-content: space-around;
-    position: fixed;
-    bottom: 0;
+    position: absolute;
     width: 390px;
+    height: 60px;
     border-top: 1px solid #dbdbdb;
     padding-top: 10px;
     background-color: #fefefe;
