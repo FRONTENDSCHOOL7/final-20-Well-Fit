@@ -8,8 +8,8 @@ const StyledChatRoomHeader = styled.div`
 
   .div-uploadHeader {
     top: 0px;
-    position: sticky;
     display: flex;
+    position: sticky;
     justify-content: space-between;
     width: 100%;
     height: 48px;
