@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import feedImage from './images/unsplash_FWtiv70Z_ZY.png';
+import heartFill from '../../../images/icon-heart.svg';
 
 const StyledHomeFeed = styled.li`
   display: flex;
@@ -101,7 +102,7 @@ export default function HomeFeed() {
               <span>12</span>
             </div>
           </div>
-          <time datetime="2020-10-21">2020년 10월 21일</time>
+          <time dateTime="2020-10-21">2020년 10월 21일</time>
         </div>
       </section>
     </StyledHomeFeed>
