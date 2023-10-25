@@ -8,6 +8,7 @@ const StyledHomePage = styled.div`
   height: 820px;
   margin: 0 auto;
   border: 1px solid #dbdbdb;
+  background-color: #fff;
 
   /* 게시물 많아지면 스크롤 생성 */
   overflow: hidden;

@@ -1,7 +1,12 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import feedImage from './images/unsplash_FWtiv70Z_ZY.png';
-import heartFill from '../../../images/icon-heart.svg';
+import heartFill from '../../images/icon-heart-fill.svg';
+import profileImage from '../../images/basic-profile-small.svg';
+import heartEmpty from '../../images/icon-heart.svg';
+import commentCircle from '../../images/icon-message-circle.svg';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const StyledHomeFeed = styled.li`
   display: flex;
@@ -41,11 +46,12 @@ const StyledHomeFeed = styled.li`
     width: 20px;
     height: 20px;
   }
-  & .feed .feed-info .hearts .btn-hearts {
-    background-image: url('../../../images/icon-heart.svg');
+
+  & .feed .feed-info .hearts .btn-hearts-fill {
+    background-image: url('/images/icon-heart.svg');
   }
   & .feed .feed-info .comments .btn-comments {
-    background-image: url('../../../images/icon-message-circle.svg');
+    background-image: url('./images/icon-message-circle.svg');
   }
   & .feed .feed-info .icons {
     display: flex;
@@ -67,11 +73,28 @@ const StyledHomeFeed = styled.li`
 `;
 
 export default function HomeFeed() {
+  const [isHeartClick, setIsHeartClick] = useState(false);
+  const [heartCount, setHeartCount] = useState(0);
+
+  const onClickHeartHandler = () => {
+    setIsHeartClick((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    setHeartCount((prevState) =>
+      isHeartClick ? prevState + 1 : prevState - 1
+    );
+  }, [isHeartClick]);
+
+  useEffect(() => {
+    setHeartCount(0);
+  }, []);
+
   return (
     <StyledHomeFeed>
       <h3 className="a11y-hidden">펄로우한 계정 게시물</h3>
       <div className="img-profile">
-        <img src="../../../images/basic-profile-small.svg" alt="프로필 사진" />
+        <img src={profileImage} alt="프로필 사진" />
       </div>
       <section className="feed">
         <div className="feed-header">
@@ -90,13 +113,19 @@ export default function HomeFeed() {
         <div className="feed-info">
           <div className="icons">
             <div className="hearts">
-              <button className="btn-hearts">
+              <button className="btn-hearts" onClick={onClickHeartHandler}>
+                {isHeartClick ? (
+                  <img src={heartFill} alt="좋아요" />
+                ) : (
+                  <img src={heartEmpty} alt="좋아요" />
+                )}
                 <span className="a11y-hidden">좋아요 버튼</span>
               </button>
-              <span>58</span>
+              <span>{heartCount}</span>
             </div>
             <div className="comments">
               <button className="btn-comments">
+                <img src={commentCircle} alt="댓글" />
                 <span className="a11y-hidden">댓글목록 보기</span>
               </button>
               <span>12</span>
