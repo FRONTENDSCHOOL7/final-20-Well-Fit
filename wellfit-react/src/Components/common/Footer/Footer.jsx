@@ -30,7 +30,7 @@ const StyledMainFooter = styled.footer`
 export default function Footer() {
   return (
     <StyledMainFooter>
-      <div class="tapbar">
+      <div className="tapbar">
         <button>
           <img src="./images/icon-home.svg" alt="홈" />
           <div>홈</div>
