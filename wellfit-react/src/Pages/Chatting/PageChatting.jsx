@@ -10,9 +10,7 @@ export default function Page_Chatting() {
     <>
       <ChatRoomHeader open={open} setOpen={setOpen}></ChatRoomHeader>
       <ChatRoomList></ChatRoomList>
-      {open && (
-        <ChatRoomModal></ChatRoomModal>
-      )}
+      {open && <ChatRoomModal></ChatRoomModal>}
 
       <ChatRoomFooter></ChatRoomFooter>
     </>
