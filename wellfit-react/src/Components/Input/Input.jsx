@@ -22,11 +22,11 @@ const StyledInput = styled.input`
   }
 `;
 
-export default function Input() {
+export default function Input({ label, id, type, placeholder }) {
   return (
     <StyledContainer>
-      <StyledLabel htmlFor="user-email">이메일</StyledLabel>
-      <StyledInput id="user-email" type="email" placeholder="" />
+      <StyledLabel htmlFor={id}>{label}</StyledLabel>
+      <StyledInput id={id} type={type} placeholder={placeholder} />
     </StyledContainer>
   );
 }
