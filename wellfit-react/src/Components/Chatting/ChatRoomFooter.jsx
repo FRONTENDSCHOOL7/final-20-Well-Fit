@@ -9,7 +9,6 @@ const StyledChatRoomFooter = styled.div`
     background-color: white;
     width: 100%;
     height: 61px;
-    bottom: 0px;
     position: sticky;
   }
 
