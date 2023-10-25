@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import profileImage from '../../images/basic-profile-small.svg';
 
 const StyledChattingUserItem = styled.li`
   & + li {
@@ -10,6 +11,7 @@ const StyledChattingUserItem = styled.li`
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    cursor: pointer;
   }
   & .search-result .user-wrap {
     display: flex;
@@ -63,10 +65,7 @@ export default function ChattingUserItem() {
         <div className="user-wrap">
           <div className="img-profile">
             <span className="notification-icon"></span>
-            <img
-              src="../../../images/basic-profile-small.svg"
-              alt="프로필 사진"
-            />
+            <img src={profileImage} alt="프로필 사진" />
           </div>
           <div className="user-info">
             <p className="user-name">애월읍 한라봉 최고 맛집</p>
