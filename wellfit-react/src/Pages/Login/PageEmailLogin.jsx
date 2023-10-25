@@ -30,20 +30,27 @@ const StyledWrap = styled.div`
     font-size: 14px;
     background-color: #97b2de;
   }
+  & .main-login a {
+    display: block;
+    padding-top: 20px;
+    font-size: 12px;
+    text-align: center;
+  }
 `;
 
-export default function PageSignup() {
+export default function PageEmailLogin() {
   return (
     <StyledWrap>
       <main className="main-login">
-        <h1>이메일로 회원가입</h1>
+        <h1>로그인</h1>
         <form className="form-login">
           <section>
             <Input />
             <Input />
           </section>
-          <button className="btn-login">다음</button>
+          <button className="btn-login">로그인</button>
         </form>
+        <a href="">이메일로 회원가입</a>
       </main>
     </StyledWrap>
   );
