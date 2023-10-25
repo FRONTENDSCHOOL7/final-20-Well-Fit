@@ -30,23 +30,23 @@ const StyledFooter = styled.footer`
 export default function PostFooter() {
   return (
     <StyledFooter>
-      <form class="form-comment-wrapper" action="#">
+      <form className="form-comment-wrapper" action="#">
         <img
           src="../../../../images/basic-profile-small.svg"
           alt="프로필 사진"
         />
-        <div class="input-comment-wrapper">
-          <label for="input-comment" class="a11y-hidden">
+        <div className="input-comment-wrapper">
+          <label for="input-comment" className="a11y-hidden">
             댓글 입력
           </label>
           <input
             type="text"
             id="input-comment"
-            class="input-comment"
+            className="input-comment"
             placeholder="댓글 입력하기..."
           />
         </div>
-        <button class="btn-comment-submit">게시</button>
+        <button className="btn-comment-submit">게시</button>
       </form>
     </StyledFooter>
   );

@@ -37,23 +37,23 @@ const StyledPostCommentItem = styled.li`
 export default function PostCommentItem() {
   return (
     <StyledPostCommentItem>
-      <div class="comment">
+      <div className="comment">
         <img
           src="../../../../images/basic-profile-small.svg"
           alt="프로필 사진"
-          class="img-comment-profile"
+          className="img-comment-profile"
         />
-        <div class="comment-content-wrapper">
-          <div class="comment-info">
+        <div className="comment-content-wrapper">
+          <div className="comment-info">
             <div>
               <strong>서귀포시 무슨 농장</strong>
-              <time datetime="">· 5분 전</time>
+              <time dateTime="">· 5분 전</time>
             </div>
-            <button type="button" class="btn-comment-toggle">
-              <span class="a11y-hidden">토글</span>
+            <button type="button" className="btn-comment-toggle">
+              <span className="a11y-hidden">토글</span>
             </button>
           </div>
-          <p class="comment-text">게시글 답글 ~~ !! 최고최고</p>
+          <p className="comment-text">게시글 답글 ~~ !! 최고최고</p>
         </div>
       </div>
     </StyledPostCommentItem>

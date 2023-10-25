@@ -90,45 +90,45 @@ const StyledPostFeed = styled.article`
 export default function PostFeed() {
   return (
     <StyledPostFeed>
-      <h2 class="a11y-hidden">게시물 자세히보기</h2>
-      <div class="img-profile">
+      <h2 className="a11y-hidden">게시물 자세히보기</h2>
+      <div className="img-profile">
         <img
           src="../../../../images/basic-profile-small.svg"
           alt="프로필 이미지"
         />
       </div>
-      <section class="feed">
-        <div class="feed-header">
-          <p class="feed-title">애월읍 위니브 감귤농장</p>
-          <p class="feed-writer">&#64;weniv_Mandarin</p>
-          <button type="button" class="btn-post-toggle">
-            <span class="a11y-hidden">토글</span>
+      <section className="feed">
+        <div className="feed-header">
+          <p className="feed-title">애월읍 위니브 감귤농장</p>
+          <p className="feed-writer">&#64;weniv_Mandarin</p>
+          <button type="button" className="btn-post-toggle">
+            <span className="a11y-hidden">토글</span>
           </button>
         </div>
-        <div class="feed-content">
+        <div className="feed-content">
           <p>
             옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
             이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는
             풍부하게 뛰노는 인생의 힘있다.
           </p>
-          <img class="img-feed" src={feedImage} alt="" />
+          <img className="img-feed" src={feedImage} alt="" />
         </div>
-        <div class="feed-info">
-          <div class="icons">
-            <div class="hearts">
-              <button class="btn-hearts">
-                <span class="a11y-hidden">좋아요 버튼</span>
+        <div className="feed-info">
+          <div className="icons">
+            <div className="hearts">
+              <button className="btn-hearts">
+                <span className="a11y-hidden">좋아요 버튼</span>
               </button>
               <span>58</span>
             </div>
-            <div class="comments">
-              <button class="btn-comments">
-                <span class="a11y-hidden">댓글목록 보기</span>
+            <div className="comments">
+              <button className="btn-comments">
+                <span className="a11y-hidden">댓글목록 보기</span>
               </button>
               <span>12</span>
             </div>
           </div>
-          <time datetime="2020-10-21">2020년 10월 21일</time>
+          <time dateTime="2020-10-21">2020년 10월 21일</time>
         </div>
       </section>
     </StyledPostFeed>

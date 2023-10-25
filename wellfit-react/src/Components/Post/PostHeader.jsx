@@ -27,12 +27,12 @@ const StyledPostHeader = styled.header`
 export default function PostHeader() {
   return (
     <StyledPostHeader>
-      <div class="search-bar">
-        <button type="button" class="btn-goback">
-          <span class="a11y-hidden">뒤로가기</span>
+      <div className="search-bar">
+        <button type="button" className="btn-goback">
+          <span className="a11y-hidden">뒤로가기</span>
         </button>
-        <button type="button" class="btn-toggle">
-          <span class="a11y-hidden">토글</span>
+        <button type="button" className="btn-toggle">
+          <span className="a11y-hidden">토글</span>
         </button>
       </div>
     </StyledPostHeader>

@@ -6,7 +6,6 @@ export default function FollowList() {
     <ol>
       <FollowItem />
       <FollowItem />
-      <FollowItem />
     </ol>
   );
 }
