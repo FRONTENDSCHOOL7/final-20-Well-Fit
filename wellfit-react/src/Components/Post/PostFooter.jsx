@@ -26,8 +26,12 @@ const StyledFooter = styled.footer`
     padding: 10px;
     flex: 1;
   }
+
   & .form-comment-wrapper .btn-comment-submit {
     color: #c4c4c4;
+  }
+  & .form-comment-wrapper .btn-comment-submit.active {
+    color: #515fec;
   }
 `;
 
@@ -67,7 +71,14 @@ export default function PostFooter({ addComment }) {
             onChange={onChangeCommentHandler}
           />
         </div>
-        <button className="btn-comment-submit">게시</button>
+        <button
+          className={[
+            'btn-comment-submit',
+            `${comment.length === 0 ? '' : 'active'}`,
+          ].join(' ')}
+        >
+          게시
+        </button>
       </form>
     </StyledFooter>
   );
