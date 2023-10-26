@@ -26,7 +26,7 @@ const initialData = [
     date: new Date(),
   },
 ];
-export default function PostContent() {
+export default function PostContent({ modalHandler }) {
   const [commentList, setCommentList] = useState(initialData);
   const addComment = (data) => {
     const copyCommentList = [...commentList];
@@ -36,7 +36,7 @@ export default function PostContent() {
     <main>
       <PostFeed />
       <StyledHr />
-      <PostCommentList commentList={commentList} />
+      <PostCommentList commentList={commentList} modalHandler={modalHandler} />
       <PostFooter addComment={addComment} />
     </main>
   );

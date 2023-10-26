@@ -8,13 +8,19 @@ const StyledPostCommentList = styled.section`
   overflow-y: scroll;
 `;
 
-export default function PostCommentList({ commentList }) {
+export default function PostCommentList({ commentList, modalHandler }) {
   console.log(commentList);
   return (
     <StyledPostCommentList>
       <ol>
         {commentList.map((comment) => {
-          return <PostCommentItem {...comment} key={comment.id} />;
+          return (
+            <PostCommentItem
+              {...comment}
+              key={comment.id}
+              modalHandler={modalHandler}
+            />
+          );
         })}
       </ol>
     </StyledPostCommentList>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { styled } from 'styled-components';
 import moreVerticalIcon from '../../images/m-icon-more-vertical.svg';
 
@@ -47,9 +48,17 @@ export default function PostCommentItem({
   content,
   profileImage,
   date,
+  modalHandler,
 }) {
   console.log(id, userName, content, profileImage, date);
   console.log(date);
+
+  // 모달
+  // 내 댓글인지 아닌지는 token값으로 확인
+  const onClickModalHandler = () => {
+    modalHandler();
+  };
+
   return (
     <StyledPostCommentItem>
       <div className="comment">
@@ -64,7 +73,11 @@ export default function PostCommentItem({
               <strong>{userName}</strong>
               <time dateTime="">· 5분 전</time>
             </div>
-            <button type="button" className="btn-comment-toggle">
+            <button
+              type="button"
+              className="btn-comment-toggle"
+              onClick={onClickModalHandler}
+            >
               <img src={moreVerticalIcon} alt="토글" />
               <span className="a11y-hidden">토글</span>
             </button>
