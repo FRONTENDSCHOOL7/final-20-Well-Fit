@@ -1,5 +1,14 @@
 import React from 'react';
-import { styled } from 'styled-components';
+import { styled, keyframes } from 'styled-components';
+
+const modalAnimation = keyframes`
+  0% {
+    bottom: -10%
+  }
+  100% {
+    bottom: 0;
+  }
+`;
 
 const StyledModalDeleteComment = styled.div`
   background-color: #fff;
@@ -7,12 +16,11 @@ const StyledModalDeleteComment = styled.div`
   margin: 0 auto;
   padding-top: 16px;
   border-radius: 10px 10px 0 0;
+  /* z-index: 1000; */
 
   position: absolute;
-  z-index: 100;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 10;
+  animation: ${modalAnimation} 1s ease forwards;
 
   & .modal-line {
     width: 50px;
