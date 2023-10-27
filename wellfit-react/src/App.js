@@ -4,6 +4,10 @@ import Footer from './Components/common/Footer/Footer';
 // import PageMineProfile from './Pages/Profile/PageMineProfile';
 // import PageUsersProfile from './Pages/Profile/PageUsersProfile';
 import PageHome from './Pages/Home/PageHome';
+import PageSignup from './Pages/Signup/PageSignup';
+import PageEmailLogin from './Pages/Login/PageEmailLogin';
+import PageProfileSetting from './Pages/Profile/PageProfileSetting';
+import PageProfileModification from './Pages/Profile/PageProfileModification';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -18,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'SUIT-Regular', sans-serif; /* 사용할 폰트 지정 */
     margin: 0 auto;
     width: 390px;
-    background-color: #dbdbdb;
+    background-color: #fff;
   }
 
   ${reset}
@@ -28,8 +32,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <PageHome />
-      <Footer />
+      <PageProfileModification />
+      {/* <Footer /> */}
     </>
   );
 }

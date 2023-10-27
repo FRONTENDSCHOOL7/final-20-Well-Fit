@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import feedImage from './images/unsplash_FWtiv70Z_ZY.png';
-import heartFill from '../../../images/icon-heart.svg';
+// import heartFill from '../../../images/icon-heart.svg';
 
 const StyledHomeFeed = styled.li`
   display: flex;

@@ -1,5 +1,14 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import BlackLogo from '../../images/logo-black.svg';
+
+export default function SplashPage() {
+  return (
+    <StyledSplashPage>
+      <Img src={BlackLogo} alt="웰핏 로고" />
+    </StyledSplashPage>
+  );
+}
 
 const StyledSplashPage = styled.main`
   display: flex;
@@ -9,17 +18,9 @@ const StyledSplashPage = styled.main`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  & img {
-    width: 200px;
-    height: 200px;
-  }
 `;
 
-export default function SplashPage() {
-  return (
-    <StyledSplashPage>
-      <img src="../../../images/logo-black.svg" alt="웰핏 로고" />
-    </StyledSplashPage>
-  );
-}
+const Img = styled.img`
+  width: 200px;
+  height: 200px;
+`;
