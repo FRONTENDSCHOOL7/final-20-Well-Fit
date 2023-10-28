@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import ModalDeletePost from './ModalDeletePost';
 
 const fadeInUp = keyframes`
   0% {
@@ -13,13 +12,23 @@ const fadeInUp = keyframes`
   }
 `;
 
-const StyledModalListPost = styled.article`
+const fadeOutDown = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+`;
+const StyledModalListGoodsUsers = styled.article`
+  z-index: 200;
   position: fixed;
   bottom: 0;
-  z-index: 100;
   margin: 0 auto;
   width: 390px;
-  height: 138px;
+  height: auto;
   background-color: #fff;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
@@ -39,8 +48,7 @@ const StyledModalListPost = styled.article`
     right: 50%;
     transform: translateX(50%);
   }
-  & .btn-delete,
-  .btn-fix {
+  & .btn-see {
     width: 100%;
     height: 46px;
     box-sizing: border-box;
@@ -51,36 +59,22 @@ const StyledModalListPost = styled.article`
     font-size: 14px;
     font-weight: 400;
   }
+  & .btn-see {
+    padding-bottom: 10px;
+  }
 `;
 
-export default function ModalListPost() {
-  const [isDelete, setIsDelete] = useState(false);
-  const handleDeleteClick = () => {
-    setIsDelete(!isDelete);
-  };
+export default function ModalListGoodsUsers() {
   return (
     <>
-      <StyledModalListPost>
+      <StyledModalListGoodsUsers>
         <div className="mark-wrapper">
           <div className="mark"></div>
         </div>
-        <button
-          className="btn-delete"
-          type="button"
-          onClick={handleDeleteClick}
-        >
-          삭제
+        <button className="btn-see" type="button">
+          웹사이트에서 상품 보기
         </button>
-        <button className="btn-fix" type="button">
-          수정
-        </button>
-      </StyledModalListPost>
-      {isDelete ? (
-        <ModalDeletePost
-          isDelete={isDelete}
-          handleDeleteClick={handleDeleteClick}
-        />
-      ) : null}
+      </StyledModalListGoodsUsers>
     </>
   );
 }

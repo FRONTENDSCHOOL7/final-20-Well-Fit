@@ -7,6 +7,11 @@ const StyledModalLogout = styled.article`
   height: 110px;
   border-radius: 10px;
   background-color: #fff;
+  z-index: 200;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   & .logout-alert {
     display: flex;
@@ -38,14 +43,18 @@ const StyledModalLogout = styled.article`
   }
 `;
 
-export default function ModalLogout() {
+export default function ModalLogout({ isLogout, handleCancelClick }) {
   return (
     <StyledModalLogout>
       <div className="logout-alert">
         <p>로그아웃 하시겠어요?</p>
       </div>
       <span className="btn-wrapper">
-        <button className="btn-cancel" type="button">
+        <button
+          className="btn-cancel"
+          type="button"
+          onClick={handleCancelClick}
+        >
           취소
         </button>
         <button className="btn-logout" type="button">
