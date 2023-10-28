@@ -11,6 +11,7 @@ const StyledContainer = styled.div`
 const StyledLabel = styled.label`
   font-size: 12px;
   position: relative;
+  color: #767676;
 
   &.star::before {
     content: '*';

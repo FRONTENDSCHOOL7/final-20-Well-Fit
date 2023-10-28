@@ -41,6 +41,7 @@ export default function PageProfileSetting() {
       setUserNameErrorMsg('*입력해 주세요.');
     } else if (!userNameRegEx.test(userName)) {
       setUserNameErrorMsg('*2~10자 이내로 입력해 주세요.');
+      setUserNameValid(false);
     } else {
       setUserNameErrorMsg('');
       setUserNameValid(true);
@@ -65,7 +66,7 @@ export default function PageProfileSetting() {
     }
   };
 
-  // tall 유효성 검사
+  // tall
   const handleInputTall = (e) => {
     const tall = e.target.value;
     const tallRegEx = /^[0-9]{2,3}$/;
@@ -79,14 +80,14 @@ export default function PageProfileSetting() {
     }
   };
 
-  // weight 유효성 검사
+  // weight
   const handleInputWeight = (e) => {
     const weight = e.target.value;
     const weightRegEx = /^[0-9]{2,3}$/;
     if (weight === '') {
       setWeightErrorMsg('*입력해 주세요.');
     } else if (!weightRegEx.test(weight)) {
-      setWeightErrorMsg('*2~2자리 숫자만 입력해 주세요.');
+      setWeightErrorMsg('*2~3자리 숫자만 입력해 주세요.');
     } else {
       setWeightErrorMsg('');
       setWeight(weight);

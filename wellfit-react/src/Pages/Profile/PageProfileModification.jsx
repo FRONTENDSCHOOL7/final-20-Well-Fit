@@ -35,6 +35,7 @@ export default function PageProfileModification() {
       setUserNameErrorMsg('*입력해 주세요.');
     } else if (!userNameRegEx.test(userName)) {
       setUserNameErrorMsg('*2~10자 이내로 입력해 주세요.');
+      setUserNameValid(false);
     } else {
       setUserNameErrorMsg('');
       setUserNameValid(true);
@@ -86,7 +87,7 @@ export default function PageProfileModification() {
     if (weight === '') {
       setWeightErrorMsg('*입력해 주세요.');
     } else if (!weightRegEx.test(weight)) {
-      setWeightErrorMsg('*2~2자리 숫자만 입력해 주세요.');
+      setWeightErrorMsg('*2~3자리 숫자만 입력해 주세요.');
     } else {
       setWeightErrorMsg('');
       setWeight(weight);

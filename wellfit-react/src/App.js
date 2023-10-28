@@ -4,10 +4,6 @@ import Footer from './Components/common/Footer/Footer';
 // import PageMineProfile from './Pages/Profile/PageMineProfile';
 // import PageUsersProfile from './Pages/Profile/PageUsersProfile';
 import PageHome from './Pages/Home/PageHome';
-import PageSignup from './Pages/Signup/PageSignup';
-import PageEmailLogin from './Pages/Login/PageEmailLogin';
-import PageProfileSetting from './Pages/Profile/PageProfileSetting';
-import PageProfileModification from './Pages/Profile/PageProfileModification';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -32,7 +28,6 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <PageProfileModification />
       {/* <Footer /> */}
     </>
   );
