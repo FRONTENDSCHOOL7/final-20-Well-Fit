@@ -5,18 +5,23 @@ import PostCommentItem from './PostCommentItem';
 const StyledPostCommentList = styled.section`
   padding: 20px 16px;
   height: 235px;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
-export default function PostCommentList() {
+export default function PostCommentList({ commentList, modalHandler }) {
+  console.log(commentList);
   return (
     <StyledPostCommentList>
       <ol>
-        <PostCommentItem />
-        <PostCommentItem />
-        <PostCommentItem />
-        <PostCommentItem />
-        <PostCommentItem />
+        {commentList.map((comment) => {
+          return (
+            <PostCommentItem
+              {...comment}
+              key={comment.id}
+              modalHandler={modalHandler}
+            />
+          );
+        })}
       </ol>
     </StyledPostCommentList>
   );

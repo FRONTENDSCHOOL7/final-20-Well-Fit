@@ -9,6 +9,7 @@ const StyledChattingListPage = styled.div`
   margin: 0 auto;
   border: 1px solid #dbdbdb;
   font-size: 14px;
+  background-color: #fff;
 
   /* 화면 넘치면 숨김 */
   overflow: hidden;

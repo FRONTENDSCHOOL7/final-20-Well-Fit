@@ -1,5 +1,7 @@
 import React from 'react';
+import { useState } from 'react';
 import { styled } from 'styled-components';
+import moreVerticalIcon from '../../images/m-icon-more-vertical.svg';
 
 const StyledPostCommentItem = styled.li`
   /* section-comment 시작 */
@@ -7,6 +9,13 @@ const StyledPostCommentItem = styled.li`
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    margin-bottom: 10px;
+  }
+  & .comment img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fir: cover;
   }
   & .comment .comment-content-wrapper {
     flex: 1;
@@ -23,7 +32,6 @@ const StyledPostCommentItem = styled.li`
     color: #767676;
   }
   & .comment .comment-info .btn-comment-toggle {
-    background-image: url('../../../../images/m-icon-more-vertical.svg');
     width: 20px;
     height: 20px;
   }
@@ -34,26 +42,47 @@ const StyledPostCommentItem = styled.li`
   /* section-comment 끝 */
 `;
 
-export default function PostCommentItem() {
+export default function PostCommentItem({
+  id,
+  userName,
+  content,
+  profileImage,
+  date,
+  modalHandler,
+}) {
+  console.log(id, userName, content, profileImage, date);
+  console.log(date);
+
+  // 모달
+  // 내 댓글인지 아닌지는 token값으로 확인
+  const onClickModalHandler = () => {
+    modalHandler();
+  };
+
   return (
     <StyledPostCommentItem>
       <div className="comment">
         <img
-          src="../../../../images/basic-profile-small.svg"
+          src={profileImage}
           alt="프로필 사진"
           className="img-comment-profile"
         />
         <div className="comment-content-wrapper">
           <div className="comment-info">
             <div>
-              <strong>서귀포시 무슨 농장</strong>
+              <strong>{userName}</strong>
               <time dateTime="">· 5분 전</time>
             </div>
-            <button type="button" className="btn-comment-toggle">
+            <button
+              type="button"
+              className="btn-comment-toggle"
+              onClick={onClickModalHandler}
+            >
+              <img src={moreVerticalIcon} alt="토글" />
               <span className="a11y-hidden">토글</span>
             </button>
           </div>
-          <p className="comment-text">게시글 답글 ~~ !! 최고최고</p>
+          <p className="comment-text">{content}</p>
         </div>
       </div>
     </StyledPostCommentItem>
