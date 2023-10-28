@@ -10,23 +10,59 @@ const StyledContainer = styled.div`
 
 const StyledLabel = styled.label`
   font-size: 12px;
+  position: relative;
+  color: #767676;
+
+  &.star::before {
+    content: '*';
+    color: #eb5757;
+    position: absolute;
+    left: -2.5%;
+    top: -5%;
+  }
 `;
 
 const StyledInput = styled.input`
   height: 32px;
   border: 0;
+  outline: none;
   border-bottom: 1px solid #dbdbdb;
 
   &:focus {
     border-bottom: 1px solid #004aad;
   }
+
+  &::placeholder {
+    color: #dbdbdb;
+    font-size: 14px;
+  }
 `;
 
-export default function Input() {
+export default function Input({
+  label,
+  id,
+  type,
+  name,
+  placeholder,
+  value,
+  onChange,
+  onBlur,
+  className,
+}) {
   return (
     <StyledContainer>
-      <StyledLabel htmlFor="user-email">이메일</StyledLabel>
-      <StyledInput id="user-email" type="email" placeholder="" />
+      <StyledLabel className={className} htmlFor={id}>
+        {label}
+      </StyledLabel>
+      <StyledInput
+        id={id}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
     </StyledContainer>
   );
 }
