@@ -1,6 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
+import arrowLeft from '../../images/icon-arrow-left.svg';
+import more from '../../images/icon- more-vertical.svg';
 const StyledChatRoomHeader = styled.div`
   .div-uploadHeader {
     font-family: 'SUIT-Regular';
@@ -8,8 +10,8 @@ const StyledChatRoomHeader = styled.div`
 
   .div-uploadHeader {
     top: 0px;
-    position: sticky;
     display: flex;
+    position: sticky;
     justify-content: space-between;
     width: 100%;
     height: 48px;
@@ -31,16 +33,16 @@ const StyledChatRoomHeader = styled.div`
   }
 `;
 
-export default function ChatRoomHeader() {
+export default function ChatRoomHeader({ open, setOpen }) {
   return (
     <>
       <StyledChatRoomHeader>
         <div class="div-uploadHeader">
           <button class="btn-back" type="button">
-            <img src="./images/icon-arrow-left.svg" alt="뒤로가기 버튼" />
+            <img src={arrowLeft} alt="뒤로가기 버튼" />
           </button>
-          <button type="button" class="btn-plus">
-            <img src="./images/icon- more-vertical.svg" alt="더보기 버튼" />
+          <button type="button" class="btn-plus" onClick={() => setOpen(!open)}>
+            <img src={more} alt="더보기 버튼" />
           </button>
         </div>
       </StyledChatRoomHeader>
