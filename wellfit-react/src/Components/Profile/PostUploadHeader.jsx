@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import arrowLeft from '../../images/icon-arrow-left.svg';
 
 const StyledGoodsUploadPage = styled.div`
   .div-uploadHeader {
@@ -21,29 +22,24 @@ const StyledGoodsUploadPage = styled.div`
   .btn-upload {
     width: 90px;
     height: 32px;
-    background-color: #9ec1f1;
     color: #ffffff;
     border-radius: 32px;
     margin-top: 8px;
     margin-right: 16px;
-  }
-
-  .btn-upload:disabled {
-    background-color: #9ec1f1;
-  }
-
-  .btn-upload:enabled {
     background-color: #004aad;
   }
+  .btn-upload:disabled {
+    background-color: #9ec1f1!important;
+  }
 `;
-export default function UploadHeader() {
+export default function UploadHeader({ active }) {
   return (
     <StyledGoodsUploadPage>
-      <div class="div-uploadHeader">
-        <button class="btn-back" type="button">
-          <img src="./images/icon-arrow-left.svg" alt="뒤로가기 버튼" />
+      <div className="div-uploadHeader">
+        <button className="btn-back" type="button">
+          <img src={arrowLeft} alt="뒤로가기 버튼" />
         </button>
-        <button class="btn-upload" type="submit">
+        <button className="btn-upload" type="submit" disabled={!active}>
           업로드
         </button>
       </div>

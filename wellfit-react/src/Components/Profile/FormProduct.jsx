@@ -1,6 +1,41 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import imgButton from '../../images/img-button.svg';
 
+import arrowLeft from '../../images/icon-arrow-left.svg';
+const StyledPostUploadHeader = styled.div`
+  * {
+    font-family: 'SUIT-Regular';
+  }
+
+  .div-uploadHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 48px;
+    border-bottom: 0.5px solid #dbdbdb;
+    top: 0px;
+    position: sticky;
+  }
+
+  .btn-back {
+    width: 22px;
+    height: 22px;
+    margin-top: 13px;
+    margin-left: 16px;
+  }
+  .btn-upload {
+    width: 90px;
+    height: 32px;
+    color: #ffffff;
+    border-radius: 32px;
+    margin-top: 8px;
+    margin-right: 16px;
+
+    background-color: ${(props) =>
+      props.active === true ? '#004aad' : '#9ec1f1'};
+  }
+`;
 const StyledFormProduct = styled.div`
   * {
     font-family: 'SUIT-Regular';
@@ -52,6 +87,20 @@ const StyledFormProduct = styled.div`
     bottom: 42px;
   }
 
+  .label-image {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    left: 274px;
+    bottom: 42px;
+    background-image: url(${imgButton});
+    background-color: #c4c4c4;
+    cursor: pointer;
+  }
+  .input-image {
+    display: none;
+  }
   .form-addProduct h2 {
     margin-bottom: 18px;
     font-size: 12px;
@@ -92,6 +141,16 @@ const StyledFormProduct = styled.div`
 export default function FormProduct() {
   return (
     <>
+      <StyledPostUploadHeader>
+        <div className="div-uploadHeader">
+          <button className="btn-back" type="button">
+            <img src={arrowLeft} alt="뒤로가기 버튼" />
+          </button>
+          <button className="btn-upload" type="submit">
+            저장
+          </button>
+        </div>
+      </StyledPostUploadHeader>
       <StyledFormProduct>
         {' '}
         <form class="form-addProduct">
@@ -99,9 +158,13 @@ export default function FormProduct() {
           <div class="div-productPicture">
             <img class="img-productAdd" src="./images/sample1.png" />
 
-            <button class="btn-attachPicture">
-              <img src="./images/icon-image.svg" alt="사진 첨부 버튼" />
-            </button>
+            <label id="input-image" className="label-image"></label>
+            <input
+              type="file"
+              accept="image/*"
+              id="input-image"
+              className="input-image"
+            ></input>
           </div>
 
           <label for="productName">전문 분야</label>

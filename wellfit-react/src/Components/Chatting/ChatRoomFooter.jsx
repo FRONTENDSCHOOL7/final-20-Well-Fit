@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
+
+import imgButton from '../../images/img-button.svg';
 
 const StyledChatRoomFooter = styled.div`
   .div-chatFooter {
@@ -12,18 +14,16 @@ const StyledChatRoomFooter = styled.div`
     position: sticky;
   }
 
-  .btn-addImg {
+  .label-image {
     margin: 13px 18px 12px 16px;
     width: 36px;
     height: 36px;
     background-color: #004aad;
     border-radius: 50%;
+    background-image: url(${imgButton});
   }
-
-  .btn-addImg img {
-    margin: 7px;
-    width: 22px;
-    height: 22px;
+  .input-image {
+    display: none;
   }
 
   .textarea-message {
@@ -43,6 +43,13 @@ const StyledChatRoomFooter = styled.div`
 
   .btn-submit {
     color: #c4c4c4;
+    width: 48px;
+    height: 32px;
+    border-radius: 8px;
+  }
+  .btn-submit:not(:disabled) {
+    color: white;
+    background-color: #004aad;
   }
 
   .div-modal {
@@ -54,18 +61,27 @@ const StyledChatRoomFooter = styled.div`
 `;
 
 export default function ChatRoomFooter() {
+  const [message, setMessage] = useState('');
+  const [image, setImage] = useState();
   return (
     <>
       <StyledChatRoomFooter>
         <div class="div-chatFooter">
-          <button type="button" class="btn-addImg">
-            <img src="../images/icon-image.svg" alt="파일 첨부" />
-          </button>
+          <label htmlFor="input-image" className="label-image"></label>
+          <input
+            type="file"
+            accept="image/*"
+            id="input-image"
+            className="input-image"
+            onChange={e => setImage(e.target.files[0])}
+          ></input>
           <textarea
             class="textarea-message"
             placeholder="메시지 입력하기"
+            value={message}
+            onChange={e => setMessage(e.target.value)}
           ></textarea>
-          <button type="submit" class="btn-submit">
+          <button type="submit" class="btn-submit" disabled={message === '' && !image}>
             전송
           </button>
         </div>
