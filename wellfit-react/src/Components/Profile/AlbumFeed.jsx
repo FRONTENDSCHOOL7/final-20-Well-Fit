@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import sample from './images/album_sample.png';
+import ImgMany from '../../images/icon-img-layers.svg';
 
 const StyledAlbumFeed = styled.section`
   display: grid;
@@ -33,32 +34,20 @@ export default function AlbumFeed() {
       <img src={sample} alt="피드이미지" />
       <span>
         <img src={sample} alt="피드이미지" />
-        <img
-          className="many-img"
-          src="../../../../images/iccon-img-layers.svg"
-          alt="복수 표시"
-        />
+        <img className="many-img" src={ImgMany} alt="복수 표시" />
       </span>
       <img src={sample} alt="피드이미지" />
       <img src={sample} alt="피드이미지" />
       <img src={sample} alt="피드이미지" />
       <span>
         <img src={sample} alt="피드이미지" />
-        <img
-          className="many-img"
-          src="../../../../images/iccon-img-layers.svg"
-          alt="복수 표시"
-        />
+        <img className="many-img" src={ImgMany} alt="복수 표시" />
       </span>
       <img src={sample} alt="피드이미지" />
       <img src={sample} alt="피드이미지" />
       <span>
         <img src={sample} alt="피드이미지" />
-        <img
-          className="many-img"
-          src="../../../../images/iccon-img-layers.svg"
-          alt="복수 표시"
-        />
+        <img className="many-img" src={ImgMany} alt="복수 표시" />
       </span>
     </StyledAlbumFeed>
   );

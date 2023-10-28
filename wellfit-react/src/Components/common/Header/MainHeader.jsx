@@ -25,7 +25,7 @@ const StyledChattingUserListHeader = styled.header`
   }
 `;
 
-export default function ChattingUserListHeader() {
+export default function ChattingUserListHeader({ isModal, onModalClick }) {
   return (
     <StyledChattingUserListHeader>
       <div className="search-bar">
@@ -33,7 +33,7 @@ export default function ChattingUserListHeader() {
           <img src={gobackIcon} alt="뒤로가기버튼" />
           <span className="a11y-hidden">뒤로가기</span>
         </button>
-        <button type="button" class="btn-toggle">
+        <button type="button" class="btn-toggle" onClick={onModalClick}>
           <img src={modrVerticalIcon} alt="토글" />
           <span className="a11y-hidden">토글</span>
         </button>
