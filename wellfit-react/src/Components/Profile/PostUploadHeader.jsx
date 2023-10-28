@@ -1,7 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import arrowLeft from '../../images/icon-arrow-left.svg';
-import arrowLeft from '../../images/icon-arrow-left.svg';
 
 const StyledGoodsUploadPage = styled.div`
   background-color: #fff;

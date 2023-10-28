@@ -46,13 +46,6 @@ const StyledUpload = styled.div`
   .img-postingImg:first-child {
     margin-left: 70px;
   }
-  .img-postingImg.single {
-    width: 304px;
-    height: 228px;
-  }
-  .img-postingImg:first-child {
-    margin-left: 70px;
-  }
 
   .btn-imgDelete {
     position: relative;
@@ -138,15 +131,6 @@ export default function PostUpload({ setActive }) {
           </Fragment>
         ))}
       </div>
-      <label htmlFor="input-image" className="label-image"></label>
-      <input
-        type="file"
-        accept="image/*"
-        id="input-image"
-        className="input-image"
-        onChange={handleImageUpload}
-        multiple
-      ></input>
       <label htmlFor="input-image" className="label-image"></label>
       <input
         type="file"
