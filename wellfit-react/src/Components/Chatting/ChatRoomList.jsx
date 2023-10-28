@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
+import basicProfile from '../../images/basic-profile.svg';
 const StyledChatRoomList = styled.div`
   .div-chatRoom {
     display: flex;
@@ -106,7 +107,7 @@ export default function ChatRoomList() {
           <ul>
             <li>
               <div class="div-reception">
-                <img src="./images/basic-profile.svg" class="img-chatProfil" />
+                <img src={basicProfile} class="img-chatProfil" />
                 <div class="div-receptionChat">
                   <span class="span-receptionChat">
                     옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여,
@@ -120,7 +121,7 @@ export default function ChatRoomList() {
 
             <li>
               <div class="div-reception">
-                <img src="./images/basic-profile.svg" class="img-chatProfil" />
+                <img src={basicProfile} class="img-chatProfil" />
                 <div class="div-receptionChat">
                   <img src="../../../img/sample1.png" class="img-sendingImg" />
                   <span class="span-time">12:39</span>

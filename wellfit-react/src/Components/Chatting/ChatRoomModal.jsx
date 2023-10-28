@@ -3,13 +3,14 @@ import { styled } from 'styled-components';
 
 const StyledChatRoomModal = styled.div`
   .modal-delete {
-    position: absolute;
+    position: fixed;
     z-index: 1;
     background-color: #fff;
     width: 390px;
     margin: 0 auto;
     padding-top: 16px;
     border-radius: 10px 10px 0 0;
+    bottom: 0;
   }
 
   .modal-line {
@@ -31,7 +32,7 @@ export default function ChatRoomModal() {
   return (
     <>
       <StyledChatRoomModal>
-        <div class="modal-delete a11y-hidden">
+        <div class="modal-delete">
           <div class="modal-line"></div>
           <div class="wrapper-btn">
             <button type="button" class="btn-exit">
