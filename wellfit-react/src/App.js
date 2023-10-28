@@ -1,7 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from '../src/resetcss/reset.css';
 import Footer from './Components/common/Footer/Footer';
-import PagePost from './Pages/Post/PagePost';
+// import PagePost from './Pages/Post/PagePost';
+import PageHome from './Pages/Home/PageHome';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -26,7 +27,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <PagePost />
+      <PageHome />
     </>
   );
 }
