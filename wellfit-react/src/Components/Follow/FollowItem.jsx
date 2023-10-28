@@ -1,5 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { styled } from 'styled-components';
+import profileImage from '../../images/basic-profile-small.svg';
 
 const StyledFollowItem = styled.li`
   & + li {
@@ -42,27 +45,30 @@ const StyledFollowItem = styled.li`
     border-radius: 26px;
   }
   /* 팔로우 안 되어있으면 파란색 */
-  & .btn-follower-active {
+  & .btn-follower.active {
     color: #fff;
     background-color: #515fec;
   }
   /* 팔로우 되어있으면 회색 */
-  & .btn-follower-inactive {
+  & .btn-follower.inactive {
     color: #767676;
     border: 1px solid #dbdbdb;
   }
 `;
+
 export default function FollowItem() {
+  const [isActive, setIsActive] = useState(true);
+  const onClickActiveHnadler = () => {
+    setIsActive((prevState) => !prevState);
+  };
+
   return (
     <StyledFollowItem>
       <article className="search-result">
         <h3 className="a11y-hidden">팔로우 유저</h3>
         <div className="user-wrap">
           <div className="img-profile">
-            <img
-              src="../../../images/basic-profile-small.svg"
-              alt="프로필 이미지"
-            />
+            <img src={profileImage} alt="프로필 이미지" />
           </div>
           <div className="user-info">
             <p className="user-name">애월읍 한라봉 최고 맛집</p>
@@ -70,7 +76,15 @@ export default function FollowItem() {
           </div>
         </div>
         <div>
-          <button className="btn-follower-active">팔로우</button>
+          <button
+            className={[
+              'btn-follower',
+              `${isActive ? 'active' : 'inactive'}`,
+            ].join(' ')}
+            onClick={onClickActiveHnadler}
+          >
+            {isActive ? '팔로우' : '취소'}
+          </button>
         </div>
       </article>
     </StyledFollowItem>

@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import ImgBasicProfile from '../../images/basic-profile.svg';
+import ImgMessage from '../../images/icon-message-circle-1.svg';
+import ImgShare from '../../images/icon-share.svg';
 
 const StyledProfileUsers = styled.section`
   display: flex;
@@ -99,9 +102,19 @@ const StyledProfileUsers = styled.section`
     font-weight: 500;
     text-decoration: underline;
   }
+
+  & .btn-unfollow {
+    width: 120px;
+    height: 34px;
+    border-radius: 30px;
+    background: #fff;
+    border: 1px solid #dbdbdb;
+  }
 `;
 
 export default function ProfileUsers() {
+  const [isFollowing, setIsFollowing] = useState(true);
+
   return (
     <StyledProfileUsers>
       {/* 팔로워 프로필 팔로잉 */}
@@ -110,7 +123,7 @@ export default function ProfileUsers() {
           <p className="followers count">2950</p>
           <p className="followers content">followers</p>
         </span>
-        <img src="../../../../images/basic-profile.svg" alt="프로필로고" />
+        <img src={ImgBasicProfile} alt="프로필로고" />
         <span className="span-followings">
           <p className="followings count">128</p>
           <p className="followings content">followings</p>
@@ -131,16 +144,19 @@ export default function ProfileUsers() {
       <h2 className="a11y-hidden">채팅, 팔로우, 공유 버튼</h2>
       <div className="btn-wrapper">
         <button type="button" className="btn-chatting">
-          <img
-            src="../../../../images/icon-message-circle-1.svg"
-            alt="채팅 하기"
-          />
+          <img src={ImgMessage} alt="채팅 하기" />
         </button>
-        <button type="submit" className="btn-follow">
-          팔로우
+        <button
+          type="submit"
+          className={isFollowing ? 'btn-follow' : 'btn-unfollow'}
+          onClick={(e) => {
+            setIsFollowing(!isFollowing);
+          }}
+        >
+          {isFollowing ? '팔로우' : '언팔로우'}
         </button>
         <button type="button" className="btn-share">
-          <img src="../../../../images/icon-share.svg" alt="공유 하기" />
+          <img src={ImgShare} alt="공유 하기" />
         </button>
       </div>
     </StyledProfileUsers>

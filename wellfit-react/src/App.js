@@ -1,9 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from '../src/resetcss/reset.css';
 import Footer from './Components/common/Footer/Footer';
-// import PageMineProfile from './Pages/Profile/PageMineProfile';
-// import PageUsersProfile from './Pages/Profile/PageUsersProfile';
-import PageHome from './Pages/Home/PageHome';
+import PageUsersProfile from './Pages/Profile/PageUsersProfile';
+import PageMineProfile from './Pages/Profile/PageMineProfile';
+// import PageHome from './Pages/Home/PageHome';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'SUIT-Regular', sans-serif; /* 사용할 폰트 지정 */
     margin: 0 auto;
     width: 390px;
-    background-color: #fff;
+    background-color: #dbdbdb;
   }
 
   ${reset}
@@ -28,7 +28,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      {/* <Footer /> */}
+      {/* <PageUsersProfile /> */}
+      <PageMineProfile />
+      <Footer />
     </>
   );
 }

@@ -7,6 +7,11 @@ const StyledModalDeletePost = styled.article`
   height: 110px;
   border-radius: 10px;
   background-color: #fff;
+  z-index: 200;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   & .delete-alert {
     display: flex;
@@ -38,14 +43,18 @@ const StyledModalDeletePost = styled.article`
   }
 `;
 
-export default function ModalDeletePost() {
+export default function ModalDeletePost({ isDelete, handleDeleteClick }) {
   return (
     <StyledModalDeletePost>
       <div className="delete-alert">
         <p>게시글을 삭제할까요?</p>
       </div>
       <span className="btn-wrapper">
-        <button className="btn-cancel" type="button">
+        <button
+          className="btn-cancel"
+          type="button"
+          onClick={handleDeleteClick}
+        >
           취소
         </button>
         <button className="btn-delete" type="button">

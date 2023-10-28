@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import feedImage from './images/unsplash_FWtiv70Z_ZY.png';
+import heartFill from '../../images/icon-heart-fill.svg';
+import profileImage from '../../images/basic-profile-small.svg';
+import heartEmpty from '../../images/icon-heart.svg';
+import commentCircle from '../../images/icon-message-circle.svg';
+import moreIcon from '../../images/s-icon-more-vertical.svg';
 
 const StyledPostFeed = styled.article`
   display: flex;
@@ -38,7 +43,6 @@ const StyledPostFeed = styled.article`
   & .feed .feed-header .btn-post-toggle {
     width: 18px;
     height: 18px;
-    background-image: url('../../../../images/s-icon-more-vertical.svg');
     position: absolute;
     right: 0;
     top: 50%;
@@ -57,12 +61,6 @@ const StyledPostFeed = styled.article`
   & .feed .feed-info button {
     width: 20px;
     height: 20px;
-  }
-  & .feed .feed-info .hearts .btn-hearts {
-    background-image: url('../../../../images/icon-heart.svg');
-  }
-  & .feed .feed-info .comments .btn-comments {
-    background-image: url('../../../../images/icon-message-circle.svg');
   }
   & .feed .feed-info .icons {
     display: flex;
@@ -88,20 +86,34 @@ const StyledPostFeed = styled.article`
 `;
 
 export default function PostFeed() {
+  const [isHeartClick, setIsHeartClick] = useState(false);
+  const [heartCount, setHeartCount] = useState(0);
+
+  const onClickHeartHandler = () => {
+    setIsHeartClick((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    setHeartCount((prevState) =>
+      isHeartClick ? prevState + 1 : prevState - 1
+    );
+  }, [isHeartClick]);
+
+  useEffect(() => {
+    setHeartCount(0);
+  }, []);
   return (
     <StyledPostFeed>
       <h2 className="a11y-hidden">게시물 자세히보기</h2>
       <div className="img-profile">
-        <img
-          src="../../../../images/basic-profile-small.svg"
-          alt="프로필 이미지"
-        />
+        <img src={profileImage} alt="프로필 사진" />
       </div>
       <section className="feed">
         <div className="feed-header">
           <p className="feed-title">애월읍 위니브 감귤농장</p>
           <p className="feed-writer">&#64;weniv_Mandarin</p>
           <button type="button" className="btn-post-toggle">
+            <img src={moreIcon} alt="토글" />
             <span className="a11y-hidden">토글</span>
           </button>
         </div>
@@ -111,18 +123,24 @@ export default function PostFeed() {
             이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는
             풍부하게 뛰노는 인생의 힘있다.
           </p>
-          <img className="img-feed" src={feedImage} alt="" />
+          <img className="img-feed" src={feedImage} alt="피드 사진" />
         </div>
         <div className="feed-info">
           <div className="icons">
             <div className="hearts">
-              <button className="btn-hearts">
+              <button className="btn-hearts" onClick={onClickHeartHandler}>
+                {isHeartClick ? (
+                  <img src={heartFill} alt="좋아요" />
+                ) : (
+                  <img src={heartEmpty} alt="좋아요" />
+                )}
                 <span className="a11y-hidden">좋아요 버튼</span>
               </button>
-              <span>58</span>
+              <span>{heartCount}</span>
             </div>
             <div className="comments">
               <button className="btn-comments">
+                <img src={commentCircle} alt="댓글" />
                 <span className="a11y-hidden">댓글목록 보기</span>
               </button>
               <span>12</span>

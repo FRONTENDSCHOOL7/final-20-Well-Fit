@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import ImgBasicProfile from '../../images/basic-profile.svg';
 
 const StyledProfileMine = styled.section`
   display: flex;
@@ -93,7 +94,7 @@ export default function ProfileMine() {
           <p className="followers count">2950</p>
           <p className="followers content">followers</p>
         </span>
-        <img src="../../../../images/basic-profile.svg" alt="프로필로고" />
+        <img src={ImgBasicProfile} alt="프로필로고" />
         <span className="span-followings">
           <p className="followings count">128</p>
           <p className="followings content">followings</p>

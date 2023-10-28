@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import gobackIcon from '../../images/icon-arrow-left.svg';
 
 const StyledFollowHeader = styled.header`
   border-bottom: 1px solid #dbdbdb;
@@ -26,7 +27,9 @@ export default function FollowHeader() {
     <StyledFollowHeader>
       <h2 className="a11y-hidden">뒤로가기 버튼과 팔로워</h2>
       <div className="search-bar">
-        <button type="button" className="btn-goback"></button>
+        <button type="button" className="btn-goback">
+          <img src={gobackIcon} alt="뒤로가기버튼" />
+        </button>
         <strong>Followers</strong>
       </div>
     </StyledFollowHeader>
