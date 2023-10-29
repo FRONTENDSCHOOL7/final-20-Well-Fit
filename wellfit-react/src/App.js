@@ -1,11 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from '../src/resetcss/reset.css';
-import Footer from './Components/common/Footer/Footer';
 import SplashPage from './Pages/Splash/SplashPage';
-import PageUsersProfile from './Pages/Profile/PageUsersProfile';
-import PageMineProfile from './Pages/Profile/PageMineProfile';
-import { Route, Routes } from 'react-router-dom';
-// import PageHome from './Pages/Home/PageHome';
+import AppRoutes from './Router/AppRoutes';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -29,11 +25,8 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
-      <SplashPage />
       <GlobalStyle />
-      {/* <PageUsersProfile /> */}
-      {/* <PageMineProfile /> */}
-      {/* <Footer /> */}
+      <AppRoutes />
     </>
   );
 }

@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import arrowLeft from '../../images/icon-arrow-left.svg';
 
 const StyledGoodsUploadPage = styled.div`
+  background-color: #fff;
   .div-uploadHeader {
     display: flex;
     justify-content: space-between;
@@ -29,7 +30,7 @@ const StyledGoodsUploadPage = styled.div`
     background-color: #004aad;
   }
   .btn-upload:disabled {
-    background-color: #9ec1f1!important;
+    background-color: #9ec1f1 !important;
   }
 `;
 export default function UploadHeader({ active }) {
