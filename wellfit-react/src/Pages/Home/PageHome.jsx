@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HomeHeader from '../../Components/Home/HomeHeader';
 import { styled } from 'styled-components';
 import HomeContent from '../../Components/Home/HomeContent';
-
+import Footer from '../../Components/common/Footer/Footer';
+import HomeNonFeed from '../../Components/Home/HomeNonFeed';
 const StyledHomePage = styled.div`
   width: 390px;
-  height: 820px;
+  height: 844px;
   margin: 0 auto;
   border: 1px solid #dbdbdb;
   background-color: #fff;
@@ -15,10 +16,22 @@ const StyledHomePage = styled.div`
 `;
 
 export default function PageHome() {
+  const [FeedList, setFeedList] = useState([]);
+  const [hasFeed, setHasFeed] = useState(false);
+  const hasFeedHandler = () => {
+    setHasFeed((prevState) => !prevState);
+  };
   return (
-    <StyledHomePage>
-      <HomeHeader />
-      <HomeContent />
-    </StyledHomePage>
+    <>
+      <StyledHomePage>
+        <HomeHeader />
+        {hasFeed ? (
+          <HomeContent hasFeedHandler={hasFeedHandler} />
+        ) : (
+          <HomeNonFeed />
+        )}
+      </StyledHomePage>
+      <Footer />
+    </>
   );
 }
