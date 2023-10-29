@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import gobackIcon from '../../../images/icon-arrow-left.svg';
 import modrVerticalIcon from '../../../images/icon- more-vertical.svg';
+import { useNavigate } from 'react-router-dom';
 
 const StyledChattingUserListHeader = styled.header`
   border-bottom: 1px solid #dbdbdb;
@@ -26,10 +27,14 @@ const StyledChattingUserListHeader = styled.header`
 `;
 
 export default function ChattingUserListHeader({ isModal, onModalClick }) {
+  const navigate = useNavigate();
+  const goback = () => {
+    navigate(-1);
+  };
   return (
     <StyledChattingUserListHeader>
       <div className="search-bar">
-        <button type="button" className="btn-goback">
+        <button type="button" className="btn-goback" onClick={goback}>
           <img src={gobackIcon} alt="뒤로가기버튼" />
           <span className="a11y-hidden">뒤로가기</span>
         </button>
