@@ -78,6 +78,9 @@ const StyledPostFeed = styled.article`
     font-size: 10px;
     color: #767676;
   }
+  & .feed-info .comments .btn-comments {
+    cursor: auto;
+  }
   /* 좋아요 버튼, 메세지 버튼 스타일 끝 */
 
   /* feed 끝 */
