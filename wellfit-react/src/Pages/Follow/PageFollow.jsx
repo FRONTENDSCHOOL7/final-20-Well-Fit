@@ -2,10 +2,11 @@ import React from 'react';
 import { styled } from 'styled-components';
 import FollowContent from '../../Components/Follow/FollowContent';
 import FollowHeader from '../../Components/Follow/FollowHeader';
+import Footer from '../../Components/common/Footer/Footer';
 
 const StyledFollowPage = styled.div`
   width: 390px;
-  height: 820px;
+  height: 844px;
   margin: 0 auto;
   border: 1px solid #dbdbdb;
   font-size: 14px;
@@ -17,9 +18,12 @@ const StyledFollowPage = styled.div`
 
 export default function PageFollow() {
   return (
-    <StyledFollowPage>
-      <FollowHeader />
-      <FollowContent />
-    </StyledFollowPage>
+    <>
+      <StyledFollowPage>
+        <FollowHeader />
+        <FollowContent />
+      </StyledFollowPage>
+      <Footer />
+    </>
   );
 }
