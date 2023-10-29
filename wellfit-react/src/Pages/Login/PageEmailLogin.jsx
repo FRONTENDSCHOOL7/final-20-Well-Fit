@@ -71,7 +71,7 @@ export default function PageEmailLogin() {
           </LoginSection>
           <AccountButton text="로그인" disabled={!handleActiveButton()} />
         </LoginForm>
-        <LinkToSignup>이메일로 회원가입</LinkToSignup>
+        <LinkToSignup to="/mainlogin/signup">이메일로 회원가입</LinkToSignup>
       </LoginMain>
     </StyledWrap>
   );
@@ -108,7 +108,7 @@ const StyledErrorMessage = styled.p`
   color: #eb5757;
 `;
 
-const LinkToSignup = styled.a`
+const LinkToSignup = styled(Link)`
   display: block;
   padding-top: 20px;
   font-size: 12px;
