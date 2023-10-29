@@ -236,6 +236,9 @@ export default function PageProfileSetting() {
 }
 
 const StyledProfileWrap = styled.div`
+  width: 390px;
+  height: 844px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
 `;

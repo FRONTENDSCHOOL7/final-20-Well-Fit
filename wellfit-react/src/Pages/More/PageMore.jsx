@@ -18,6 +18,9 @@ import Store from '../../images/store.svg';
 import Check from '../../images/check.svg';
 
 const StyledPageMore = styled.main`
+  width: 390px;
+  height: 844px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;

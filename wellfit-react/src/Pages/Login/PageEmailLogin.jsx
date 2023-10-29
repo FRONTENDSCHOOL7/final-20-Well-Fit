@@ -78,6 +78,9 @@ export default function PageEmailLogin() {
 }
 
 const StyledWrap = styled.div`
+  width: 390px;
+  height: 844px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
 `;
