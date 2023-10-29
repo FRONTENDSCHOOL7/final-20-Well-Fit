@@ -23,6 +23,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       {/* splash Page*/}
+      {/* splash Page*/}
       <Route path="/" element={<SplashPage />} />
 
       {/* main Page */}
