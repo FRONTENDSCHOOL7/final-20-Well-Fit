@@ -12,13 +12,15 @@ const StyledUpload = styled.div`
   .div-posting {
     display: flex;
   }
-  .img-uploadProfile {
+
+  & .img-uploadProfile {
     width: 42px;
     height: 42px;
     margin: 16px;
     margin-right: 13px;
   }
-  .textarea-post {
+
+  & .textarea-post {
     flex-shrink: 0;
     border: none;
     width: 304px;
@@ -33,17 +35,20 @@ const StyledUpload = styled.div`
     top: 174px;
     left: 70px;
   }
-  .img-postingImg {
+
+  & .img-postingImg {
     width: 168px;
     height: 126px;
     border-radius: 10px;
     border: 0.5px;
   }
-  .img-postingImg.single {
+
+  & .img-postingImg.single {
     width: 304px;
     height: 228px;
   }
-  .img-postingImg:first-child {
+
+  & .img-postingImg:first-child {
     margin-left: 70px;
   }
 
@@ -67,7 +72,8 @@ const StyledUpload = styled.div`
     background-position: center center;
     background-repeat: no-repeat;
   }
-  .img-picture {
+
+  & .img-picture {
     width: 21px;
     height: 21px;
   }
