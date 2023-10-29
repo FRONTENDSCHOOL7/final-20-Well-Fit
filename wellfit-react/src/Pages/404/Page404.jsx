@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import NotLogo from '../../images/logo-notfound.svg';
 
 const StyledPage404 = styled.main`
   position: relative;
@@ -26,7 +27,7 @@ const StyledPage404 = styled.main`
 export default function Page404() {
   return (
     <StyledPage404>
-      <img src="../../../images/logo-notfound.svg" alt="404로고" />
+      <img src={NotLogo} alt="404로고" />
       <p>페이지를 찾을 수 없습니다. :(</p>
       <button className="btn-return">이전 페이지</button>
     </StyledPage404>

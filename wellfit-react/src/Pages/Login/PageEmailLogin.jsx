@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
+import { PostLogin } from '../../api/postLogin';
 
 export default function PageEmailLogin() {
   const [userEmail, setUserEmail] = useState('');
@@ -44,7 +45,7 @@ export default function PageEmailLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const loginData = await postUserLogin(userEmail, userPassword);
+      const loginData = await PostLogin(userEmail, userPassword);
       if (loginData && loginData.status === 422) {
         setErrorMsg('*이메일 또는 비밀번호가 일치하지 않습니다.');
       } else {

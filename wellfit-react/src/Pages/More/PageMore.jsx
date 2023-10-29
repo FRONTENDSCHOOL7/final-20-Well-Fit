@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import MoreSmallWidget from './MoreSmallWidget';
-import MoreCategory from './MoreCategory';
+import MoreSmallWidget from '../../Components/More/MoreSmallWidget';
+import MoreCategory from '../../Components/More/MoreCategory';
 
 const StyledPageMore = styled.main`
   display: flex;

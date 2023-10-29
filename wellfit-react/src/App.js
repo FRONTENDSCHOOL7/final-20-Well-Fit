@@ -28,9 +28,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      {/* <PageUsersProfile /> */}
-      <PageMineProfile />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
