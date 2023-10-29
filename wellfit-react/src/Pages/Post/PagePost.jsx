@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import ModalDeleteComment from '../../Components/common/Modal/ModalDeleteComment';
 import PostContent from '../../Components/Post/PostContent';
