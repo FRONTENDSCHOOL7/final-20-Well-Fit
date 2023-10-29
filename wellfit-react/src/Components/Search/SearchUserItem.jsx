@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import profileImg from '../../images/basic-profile-small.svg';
 
 const StyledSearchUserItem = styled.li`
   & + li {
@@ -35,10 +36,7 @@ export default function SearchUserItem() {
       <article className="search-result">
         <h3 className="a11y-hidden">검색된 유저</h3>
         <div className="img-profile">
-          <img
-            src="../../../images/basic-profile-small.svg"
-            alt="프로필 사진"
-          />
+          <img src={profileImg} alt="프로필 사진" />
         </div>
         <div className="user-info">
           <p className="user-name">애월읍 위니브 감귤농장</p>

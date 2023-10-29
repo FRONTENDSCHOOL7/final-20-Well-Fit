@@ -5,6 +5,7 @@ import Google from '../../images/Google__G__Logo 1.svg';
 import Kakao from '../../images/message-circle.svg';
 import Face from '../../images/facebook.svg';
 import Naver from '../../images/naver.svg';
+import { Link } from 'react-router-dom';
 
 export default function PageSnsLogin() {
   return (
@@ -33,8 +34,10 @@ export default function PageSnsLogin() {
           </Button>
         </ButtonContainer>
         <LinkContainer>
-          <Link className="login-go">이메일로 로그인</Link>
-          <Link>회원가입</Link>
+          <Link to="/mainlogin/emaillogin" className="login-go">
+            이메일로 로그인
+          </Link>
+          <Link to="/mainlogin/signup">회원가입</Link>
         </LinkContainer>
       </Main>
     </StyledPageSnsLogin>
@@ -146,12 +149,11 @@ const NaverImage = styled.img`
 const LinkContainer = styled.div`
   margin-top: 20px;
   text-align: center;
-`;
 
-const Link = styled.a`
-  color: #767676;
-  font-size: 12px;
-
+  & .login-go {
+    color: #767676;
+    font-size: 12px;
+  }
   &.login-go::after {
     content: '|';
     padding: 12px;

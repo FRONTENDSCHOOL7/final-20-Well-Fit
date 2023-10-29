@@ -5,6 +5,9 @@ import bagicProfile from '../../images/basic-profile.svg';
 import x from '../../images/x.svg';
 import img from '../../images/icon-image.svg';
 const StyledUpload = styled.div`
+  width: 390px;
+  height: 844px;
+  background-color: #fff;
   .div-posting {
     display: flex;
   }
@@ -41,7 +44,7 @@ const StyledUpload = styled.div`
     height: 228px;
   }
   .img-postingImg:first-child {
-    margin-left: 70px;    
+    margin-left: 70px;
   }
 
   .btn-imgDelete {
@@ -77,7 +80,7 @@ const StyledUpload = styled.div`
 export default function PostUpload({ setActive }) {
   const [message, setMessage] = useState('');
   const [images, setImages] = useState();
-  const handleImageUpload = e => {
+  const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     if ((images?.length ?? 0) + files.length > 3) {
       alert('이미지는 최대 3개까지 첨부할 수 있습니다.');
@@ -86,7 +89,7 @@ export default function PostUpload({ setActive }) {
     } else {
       setImages(files);
     }
-  }
+  };
   useEffect(() => {
     console.log(images);
     if (message !== '' || images?.length > 0) setActive(true);
@@ -95,12 +98,16 @@ export default function PostUpload({ setActive }) {
   return (
     <StyledUpload>
       <div className="div-posting">
-        <img className="img-uploadProfile" src={bagicProfile} alt="프로필 이미지" />
+        <img
+          className="img-uploadProfile"
+          src={bagicProfile}
+          alt="프로필 이미지"
+        />
         <textarea
           placeholder="게시글 입력하기..."
           className="textarea-post"
           value={message}
-          onChange={e => setMessage(e.target.value)}
+          onChange={(e) => setMessage(e.target.value)}
         ></textarea>
       </div>
 
@@ -108,11 +115,17 @@ export default function PostUpload({ setActive }) {
         {images?.map((image) => (
           <Fragment key={image.name}>
             <img
-              className={`img-postingImg ${images.length === 1 ? 'single' : ''}`}
+              className={`img-postingImg ${
+                images.length === 1 ? 'single' : ''
+              }`}
               src={URL.createObjectURL(image)}
               alt={`image_${image.name}`}
             />
-            <button className={`btn-imgDelete`} type="button" onClick={() => setImages(images.filter(n => n !== image))}>
+            <button
+              className={`btn-imgDelete`}
+              type="button"
+              onClick={() => setImages(images.filter((n) => n !== image))}
+            >
               <img alt={`delete_image_${image.name}`} src={x}></img>
             </button>
           </Fragment>
