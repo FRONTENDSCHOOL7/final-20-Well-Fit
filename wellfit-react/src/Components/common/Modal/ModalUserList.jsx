@@ -34,7 +34,7 @@ const StyledModalBG = styled.div`
   background-color: #fff;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  animation: fadeInUp 0.5s forwards;
+  animation: ${(props) => (props.isOpen ? fadeOutDown : fadeInUp)} 0.5s forwards;
 
   & .modal-wrapper {
     position: relative;
