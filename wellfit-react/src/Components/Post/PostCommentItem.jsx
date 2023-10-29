@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import moreVerticalIcon from '../../images/m-icon-more-vertical.svg';
+import moreVerticalIcon from '../../images/s-icon-more-vertical.svg';
 
 const StyledPostCommentItem = styled.li`
   /* section-comment 시작 */
@@ -32,8 +32,12 @@ const StyledPostCommentItem = styled.li`
     color: #767676;
   }
   & .comment .comment-info .btn-comment-toggle {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+  }
+  & .btn-comment-toggle img {
+    width: 100%;
+    height: 100%;
   }
   & .comment .comment-text {
     margin-top: 16px;

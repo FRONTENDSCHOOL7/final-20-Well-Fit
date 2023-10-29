@@ -14,6 +14,7 @@ import PageEmailLogin from '../Pages/Login/PageEmailLogin';
 import PageSnsLogin from '../Pages/Login/PageSnsLogin';
 import PageFollow from '../Pages/Follow/PageFollow';
 import PagePost from '../Pages/Post/PagePost';
+import PagePostUser from '../Pages/Post/PagePostUser';
 import PageSearch from '../Pages/Search/PageSearch';
 import PageSignup from '../Pages/Signup/PageSignup';
 import PageUploadProduct from '../Pages/Profile/PageUploadProduct';
@@ -37,7 +38,7 @@ const AppRoutes = () => {
       <Route path="/home" element={<PageHome />} />
       <Route path="/home/search" element={<PageSearch />} />
       <Route path="/home/post/mine" element={<PagePost />} />
-      <Route path="/home/post/user" element={<PagePost />} />
+      <Route path="/home/post/user" element={<PagePostUser />} />
 
       {/* myprofile Page */}
       <Route path="/myprofile" element={<PageMineProfile />} />
