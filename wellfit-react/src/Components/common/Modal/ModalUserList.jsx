@@ -13,17 +13,6 @@ const fadeInUp = keyframes`
   }
 `;
 
-const fadeOutDown = keyframes`
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-`;
-
 const StyledModalBG = styled.div`
   position: fixed;
   bottom: 0;
@@ -34,7 +23,7 @@ const StyledModalBG = styled.div`
   background-color: #fff;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  animation: ${(props) => (props.isOpen ? fadeOutDown : fadeInUp)} 0.5s forwards;
+  animation: fadeInUp 0.5s forwards;
 
   & .modal-wrapper {
     position: relative;
