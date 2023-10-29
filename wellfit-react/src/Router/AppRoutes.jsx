@@ -21,7 +21,10 @@ import PageUploadProduct from '../Pages/Profile/PageUploadProduct';
 const AppRoutes = () => {
   return (
     <Routes>
+      {/* splash Page*/}
       <Route path="/" element={<SplashPage />} />
+
+      {/* main Page */}
       <Route path="/mainlogin" element={<PageSnsLogin />} />
       <Route path="/mainlogin/emaillogin" element={<PageEmailLogin />} />
       <Route path="/mainlogin/signup" element={<PageSignup />} />
@@ -30,10 +33,13 @@ const AppRoutes = () => {
         element={<PageProfileSetting />}
       />
 
+      {/* home Page */}
       <Route path="/home" element={<PageHome />} />
       <Route path="/home/search" element={<PageSearch />} />
       <Route path="/home/post/mine" element={<PagePost />} />
       <Route path="/home/post/user" element={<PagePost />} />
+
+      {/* myprofile Page */}
       <Route path="/myprofile" element={<PageMineProfile />} />
       <Route path="/myprofile/follow" element={<PageFollow />} />
       <Route path="/myprofile/uploadproduct" element={<PageUploadProduct />} />
@@ -41,10 +47,18 @@ const AppRoutes = () => {
         path="/myprofile/modification"
         element={<PageProfileModification />}
       />
+
+      {/* chatting Page */}
       <Route path="/chattinglist" element={<PageChattingList />} />
       <Route path="/chattinglist/ongoing" element={<PageChatting />} />
+
+      {/* post Page */}
       <Route path="/postupload" element={<PagePostUpload />} />
+
+      {/* more Page */}
       <Route path="/pagemore" element={<PageMore />} />
+
+      {/* 404 Page */}
       <Route path="/*" element={<Page404 />} />
     </Routes>
   );
