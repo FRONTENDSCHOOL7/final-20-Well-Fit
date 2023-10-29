@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import MoreSmallWidget from './MoreSmallWidget';
 import MoreCategory from './MoreCategory';
+import Footer from '../../Components/common/Footer/Footer';
 
 const StyledPageMore = styled.main`
   width: 390px;
@@ -176,6 +177,7 @@ export default function PageMore() {
           <MoreCategory />
         </div>
       </section>
+      <Footer />
     </StyledPageMore>
   );
 }

@@ -6,7 +6,7 @@ import x from '../../images/x.svg';
 import img from '../../images/icon-image.svg';
 const StyledUpload = styled.div`
   width: 390px;
-  height: 844px;
+  height: 820px;
   background-color: #fff;
   .div-posting {
     display: flex;

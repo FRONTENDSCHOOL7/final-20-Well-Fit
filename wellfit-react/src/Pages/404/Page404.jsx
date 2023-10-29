@@ -1,10 +1,15 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import Img404 from '../../images/logo-notfound.svg';
 
 const StyledPage404 = styled.main`
-  position: relative;
-  margin: 200px auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 390px;
+  height: 844px;
+  background-color: #fff;
 
   & p {
     color: #767676;
@@ -26,7 +31,7 @@ const StyledPage404 = styled.main`
 export default function Page404() {
   return (
     <StyledPage404>
-      <img src="../../../images/logo-notfound.svg" alt="404로고" />
+      <img src={Img404} alt="404로고" />
       <p>페이지를 찾을 수 없습니다. :(</p>
       <button className="btn-return">이전 페이지</button>
     </StyledPage404>

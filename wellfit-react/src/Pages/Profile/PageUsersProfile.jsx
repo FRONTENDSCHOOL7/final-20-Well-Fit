@@ -7,6 +7,7 @@ import ListAlbumSwitch from '../../Components/Profile/ListAlbumSwitch';
 import ListFeed from '../../Components/Profile/ListFeed';
 import AlbumFeed from '../../Components/Profile/AlbumFeed';
 import ModalUserList from '../../Components/common/Modal/ModalUserList';
+import Footer from '../../Components/common/Footer/Footer';
 
 const StyledMainHeader = styled.header`
   background-color: #fff;
@@ -61,6 +62,7 @@ export default function PageUsersProfile() {
           <ModalUserList />
         </>
       )}
+      <Footer />
     </StyledPage>
   );
 }
