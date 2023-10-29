@@ -25,7 +25,6 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
-      <SplashPage />
       <GlobalStyle />
       <AppRoutes />
     </>
