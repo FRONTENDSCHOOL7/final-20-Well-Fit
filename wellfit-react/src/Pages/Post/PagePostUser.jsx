@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import ModalDeleteComment from '../../Components/common/Modal/ModalDeleteComment';
+import ModalDeclareComment from '../../Components/common/Modal/ModalDeclareComment';
 import PostContent from '../../Components/Post/PostContent';
 import PostHeader from '../../Components/Post/PostHeader';
 
-const StyledPostPage = styled.div`
+const StyledPostPageUser = styled.div`
   width: 390px;
   height: 820px;
   margin: 0 auto;
@@ -29,7 +30,7 @@ const StyledModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export default function PagePost() {
+export default function PagePostUser() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalHandler = () => {
     setIsModalOpen((prevState) => !prevState);
@@ -37,11 +38,11 @@ export default function PagePost() {
 
   return (
     <>
-      <StyledPostPage isModalOpen={isModalOpen}>
+      <StyledPostPageUser isModalOpen={isModalOpen}>
         <PostHeader />
         <PostContent modalHandler={modalHandler} />
-        {isModalOpen ? <ModalDeleteComment isModalOpen={isModalOpen} /> : null}
-      </StyledPostPage>
+        {isModalOpen ? <ModalDeclareComment isModalOpen={isModalOpen} /> : null}
+      </StyledPostPageUser>
       {isModalOpen ? (
         <StyledModalBackground onClick={modalHandler}></StyledModalBackground>
       ) : null}

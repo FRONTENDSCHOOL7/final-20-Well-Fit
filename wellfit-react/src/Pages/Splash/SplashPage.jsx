@@ -14,10 +14,10 @@ const StyledSplashPage = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  justify-content: center;
+  width: 390px;
+  height: 844px;
+  background-color: #fff;
 `;
 
 const Img = styled.img`

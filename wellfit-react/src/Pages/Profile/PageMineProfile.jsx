@@ -2,16 +2,12 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import MainHeader from '../../Components/common/Header/MainHeader';
 import ProfileMine from '../../Components/Profile/ProfileMine';
-import GoodList from '../../Components/Profile/GoodListUsers';
 import ListAlbumSwitch from '../../Components/Profile/ListAlbumSwitch';
 import ListFeed from '../../Components/Profile/ListFeed';
 import AlbumFeed from '../../Components/Profile/AlbumFeed';
-import ModalListPost from '../../Components/common/Modal/ModalListPost';
 import ModalUserList from '../../Components/common/Modal/ModalUserList';
-import ModalListGoods from '../../Components/common/Modal/ModalListGoodsMine';
-import ModalDeletePost from '../../Components/common/Modal/ModalDeletePost';
-import ModalDeleteGoods from '../../Components/common/Modal/ModalDeleteGoods';
 import GoodListMine from '../../Components/Profile/GoodListMine';
+import Footer from '../../Components/common/Footer/Footer';
 
 const StyledMainHeader = styled.header`
   background-color: #fff;
@@ -60,6 +56,7 @@ export default function PageMineProfile() {
           <ModalUserList isModal={isModal} />
         </>
       )}
+      <Footer />
     </>
   );
 }

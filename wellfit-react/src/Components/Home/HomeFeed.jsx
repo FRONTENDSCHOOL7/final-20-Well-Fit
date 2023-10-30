@@ -5,6 +5,7 @@ import heartFill from '../../images/icon-heart-fill.svg';
 import profileImage from '../../images/basic-profile-small.svg';
 import heartEmpty from '../../images/icon-heart.svg';
 import commentCircle from '../../images/icon-message-circle.svg';
+import { useNavigate } from 'react-router-dom';
 
 const StyledHomeFeed = styled.li`
   display: flex;
@@ -73,6 +74,10 @@ const StyledHomeFeed = styled.li`
 export default function HomeFeed() {
   const [isHeartClick, setIsHeartClick] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
+  const navigate = useNavigate();
+  const gopost = () => {
+    navigate('./post/mine');
+  };
 
   const onClickHeartHandler = () => {
     setIsHeartClick((prevState) => !prevState);
@@ -122,7 +127,7 @@ export default function HomeFeed() {
               <span>{heartCount}</span>
             </div>
             <div className="comments">
-              <button className="btn-comments">
+              <button className="btn-comments" onClick={gopost}>
                 <img src={commentCircle} alt="댓글" />
                 <span className="a11y-hidden">댓글목록 보기</span>
               </button>

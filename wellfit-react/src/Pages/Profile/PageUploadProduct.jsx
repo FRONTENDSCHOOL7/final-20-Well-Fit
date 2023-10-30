@@ -159,6 +159,9 @@ export default function PageUploadProduct() {
 }
 
 const StyledProfileWrap = styled.div`
+  width: 390px;
+  height: 844px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
 `;

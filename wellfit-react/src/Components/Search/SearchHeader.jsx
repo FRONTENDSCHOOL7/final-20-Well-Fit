@@ -1,5 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import gobackIcon from '../../images/icon-arrow-left.svg';
+import { useNavigate } from 'react-router-dom';
 
 const StyledSearchPageHeader = styled.header`
   border-bottom: 1px solid #dbdbdb;
@@ -26,10 +28,16 @@ const StyledSearchPageHeader = styled.header`
 `;
 
 export default function SearchHeader() {
+  const navigate = useNavigate();
+  const goback = () => {
+    navigate(-1);
+  };
   return (
     <StyledSearchPageHeader>
       <div className="search-bar">
-        <button type="button" className="btn-goback"></button>
+        <button type="button" className="btn-goback" onClick={goback}>
+          <img src={gobackIcon} alt="뒤로가기" />
+        </button>
         <label for="input-search" className="a11y-hidden">
           계정 검색
         </label>

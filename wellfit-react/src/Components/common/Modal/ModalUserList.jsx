@@ -13,17 +13,6 @@ const fadeInUp = keyframes`
   }
 `;
 
-const fadeOutDown = keyframes`
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-`;
-
 const StyledModalBG = styled.div`
   position: fixed;
   bottom: 0;

@@ -5,20 +5,23 @@ import bagicProfile from '../../images/basic-profile.svg';
 import x from '../../images/x.svg';
 import img from '../../images/icon-image.svg';
 const StyledUpload = styled.div`
-  .div-postingMain {
+  & .div-postingMain {
     position: relative;
     height: 772px;
   }
-  .div-posting {
+
+  & .div-posting {
     display: flex;
   }
-  .img-uploadProfile {
+  
+  & .img-uploadProfile {
     width: 42px;
     height: 42px;
     margin: 16px;
     margin-right: 13px;
   }
-  .textarea-post {
+  
+  & .textarea-post {
     flex-shrink: 0;
     border: none;
     width: 304px;
@@ -28,26 +31,29 @@ const StyledUpload = styled.div`
     resize: none;
   }
 
-  .div-postImg {
+  & .div-postImg {
     display: flex;
     top: 174px;
     left: 70px;
   }
-  .img-postingImg {
+  
+  & .img-postingImg {
     width: 168px;
     height: 126px;
     border-radius: 10px;
     border: 0.5px;
   }
-  .img-postingImg.single {
+  
+  & .img-postingImg.single {
     width: 304px;
     height: 228px;
   }
-  .img-postingImg:first-child {
+  
+  & .img-postingImg:first-child {
     margin-left: 70px;
   }
 
-  .btn-imgDelete {
+  & .btn-imgDelete {
     position: relative;
     top: 6px;
     left: -28px;
@@ -55,7 +61,7 @@ const StyledUpload = styled.div`
     height: 20px;
   }
 
-  .label-image {
+  & .label-image {
     position: absolute;
     width: 50px;
     height: 50px;
@@ -67,12 +73,13 @@ const StyledUpload = styled.div`
     background-position: center center;
     background-repeat: no-repeat;
   }
-  .img-picture {
+  
+  & .img-picture {
     width: 21px;
     height: 21px;
   }
 
-  .input-image {
+  & .input-image {
     display: none;
   }
 `;

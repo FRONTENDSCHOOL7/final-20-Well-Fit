@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import gobackIcon from '../../images/icon-arrow-left.svg';
+import { useNavigate } from 'react-router-dom';
 
 const StyledFollowHeader = styled.header`
   border-bottom: 1px solid #dbdbdb;
@@ -23,11 +24,15 @@ const StyledFollowHeader = styled.header`
 `;
 
 export default function FollowHeader() {
+  const navigate = useNavigate();
+  const goback = () => {
+    navigate(-1);
+  };
   return (
     <StyledFollowHeader>
       <h2 className="a11y-hidden">뒤로가기 버튼과 팔로워</h2>
       <div className="search-bar">
-        <button type="button" className="btn-goback">
+        <button type="button" className="btn-goback" onClick={goback}>
           <img src={gobackIcon} alt="뒤로가기버튼" />
         </button>
         <strong>Followers</strong>
