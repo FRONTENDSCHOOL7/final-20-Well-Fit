@@ -5,9 +5,10 @@ import bagicProfile from '../../images/basic-profile.svg';
 import x from '../../images/x.svg';
 import img from '../../images/icon-image.svg';
 const StyledUpload = styled.div`
-  width: 390px;
-  height: 820px;
-  background-color: #fff;
+  .div-postingMain {
+    position: relative;
+    height: 772px;
+  }
   .div-posting {
     display: flex;
   }
@@ -28,14 +29,13 @@ const StyledUpload = styled.div`
   }
 
   .div-postImg {
-    position: relative;
     display: flex;
+    top: 174px;
+    left: 70px;
   }
   .img-postingImg {
     width: 168px;
     height: 126px;
-    top: 174px;
-    left: 70px;
     border-radius: 10px;
     border: 0.5px;
   }
@@ -53,7 +53,6 @@ const StyledUpload = styled.div`
     left: -28px;
     width: 20px;
     height: 20px;
-    background-image: url(../../../img/delete2.png);
   }
 
   .label-image {
