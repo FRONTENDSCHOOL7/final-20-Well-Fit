@@ -5,11 +5,11 @@ import bagicProfile from '../../images/basic-profile.svg';
 import x from '../../images/x.svg';
 import img from '../../images/icon-image.svg';
 const StyledUpload = styled.div`
-  .div-postingMain {
+  & .div-postingMain {
     position: relative;
     height: 772px;
   }
-  .div-posting {
+  & .div-posting {
     display: flex;
   }
 
@@ -30,7 +30,7 @@ const StyledUpload = styled.div`
     resize: none;
   }
 
-  .div-postImg {
+  & .div-postImg {
     display: flex;
     top: 174px;
     left: 70px;
@@ -52,7 +52,7 @@ const StyledUpload = styled.div`
     margin-left: 70px;
   }
 
-  .btn-imgDelete {
+  & .btn-imgDelete {
     position: relative;
     top: 6px;
     left: -28px;
@@ -60,7 +60,7 @@ const StyledUpload = styled.div`
     height: 20px;
   }
 
-  .label-image {
+  & .label-image {
     position: absolute;
     width: 50px;
     height: 50px;
@@ -78,7 +78,7 @@ const StyledUpload = styled.div`
     height: 21px;
   }
 
-  .input-image {
+  & .input-image {
     display: none;
   }
 `;
