@@ -2,7 +2,7 @@ import { Route, Routes, Outlet } from 'react-router-dom';
 import SplashPage from '../Pages/Splash/SplashPage';
 import PageHome from '../Pages/Home/PageHome';
 import PageMineProfile from '../Pages/Profile/PageMineProfile';
-import PageUserProfile from '../Pages/Profile/PageUsersProfile';
+import PageUsersProfile from '../Pages/Profile/PageUsersProfile';
 import PageProfileSetting from '../Pages/Profile/PageProfileSetting';
 import PageProfileModification from '../Pages/Profile/PageProfileModification';
 import PageChattingList from '../Pages/Chatting/PageChattingList';
@@ -48,6 +48,9 @@ const AppRoutes = () => {
         path="/myprofile/modification"
         element={<PageProfileModification />}
       />
+
+      {/* userprofile Page */}
+      <Route path="/userProfile" element={<PageUsersProfile />} />
 
       {/* chatting Page */}
       <Route path="/chattinglist" element={<PageChattingList />} />

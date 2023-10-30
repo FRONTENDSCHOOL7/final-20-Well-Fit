@@ -13,17 +13,6 @@ const fadeInUp = keyframes`
   }
 `;
 
-const fadeOutDown = keyframes`
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-`;
-
 const StyledModalListGoodsMine = styled.article`
   z-index: 200;
   position: fixed;
@@ -34,7 +23,7 @@ const StyledModalListGoodsMine = styled.article`
   background-color: #fff;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  animation: fadeInUp 0.5s forwards;
+  animation: ${fadeInUp} 1s ease forwards;
 
   & .mark-wrapper {
     position: relative;

@@ -23,7 +23,7 @@ const StyledModalListPost = styled.article`
   background-color: #fff;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  animation: fadeInUp 0.5s forwards;
+  animation: ${fadeInUp} 1s ease forwards;
 
   & .mark-wrapper {
     position: relative;

@@ -9,18 +9,17 @@ const StyledUpload = styled.div`
     position: relative;
     height: 772px;
   }
-
   & .div-posting {
     display: flex;
   }
-  
+
   & .img-uploadProfile {
     width: 42px;
     height: 42px;
     margin: 16px;
     margin-right: 13px;
   }
-  
+
   & .textarea-post {
     flex-shrink: 0;
     border: none;
@@ -36,19 +35,19 @@ const StyledUpload = styled.div`
     top: 174px;
     left: 70px;
   }
-  
+
   & .img-postingImg {
     width: 168px;
     height: 126px;
     border-radius: 10px;
     border: 0.5px;
   }
-  
+
   & .img-postingImg.single {
     width: 304px;
     height: 228px;
   }
-  
+
   & .img-postingImg:first-child {
     margin-left: 70px;
   }
@@ -73,7 +72,7 @@ const StyledUpload = styled.div`
     background-position: center center;
     background-repeat: no-repeat;
   }
-  
+
   & .img-picture {
     width: 21px;
     height: 21px;
@@ -103,50 +102,49 @@ export default function PostUpload({ setActive }) {
   }, [message, images, setActive]);
   return (
     <StyledUpload>
-      <div className="div-postingMain">
-        <div className="div-posting">
-          <img
-            className="img-uploadProfile"
-            src={bagicProfile}
-            alt="프로필 이미지"
-          />
-          <textarea
-            placeholder="게시글 입력하기..."
-            className="textarea-post"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
-        </div>
-        <div className="div-postImg">
-          {images?.map((image) => (
-            <Fragment key={image.name}>
-              <img
-                className={`img-postingImg ${
-                  images.length === 1 ? 'single' : ''
-                }`}
-                src={URL.createObjectURL(image)}
-                alt={`image_${image.name}`}
-              />
-              <button
-                className={`btn-imgDelete`}
-                type="button"
-                onClick={() => setImages(images.filter((n) => n !== image))}
-              >
-                <img alt={`delete_image_${image.name}`} src={x}></img>
-              </button>
-            </Fragment>
-          ))}
-        </div>
-        <label htmlFor="input-image" className="label-image"></label>
-        <input
-          type="file"
-          accept="image/*"
-          id="input-image"
-          className="input-image"
-          onChange={handleImageUpload}
-          multiple
-        ></input>
+      <div className="div-posting">
+        <img
+          className="img-uploadProfile"
+          src={bagicProfile}
+          alt="프로필 이미지"
+        />
+        <textarea
+          placeholder="게시글 입력하기..."
+          className="textarea-post"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        ></textarea>
       </div>
+
+      <div className="div-postImg">
+        {images?.map((image) => (
+          <Fragment key={image.name}>
+            <img
+              className={`img-postingImg ${
+                images.length === 1 ? 'single' : ''
+              }`}
+              src={URL.createObjectURL(image)}
+              alt={`image_${image.name}`}
+            />
+            <button
+              className={`btn-imgDelete`}
+              type="button"
+              onClick={() => setImages(images.filter((n) => n !== image))}
+            >
+              <img alt={`delete_image_${image.name}`} src={x}></img>
+            </button>
+          </Fragment>
+        ))}
+      </div>
+      <label htmlFor="input-image" className="label-image"></label>
+      <input
+        type="file"
+        accept="image/*"
+        id="input-image"
+        className="input-image"
+        onChange={handleImageUpload}
+        multiple
+      ></input>
     </StyledUpload>
   );
 }

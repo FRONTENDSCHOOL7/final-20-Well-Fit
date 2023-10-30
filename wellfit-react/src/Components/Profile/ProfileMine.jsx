@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import ImgBasicProfile from '../../images/basic-profile.svg';
+import { Link, useNavigate } from 'react-router-dom';
 
 const StyledProfileMine = styled.section`
   display: flex;
@@ -86,14 +87,24 @@ const StyledProfileMine = styled.section`
 `;
 
 export default function ProfileMine() {
+  const navigate = useNavigate();
+
+  const handleProfileEditClick = () => {
+    navigate('/myprofile/modification');
+  };
+
+  const handleProductUploadClick = () => {
+    navigate('/myprofile/uploadproduct');
+  };
+
   return (
     <StyledProfileMine>
       {/* 팔로워 프로필 팔로잉 */}
       <div className="profile-wrapper">
-        <span className="span-followers">
+        <Link to="/myprofile/follow">
           <p className="followers count">2950</p>
           <p className="followers content">followers</p>
-        </span>
+        </Link>
         <img src={ImgBasicProfile} alt="프로필로고" />
         <span className="span-followings">
           <p className="followings count">128</p>
@@ -114,10 +125,18 @@ export default function ProfileMine() {
       {/* 프로필 수정, 상품 등록 부분 */}
       <h2 className="a11y-hidden">채팅, 팔로우, 공유 버튼</h2>
       <div className="btn-wrapper">
-        <button type="button" className="btn-fix">
+        <button
+          type="button"
+          className="btn-fix"
+          onClick={handleProfileEditClick}
+        >
           프로필 수정
         </button>
-        <button type="submit" className="btn-add">
+        <button
+          type="submit"
+          className="btn-add"
+          onClick={handleProductUploadClick}
+        >
           상품 등록
         </button>
       </div>

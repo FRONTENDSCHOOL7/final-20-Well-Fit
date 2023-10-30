@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ImgBasicProfile from '../../images/basic-profile.svg';
 import ImgMessage from '../../images/icon-message-circle-1.svg';
 import ImgShare from '../../images/icon-share.svg';
+import { useNavigate } from 'react-router-dom';
 
 const StyledProfileUsers = styled.section`
   display: flex;
@@ -114,6 +115,11 @@ const StyledProfileUsers = styled.section`
 
 export default function ProfileUsers() {
   const [isFollowing, setIsFollowing] = useState(true);
+  const navigate = useNavigate();
+
+  const handleChattingClick = () => {
+    navigate('/chattinglist/ongoing');
+  };
 
   return (
     <StyledProfileUsers>
@@ -143,7 +149,11 @@ export default function ProfileUsers() {
       {/* 채팅, 팔로우, 공유 버튼 */}
       <h2 className="a11y-hidden">채팅, 팔로우, 공유 버튼</h2>
       <div className="btn-wrapper">
-        <button type="button" className="btn-chatting">
+        <button
+          type="button"
+          className="btn-chatting"
+          onClick={handleChattingClick}
+        >
           <img src={ImgMessage} alt="채팅 하기" />
         </button>
         <button

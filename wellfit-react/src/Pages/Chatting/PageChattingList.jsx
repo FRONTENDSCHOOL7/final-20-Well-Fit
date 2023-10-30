@@ -2,12 +2,12 @@ import React from 'react';
 import { styled } from 'styled-components';
 import ChattingUserListContent from '../../Components/Chatting/ChattingUserListContent';
 import ChattingUserListHeader from '../../Components/Chatting/ChattingUserListHeader';
+import Footer from '../../Components/common/Footer/Footer';
 
 const StyledChattingListPage = styled.div`
   width: 390px;
   height: 820px;
   margin: 0 auto;
-  border: 1px solid #dbdbdb;
   font-size: 14px;
   background-color: #fff;
 
@@ -17,9 +17,12 @@ const StyledChattingListPage = styled.div`
 
 export default function PageChattingList() {
   return (
-    <StyledChattingListPage>
-      <ChattingUserListHeader />
-      <ChattingUserListContent />
-    </StyledChattingListPage>
+    <>
+      <StyledChattingListPage>
+        <ChattingUserListHeader />
+        <ChattingUserListContent />
+      </StyledChattingListPage>
+      <Footer />
+    </>
   );
 }
