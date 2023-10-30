@@ -10,10 +10,10 @@ const StyledHomePageContent = styled.main`
   height: 100%;
 `;
 
-export default function HomeContent({ hasFeedHandler }) {
+export default function HomeContent({ followedUserFeedList }) {
   return (
     <StyledHomePageContent>
-      <HomeFeedList hasFeedHandler={hasFeedHandler} />
+      <HomeFeedList followedUserFeedList={followedUserFeedList} />
     </StyledHomePageContent>
   );
 }

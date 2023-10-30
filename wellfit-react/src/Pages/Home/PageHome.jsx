@@ -6,6 +6,7 @@ import Footer from '../../Components/common/Footer/Footer';
 import HomeNonFeed from '../../Components/Home/HomeNonFeed';
 import { getMyInfo } from '../../api/PostMyInfo';
 import { getMyFollowList } from '../../api/GETMyFollowList';
+import { getFollowedUserFeedList } from '../../api/GETFollowedFeedList';
 const StyledHomePage = styled.div`
   width: 390px;
   height: 844px;
@@ -22,6 +23,8 @@ export default function PageHome() {
 
   // followList 상태
   const [hasFollowList, setHasFollowList] = useState(false);
+
+  // follow list 가 있는지 확인
   useEffect(() => {
     const getUserProfileData = async () => {
       try {
@@ -32,6 +35,9 @@ export default function PageHome() {
 
         if (myFollowList.length !== 0) {
           setHasFollowList(true);
+        } else {
+          // setHasFollowList(false);
+          return;
         }
       } catch (error) {
         console.error(error);
@@ -41,11 +47,35 @@ export default function PageHome() {
     getUserProfileData();
   }, []);
 
+  // 팔로우한 유저가 있다면 유저 들의 게시물 전부 불러오기
+  useEffect(() => {
+    const followedUserFeedList = async () => {
+      if (hasFollowList) {
+        try {
+          const feedList = await getFollowedUserFeedList();
+          setFollowedUserFeedList(feedList.posts);
+          console.log(feedList.posts);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    followedUserFeedList();
+  }, [hasFollowList]);
+
+  useEffect(() => {
+    console.log(followedUserFeedList);
+  }, [followedUserFeedList]);
+
   return (
     <>
       <StyledHomePage>
         <HomeHeader />
-        {hasFollowList ? <HomeContent /> : <HomeNonFeed />}
+        {hasFollowList ? (
+          <HomeContent followedUserFeedList={followedUserFeedList} />
+        ) : (
+          <HomeNonFeed />
+        )}
       </StyledHomePage>
       <Footer />
     </>
