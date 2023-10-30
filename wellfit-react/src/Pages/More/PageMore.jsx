@@ -1,13 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
+import MainHeader from '../../Components/common/Header/MainHeader';
+import Footer from '../../Components/common/Footer/Footer';
 import MoreSmallWidget from '../../Components/More/MoreSmallWidget';
 import MoreCategory from '../../Components/More/MoreCategory';
+import Music from '../../images/music.svg';
+import Calorie from '../../images/calorie.svg';
+import Leg from '../../images/leg.svg';
+import Shoulder from '../../images/shoulder.svg';
+import Chest from '../../images/chest.svg';
+import Back from '../../images/back.svg';
+import Location from '../../images/location.svg';
+import Tip from '../../images/tip.svg';
+import Partner from '../../images/partner.svg';
+import Challenge from '../../images/challenge.svg';
+import Store from '../../images/store.svg';
+import Check from '../../images/check.svg';
 
 const StyledPageMore = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
 
   & .section-widget {
     margin-top: 24px;
@@ -15,7 +30,7 @@ const StyledPageMore = styled.main`
   & .container {
     display: grid;
     width: 344px;
-    height: 330px;
+    height: 370px;
     gap: 10px;
     grid-template-areas:
       'a a'
@@ -87,7 +102,7 @@ const StyledPageMore = styled.main`
   & .category {
     display: grid;
     width: 344px;
-    height: 220px;
+    height: 250px;
     gap: 10px;
     grid-template-areas:
       'e f g'
@@ -119,60 +134,64 @@ const StyledPageMore = styled.main`
 
 export default function PageMore() {
   return (
-    <StyledPageMore>
-      <h1 className="a11y-hidden">더보기</h1>
-      <section className="section-widget">
-        <div className="container">
-          <div className="today">
-            <div className="calendar">
-              <strong>24</strong>
-              <p>화요일</p>
+    <>
+      <MainHeader />
+      <StyledPageMore>
+        <h1 className="a11y-hidden">더보기</h1>
+        <section className="section-widget">
+          <div className="container">
+            <div className="today">
+              <div className="calendar">
+                <strong>24</strong>
+                <p>화요일</p>
+              </div>
+              <div>
+                <p>To Do List</p>
+                <ul>
+                  <li>물 많이 마시기</li>
+                  <li>걷기</li>
+                  <li>뛰기</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <p>To Do List</p>
-              <ul>
-                <li>물 많이 마시기</li>
-                <li>걷기</li>
-                <li>뛰기</li>
-              </ul>
+            <MoreSmallWidget src={Music} alt="음악" />
+            <MoreSmallWidget src={Calorie} alt="칼로리" />
+            <div className="part">
+              <p>운동 부위 추천</p>
+              <div className="part-body">
+                <a href="">
+                  <img src={Leg} alt="하체" />
+                  <div>하체</div>
+                </a>
+                <a href="">
+                  <img src={Shoulder} alt="어깨" />
+                  <div>어깨</div>
+                </a>
+                <a href="">
+                  <img src={Chest} alt="가슴" />
+                  <div>가슴</div>
+                </a>
+                <a href="">
+                  <img src={Back} alt="등" />
+                  <div>등</div>
+                </a>
+              </div>
             </div>
           </div>
-          <MoreSmallWidget />
-          <MoreSmallWidget />
-          <div className="part">
-            <p>운동 부위 추천</p>
-            <div className="part-body">
-              <a href="">
-                <img src="../../../images/leg.svg" alt="하체" />
-                <div>하체</div>
-              </a>
-              <a href="">
-                <img src="../../../images/shoulder.svg" alt="어깨" />
-                <div>어깨</div>
-              </a>
-              <a href="">
-                <img src="../../../images/chest.svg" alt="가슴" />
-                <div>가슴</div>
-              </a>
-              <a href="">
-                <img src="../../../images/back.svg" alt="등" />
-                <div>등</div>
-              </a>
-            </div>
+        </section>
+        <section class="section-category">
+          <h2>카테고리</h2>
+          <div className="category">
+            <MoreCategory src={Location} alt="위치" />
+            <MoreCategory src={Tip} alt="꿀팁" />
+            <MoreCategory src={Partner} alt="파트너" />
+            <MoreCategory src={Challenge} alt="도전" />
+            <MoreCategory src={Store} alt="상점" />
+            <MoreCategory src={Check} alt="출석체크" />
           </div>
-        </div>
-      </section>
-      <section class="section-category">
-        <h2>카테고리</h2>
-        <div className="category">
-          <MoreCategory />
-          <MoreCategory />
-          <MoreCategory />
-          <MoreCategory />
-          <MoreCategory />
-          <MoreCategory />
-        </div>
-      </section>
-    </StyledPageMore>
+        </section>
+      </StyledPageMore>
+      <Footer />
+    </>
   );
 }

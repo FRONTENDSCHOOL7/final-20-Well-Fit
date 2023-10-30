@@ -34,7 +34,3 @@ export const tokenInstance = axios.create({
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
 });
-
-export const axiosUrlApi = axios.create({
-  baseURL: URL,
-});

@@ -16,11 +16,11 @@ const StyledMoreCategory = styled.div`
     margin-top: 10px;
   }
 `;
-export default function MoreCategory() {
+export default function MoreCategory({ src, alt }) {
   return (
     <StyledMoreCategory>
       <a href="">
-        <img src="../../../images/location.svg" alt="위치 찾기" />
+        <img src={src} alt={alt} />
         <div className="cate-txt">위치 찾기</div>
       </a>
     </StyledMoreCategory>
