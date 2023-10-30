@@ -5,6 +5,10 @@ import bagicProfile from '../../images/basic-profile.svg';
 import x from '../../images/x.svg';
 import img from '../../images/icon-image.svg';
 const StyledUpload = styled.div`
+  .div-postingMain {
+    position: relative;
+    height: 772px;
+  }
   .div-posting {
     display: flex;
   }
@@ -25,14 +29,13 @@ const StyledUpload = styled.div`
   }
 
   .div-postImg {
-    position: relative;
     display: flex;
+    top: 174px;
+    left: 70px;
   }
   .img-postingImg {
     width: 168px;
     height: 126px;
-    top: 174px;
-    left: 70px;
     border-radius: 10px;
     border: 0.5px;
   }
@@ -41,7 +44,7 @@ const StyledUpload = styled.div`
     height: 228px;
   }
   .img-postingImg:first-child {
-    margin-left: 70px;    
+    margin-left: 70px;
   }
 
   .btn-imgDelete {
@@ -50,7 +53,6 @@ const StyledUpload = styled.div`
     left: -28px;
     width: 20px;
     height: 20px;
-    background-image: url(../../../img/delete2.png);
   }
 
   .label-image {
@@ -77,7 +79,7 @@ const StyledUpload = styled.div`
 export default function PostUpload({ setActive }) {
   const [message, setMessage] = useState('');
   const [images, setImages] = useState();
-  const handleImageUpload = e => {
+  const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     if ((images?.length ?? 0) + files.length > 3) {
       alert('이미지는 최대 3개까지 첨부할 수 있습니다.');
@@ -86,7 +88,7 @@ export default function PostUpload({ setActive }) {
     } else {
       setImages(files);
     }
-  }
+  };
   useEffect(() => {
     console.log(images);
     if (message !== '' || images?.length > 0) setActive(true);
@@ -94,39 +96,50 @@ export default function PostUpload({ setActive }) {
   }, [message, images, setActive]);
   return (
     <StyledUpload>
-      <div className="div-posting">
-        <img className="img-uploadProfile" src={bagicProfile} alt="프로필 이미지" />
-        <textarea
-          placeholder="게시글 입력하기..."
-          className="textarea-post"
-          value={message}
-          onChange={e => setMessage(e.target.value)}
-        ></textarea>
+      <div className="div-postingMain">
+        <div className="div-posting">
+          <img
+            className="img-uploadProfile"
+            src={bagicProfile}
+            alt="프로필 이미지"
+          />
+          <textarea
+            placeholder="게시글 입력하기..."
+            className="textarea-post"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></textarea>
+        </div>
+        <div className="div-postImg">
+          {images?.map((image) => (
+            <Fragment key={image.name}>
+              <img
+                className={`img-postingImg ${
+                  images.length === 1 ? 'single' : ''
+                }`}
+                src={URL.createObjectURL(image)}
+                alt={`image_${image.name}`}
+              />
+              <button
+                className={`btn-imgDelete`}
+                type="button"
+                onClick={() => setImages(images.filter((n) => n !== image))}
+              >
+                <img alt={`delete_image_${image.name}`} src={x}></img>
+              </button>
+            </Fragment>
+          ))}
+        </div>
+        <label htmlFor="input-image" className="label-image"></label>
+        <input
+          type="file"
+          accept="image/*"
+          id="input-image"
+          className="input-image"
+          onChange={handleImageUpload}
+          multiple
+        ></input>
       </div>
-
-      <div className="div-postImg">
-        {images?.map((image) => (
-          <Fragment key={image.name}>
-            <img
-              className={`img-postingImg ${images.length === 1 ? 'single' : ''}`}
-              src={URL.createObjectURL(image)}
-              alt={`image_${image.name}`}
-            />
-            <button className={`btn-imgDelete`} type="button" onClick={() => setImages(images.filter(n => n !== image))}>
-              <img alt={`delete_image_${image.name}`} src={x}></img>
-            </button>
-          </Fragment>
-        ))}
-      </div>
-      <label htmlFor="input-image" className="label-image"></label>
-      <input
-        type="file"
-        accept="image/*"
-        id="input-image"
-        className="input-image"
-        onChange={handleImageUpload}
-        multiple
-      ></input>
     </StyledUpload>
   );
 }
