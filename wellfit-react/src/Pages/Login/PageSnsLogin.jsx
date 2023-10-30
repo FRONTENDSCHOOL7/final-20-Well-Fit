@@ -37,7 +37,9 @@ export default function PageSnsLogin() {
           <Link to="/mainlogin/emaillogin" className="login-go">
             이메일로 로그인
           </Link>
-          <Link to="/mainlogin/signup">회원가입</Link>
+          <Link to="/mainlogin/signup" className="signup-go">
+            회원가입
+          </Link>
         </LinkContainer>
       </Main>
     </StyledPageSnsLogin>
@@ -154,6 +156,12 @@ const LinkContainer = styled.div`
     color: #767676;
     font-size: 12px;
   }
+
+  & .signup-go {
+    color: #767676;
+    font-size: 12px;
+  }
+
   &.login-go::after {
     content: '|';
     padding: 12px;

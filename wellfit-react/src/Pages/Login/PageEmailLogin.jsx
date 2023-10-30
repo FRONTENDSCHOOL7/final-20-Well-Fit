@@ -9,25 +9,7 @@ export default function PageEmailLogin() {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-
-  // 로그인을 진행
-  const postUserLogin = async (email, password) => {
-    const option = {
-      url: 'https://api.mandarin.weniv.co.kr/user/login',
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      data: {
-        user: {
-          email: email,
-          password: password,
-        },
-      },
-    };
-    const response = await axios(option);
-    return response.data;
-  };
+  const [userInfo, setUserInfo] = useState(null);
 
   // 이메일 입력
   const handleInputEmail = (e) => {
