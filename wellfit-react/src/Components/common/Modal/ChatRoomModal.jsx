@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 const StyledChatRoomModal = styled.div`
-  .modal-delete {
+  & .modal-delete {
     position: fixed;
     z-index: 1;
     background-color: #fff;
@@ -10,10 +10,10 @@ const StyledChatRoomModal = styled.div`
     margin: 0 auto;
     padding-top: 16px;
     border-radius: 10px 10px 0 0;
-    bottom: 0;
+    top: 755px;
   }
 
-  .modal-line {
+  & .modal-line {
     width: 50px;
     height: 4px;
     background-color: #dbdbdb;
@@ -21,7 +21,7 @@ const StyledChatRoomModal = styled.div`
     border-radius: 5px;
   }
 
-  .btn-exit {
+  & .btn-exit {
     padding: 14px 0 14px 26px;
     text-align: left;
     width: 100%;

@@ -3,25 +3,25 @@ import { styled } from 'styled-components';
 
 import basicProfile from '../../images/basic-profile.svg';
 const StyledChatRoomList = styled.div`
-  .div-chatRoom {
+  & .div-chatRoom {
     display: flex;
     flex-direction: column;
     background-color: #f2f2f2;
   }
 
-  .div-reception {
+  & .div-reception {
     display: flex;
     width: 100%;
     margin-bottom: 9px;
   }
-  .div-sending {
+  & .div-sending {
     display: flex;
     width: 100%;
     margin-bottom: 9px;
     justify-content: end;
   }
 
-  .img-chatProfil {
+  & .img-chatProfil {
     width: 42px;
     height: 42px;
     flex-shrink: 0;
@@ -29,12 +29,12 @@ const StyledChatRoomList = styled.div`
     border-radius: 50%;
   }
 
-  .div-receptionChat {
+  & .div-receptionChat {
     display: flex;
     align-items: flex-end;
   }
 
-  .span-receptionChat {
+  & .span-receptionChat {
     max-width: 216px;
     flex-shrink: 0;
     background-color: white;
@@ -48,12 +48,12 @@ const StyledChatRoomList = styled.div`
     border-radius: 0 10px 10px 10px;
   }
 
-  .div-sendingChat {
+  & .div-sendingChat {
     display: flex;
     align-items: flex-end;
   }
 
-  .span-sendingChat {
+  & .span-sendingChat {
     max-width: 216px;
     flex-shrink: 0;
     color: white;
@@ -68,14 +68,15 @@ const StyledChatRoomList = styled.div`
     line-height: normal;
     border-radius: 10px 0px 10px 10px;
   }
-  .span-date {
+
+  & .span-date {
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 11px;
   }
 
-  .span-time {
+  & .span-time {
     margin: 0px 6px 0px 6px;
     color: var(--767676, #767676);
     font-family: Spoqa Han Sans Neo;
@@ -85,11 +86,11 @@ const StyledChatRoomList = styled.div`
     line-height: normal;
   }
 
-  .div-chatRoom li {
+  & .div-chatRoom li {
     margin: 0px 12px 0px 16px;
   }
 
-  .img-sendingImg {
+  & .img-sendingImg {
     flex-shrink: 0;
     width: 240px;
     height: 240px;
