@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 import imgButton from '../../images/img-button.svg';
 
 const StyledChatRoomFooter = styled.div`
-  .div-chatFooter {
+  & .div-chatFooter {
     z-index: 0;
     display: flex;
     align-items: center;
@@ -14,7 +14,7 @@ const StyledChatRoomFooter = styled.div`
     position: sticky;
   }
 
-  .label-image {
+  & .label-image {
     margin: 13px 18px 12px 16px;
     width: 36px;
     height: 36px;
@@ -22,18 +22,20 @@ const StyledChatRoomFooter = styled.div`
     border-radius: 50%;
     background-image: url(${imgButton});
   }
-  .input-image {
+
+  & .input-image {
     display: none;
   }
 
-  .textarea-message {
+  & .textarea-message {
     border: none;
     height: 18px;
     padding: auto;
     width: 250px;
     margin-right: 20px;
   }
-  .textarea-message::placeholder {
+
+  & .textarea-message::placeholder {
     color: #c4c4c4;
     font-size: 14px;
     font-style: normal;
@@ -41,18 +43,19 @@ const StyledChatRoomFooter = styled.div`
     line-height: normal;
   }
 
-  .btn-submit {
+  & .btn-submit {
     color: #c4c4c4;
     width: 48px;
     height: 32px;
     border-radius: 8px;
   }
-  .btn-submit:not(:disabled) {
+
+  & .btn-submit:not(:disabled) {
     color: white;
     background-color: #004aad;
   }
 
-  .div-modal {
+  & .div-modal {
     position: fixed;
     bottom: 0;
     width: 390px;
@@ -73,15 +76,19 @@ export default function ChatRoomFooter() {
             accept="image/*"
             id="input-image"
             className="input-image"
-            onChange={e => setImage(e.target.files[0])}
+            onChange={(e) => setImage(e.target.files[0])}
           ></input>
           <textarea
             class="textarea-message"
             placeholder="메시지 입력하기"
             value={message}
-            onChange={e => setMessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
           ></textarea>
-          <button type="submit" class="btn-submit" disabled={message === '' && !image}>
+          <button
+            type="submit"
+            class="btn-submit"
+            disabled={message === '' && !image}
+          >
             전송
           </button>
         </div>

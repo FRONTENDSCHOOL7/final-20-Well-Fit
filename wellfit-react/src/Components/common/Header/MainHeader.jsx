@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import gobackIcon from '../../../images/icon-arrow-left.svg';
-import modrVerticalIcon from '../../../images/icon- more-vertical.svg';
+import modrVerticalIcon from '../../../images/icon-more-vertical.svg';
 import { useNavigate } from 'react-router-dom';
 
 const StyledChattingUserListHeader = styled.header`

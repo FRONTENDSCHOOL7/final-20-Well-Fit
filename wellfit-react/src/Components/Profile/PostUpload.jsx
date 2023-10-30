@@ -2,9 +2,12 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import iconImage from '../../images/icon-image.svg';
 import bagicProfile from '../../images/basic-profile.svg';
-import x from '../../images/x.svg';
-import img from '../../images/icon-image.svg';
+import iconX from '../../images/x.svg';
 const StyledUpload = styled.div`
+  height: 772px;
+  width: 390px;
+  background-color: white;
+
   & .div-postingMain {
     position: relative;
     height: 772px;
@@ -68,7 +71,7 @@ const StyledUpload = styled.div`
     border-radius: 100%;
     right: 16px;
     bottom: 20px;
-    background-image: url(${img});
+    background-image: url(${iconImage});
     background-position: center center;
     background-repeat: no-repeat;
   }
@@ -102,49 +105,51 @@ export default function PostUpload({ setActive }) {
   }, [message, images, setActive]);
   return (
     <StyledUpload>
-      <div className="div-posting">
-        <img
-          className="img-uploadProfile"
-          src={bagicProfile}
-          alt="프로필 이미지"
-        />
-        <textarea
-          placeholder="게시글 입력하기..."
-          className="textarea-post"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        ></textarea>
-      </div>
+      <div className="div-postingMain">
+        <div className="div-posting">
+          <img
+            className="img-uploadProfile"
+            src={bagicProfile}
+            alt="프로필 이미지"
+          />
+          <textarea
+            placeholder="게시글 입력하기..."
+            className="textarea-post"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></textarea>
+        </div>
 
-      <div className="div-postImg">
-        {images?.map((image) => (
-          <Fragment key={image.name}>
-            <img
-              className={`img-postingImg ${
-                images.length === 1 ? 'single' : ''
-              }`}
-              src={URL.createObjectURL(image)}
-              alt={`image_${image.name}`}
-            />
-            <button
-              className={`btn-imgDelete`}
-              type="button"
-              onClick={() => setImages(images.filter((n) => n !== image))}
-            >
-              <img alt={`delete_image_${image.name}`} src={x}></img>
-            </button>
-          </Fragment>
-        ))}
+        <div className="div-postImg">
+          {images?.map((image) => (
+            <Fragment key={image.name}>
+              <img
+                className={`img-postingImg ${
+                  images.length === 1 ? 'single' : ''
+                }`}
+                src={URL.createObjectURL(image)}
+                alt={`image_${image.name}`}
+              />
+              <button
+                className={`btn-imgDelete`}
+                type="button"
+                onClick={() => setImages(images.filter((n) => n !== image))}
+              >
+                <img alt={`delete_image_${image.name}`} src={iconX}></img>
+              </button>
+            </Fragment>
+          ))}
+        </div>
+        <label htmlFor="input-image" className="label-image"></label>
+        <input
+          type="file"
+          accept="image/*"
+          id="input-image"
+          className="input-image"
+          onChange={handleImageUpload}
+          multiple
+        ></input>
       </div>
-      <label htmlFor="input-image" className="label-image"></label>
-      <input
-        type="file"
-        accept="image/*"
-        id="input-image"
-        className="input-image"
-        onChange={handleImageUpload}
-        multiple
-      ></input>
     </StyledUpload>
   );
 }
