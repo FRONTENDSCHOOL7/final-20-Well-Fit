@@ -14,7 +14,6 @@ const StyledHomeNonFeed = styled.main`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
     margin-bottom: 50%;
   }
 
