@@ -59,7 +59,7 @@ export default function PostFooter({ addComment }) {
       <form className="form-comment-wrapper" action="#" onSubmit={onSubmit}>
         <img src={profileImage} alt="프로필 사진" />
         <div className="input-comment-wrapper">
-          <label for="input-comment" className="a11y-hidden">
+          <label htmlFor="input-comment" className="a11y-hidden">
             댓글 입력
           </label>
           <input

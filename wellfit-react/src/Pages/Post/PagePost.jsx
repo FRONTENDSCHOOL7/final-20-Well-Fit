@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import ModalDeleteComment from '../../Components/common/Modal/ModalDeleteComment';
 import PostContent from '../../Components/Post/PostContent';
 import PostHeader from '../../Components/Post/PostHeader';
+import { useParams } from 'react-router-dom';
 
 const StyledPostPage = styled.div`
   width: 390px;
@@ -10,10 +11,7 @@ const StyledPostPage = styled.div`
   margin: 0 auto;
   border: 1px solid #dbdbdb;
   font-size: 14px;
-  /* background-color: ${(props) =>
-    props.isModalOpen ? 'rgba(0,0,0,.5)' : '#fff'}; */
-  /* filter: ${(props) => (props.isModalOpen ? 'blur(1px)' : 'none')}; */
-  /* pointer-events: ${(props) => (props.isModalOpen ? 'none' : 'auto')}; */
+
   /* 화면 넘치면 숨김 */
   background-color: #fff;
   overflow: hidden;
@@ -34,13 +32,15 @@ export default function PagePost() {
   const modalHandler = () => {
     setIsModalOpen((prevState) => !prevState);
   };
+  const params = useParams();
+  console.log(params);
 
   return (
     <>
-      <StyledPostPage isModalOpen={isModalOpen}>
+      <StyledPostPage>
         <PostHeader />
         <PostContent modalHandler={modalHandler} />
-        {isModalOpen ? <ModalDeleteComment isModalOpen={isModalOpen} /> : null}
+        {isModalOpen ? <ModalDeleteComment /> : null}
       </StyledPostPage>
       {isModalOpen ? (
         <StyledModalBackground onClick={modalHandler}></StyledModalBackground>
