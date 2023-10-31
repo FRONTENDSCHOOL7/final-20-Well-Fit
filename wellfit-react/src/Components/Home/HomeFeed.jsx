@@ -35,9 +35,7 @@ const StyledHomeFeed = styled.li`
     font-size: 12px;
     color: #767676;
   }
-  & .feed .feed-content .feed-img-wrapper {
-    /* background-color: red; */
-  }
+
   & .feed .feed-content img {
     margin-top: 16px;
     border-radius: 10px;
@@ -45,6 +43,7 @@ const StyledHomeFeed = styled.li`
     object-fit: cover;
     width: 304px;
     height: 228px;
+    cursor: pointer;
   }
   /* 좋아요 버튼, 메세지 버튼 스타일 시작 */
   & .feed .feed-info button {
@@ -87,8 +86,9 @@ export default function HomeFeed({ post }) {
   const [isHeartClick, setIsHeartClick] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
   const navigate = useNavigate();
+
   const gopost = () => {
-    navigate(`./post/${post.author.accountname}`);
+    navigate(`./post/${post.author.accountname}/${post.id}`);
   };
 
   const onClickHeartHandler = () => {
@@ -142,7 +142,7 @@ export default function HomeFeed({ post }) {
           <p>{post.content}</p>
           {/* 조건부 렌더링 : 이미지 데이터가 있을경우에 렌더링*/}
           <div className="feed-img-wrapper">
-            <img src={post.image} alt="피드 사진" />
+            <img src={post.image} alt="피드 사진" onClick={gopost} />
           </div>
         </div>
         <div className="feed-info">
