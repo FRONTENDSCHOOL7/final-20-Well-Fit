@@ -4,8 +4,11 @@ import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
 import BasicProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
+import { postSignup } from '../../api/PostSignup';
 
 export default function PageProfileSetting() {
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
   const [userName, setUserName] = useState('');
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
@@ -132,7 +135,7 @@ export default function PageProfileSetting() {
       selectedAge &&
       selectedAge !== '나이'
     ) {
-      const signupData = await postUserSignup(
+      const signupData = await postSignup(
         userName,
         userEmail,
         userPassword,
