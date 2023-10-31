@@ -1,55 +1,53 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { PostLogin } from '../../api/PostLogin';
+import { UserContext } from '../../Contexts/UserContext';
 
 export default function PageEmailLogin() {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-
-  // 로그인을 진행
-  const postUserLogin = async (email, password) => {
-    const option = {
-      url: 'https://api.mandarin.weniv.co.kr/user/login',
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      data: {
-        user: {
-          email: email,
-          password: password,
-        },
-      },
-    };
-    const response = await axios(option);
-    return response.data;
-  };
+  const [buttonActive, setButtonActive] = useState(false);
+  const [userInfo, setUserInfo] = useContext(UserContext);
+  const navigate = useNavigate();
 
   // 이메일 입력
   const handleInputEmail = (e) => {
     setUserEmail(e.target.value);
     setErrorMsg('');
+    checkButtonActive(e.target.value, userPassword);
   };
 
   // 비밀번호 입력
   const handleInputPassword = (e) => {
     setUserPassword(e.target.value);
     setErrorMsg('');
+    checkButtonActive(userEmail, e.target.value);
   };
 
   // 로그인 요청 후 결과
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const loginData = await postUserLogin(userEmail, userPassword);
+      const loginData = await PostLogin(userEmail, userPassword);
       if (loginData && loginData.status === 422) {
         setErrorMsg('*이메일 또는 비밀번호가 일치하지 않습니다.');
       } else {
+        setUserInfo({
+          _id: loginData.user._id,
+          accountname: loginData.user.accountname,
+          email: loginData.user.email,
+          username: loginData.user.username,
+          image: loginData.user.image,
+          intro: loginData.user.intro,
+        });
         localStorage.setItem('token', loginData.user.token);
+        setErrorMsg('');
+        navigate('/home');
       }
     } catch (error) {
       setErrorMsg('로그인 중 오류가 발생했습니다.');
@@ -57,8 +55,8 @@ export default function PageEmailLogin() {
   };
 
   // 버튼 활성화
-  const handleActiveButton = () => {
-    return userEmail !== '' && userPassword !== '';
+  const checkButtonActive = (email, password) => {
+    setButtonActive(email !== '' && password !== '');
   };
 
   return (
@@ -89,7 +87,7 @@ export default function PageEmailLogin() {
             />
             {errorMsg && <StyledErrorMessage>{errorMsg}</StyledErrorMessage>}
           </LoginSection>
-          <AccountButton text="로그인" disabled={!handleActiveButton()} />
+          <AccountButton text="로그인" disabled={!buttonActive} />
         </LoginForm>
         <LinkToSignup to="/mainlogin/signup">이메일로 회원가입</LinkToSignup>
       </LoginMain>

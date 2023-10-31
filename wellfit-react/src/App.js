@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import reset from '../src/resetcss/reset.css';
 import SplashPage from './Pages/Splash/SplashPage';
 import AppRoutes from './Router/AppRoutes';
+import { UserProvider } from './Contexts/UserContext';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -26,7 +27,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <AppRoutes />
+      <UserProvider>
+        <AppRoutes />
+      </UserProvider>
     </>
   );
 }
