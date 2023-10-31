@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
-import ProfileImage from '../../images/basic-profile.svg';
+import BasicProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
 
 export default function PageProfileSetting() {
@@ -122,7 +122,7 @@ export default function PageProfileSetting() {
   }, [weight]);
 
   // 프로필 세팅 전송
-  const handleProfileSetting = (e) => {
+  const handleProfileSetting = async (e) => {
     e.preventDefault();
     if (
       userNameValid &&
@@ -132,6 +132,14 @@ export default function PageProfileSetting() {
       selectedAge &&
       selectedAge !== '나이'
     ) {
+      const signupData = await postUserSignup(
+        userName,
+        userEmail,
+        userPassword,
+        accountId,
+        intro,
+        image
+      );
     }
   };
 
@@ -155,9 +163,17 @@ export default function PageProfileSetting() {
         <Form onSubmit={handleProfileSetting}>
           <ImgContainer>
             <ImgLabel htmlFor="upload-img">
-              <Image src={ProfileImage} alt="기본 프로필" />
+              <Image
+                src={image ? image : BasicProfileImage}
+                alt="프로필 이미지"
+              />
             </ImgLabel>
-            <ImgInput id="upload-img" type="file" onChange={handleInputImage} />
+            <ImgInput
+              id="upload-img"
+              type="file"
+              accept="image/png, image/jpg, image/jpeg"
+              onChange={handleInputImage}
+            />
           </ImgContainer>
           <Input
             label="사용자 이름"
