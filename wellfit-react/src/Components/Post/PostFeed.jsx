@@ -55,6 +55,9 @@ const StyledPostFeed = styled.article`
     margin-top: 16px;
     border-radius: 10px;
     box-sizing: border-box;
+    object-fit: cover;
+    width: 304px;
+    height: 228px;
   }
 
   /* 좋아요 버튼, 메세지 버튼 스타일 시작 */
@@ -88,7 +91,7 @@ const StyledPostFeed = styled.article`
   /* post-detail-mine-content 끝 */
 `;
 
-export default function PostFeed() {
+export default function PostFeed({ currentPostDetail }) {
   const [isHeartClick, setIsHeartClick] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
 
@@ -103,8 +106,14 @@ export default function PostFeed() {
   }, [isHeartClick]);
 
   useEffect(() => {
+    console.log(currentPostDetail);
     setHeartCount(0);
   }, []);
+
+  if (Object.keys(currentPostDetail).length === 0) {
+    return <div>Loading....</div>;
+  }
+
   return (
     <StyledPostFeed>
       <h2 className="a11y-hidden">게시물 자세히보기</h2>
@@ -113,20 +122,22 @@ export default function PostFeed() {
       </div>
       <section className="feed">
         <div className="feed-header">
-          <p className="feed-title">애월읍 위니브 감귤농장</p>
-          <p className="feed-writer">&#64;weniv_Mandarin</p>
+          <p className="feed-title">{currentPostDetail.author.username}</p>
+          <p className="feed-writer">
+            &#64;{currentPostDetail.author.accountname}
+          </p>
           <button type="button" className="btn-post-toggle">
             <img src={moreIcon} alt="토글" />
             <span className="a11y-hidden">토글</span>
           </button>
         </div>
         <div className="feed-content">
-          <p>
-            옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
-            이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는
-            풍부하게 뛰노는 인생의 힘있다.
-          </p>
-          <img className="img-feed" src={feedImage} alt="피드 사진" />
+          <p>{currentPostDetail.content}</p>
+          <img
+            className="img-feed"
+            src={currentPostDetail.image}
+            alt="피드 사진"
+          />
         </div>
         <div className="feed-info">
           <div className="icons">
@@ -146,7 +157,7 @@ export default function PostFeed() {
                 <img src={commentCircle} alt="댓글" />
                 <span className="a11y-hidden">댓글목록 보기</span>
               </button>
-              <span>12</span>
+              <span>{currentPostDetail.commentCount}</span>
             </div>
           </div>
           <time dateTime="2020-10-21">2020년 10월 21일</time>

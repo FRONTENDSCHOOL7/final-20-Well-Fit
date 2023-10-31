@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HomeHeader from '../../Components/Home/HomeHeader';
 import { styled } from 'styled-components';
 import HomeContent from '../../Components/Home/HomeContent';
 import Footer from '../../Components/common/Footer/Footer';
 import HomeNonFeed from '../../Components/Home/HomeNonFeed';
-import axios from 'axios';
-import { useEffect } from 'react';
+import { getMyInfo } from '../../api/PostMyInfo';
+import { getMyFollowList } from '../../api/GETMyFollowList';
+import { getFollowedUserFeedList } from '../../api/GETFollowedFeedList';
 const StyledHomePage = styled.div`
   width: 390px;
   height: 844px;
@@ -17,28 +18,26 @@ const StyledHomePage = styled.div`
 `;
 
 export default function PageHome() {
+  // 내가 팔로우한 상대 게시물 상태
+  const [followedUserFeedList, setFollowedUserFeedList] = useState([]);
+
+  // followList 상태
+  const [hasFollowList, setHasFollowList] = useState(false);
+
+  // follow list 가 있는지 확인
   useEffect(() => {
     const getUserProfileData = async () => {
-      const baseUrl = 'https://api.mandarin.weniv.co.kr';
-
       try {
-        const token = localStorage.getItem('token');
-        console.log(token);
+        const myInfo = await getMyInfo();
+        const myFollowList = await getMyFollowList();
+        console.log(myInfo.user);
+        console.log(myFollowList);
 
-        const url = `${baseUrl}/user/myinfo`;
-        const option = {
-          url,
-          method: 'get',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        };
-
-        const res = await axios(option);
-        console.log(res);
-
-        if (res.data.status === 404) {
-          throw new Error('404 에러');
+        if (myFollowList.length !== 0) {
+          setHasFollowList(true);
+        } else {
+          // setHasFollowList(false);
+          return;
         }
       } catch (error) {
         console.error(error);
@@ -48,17 +47,32 @@ export default function PageHome() {
     getUserProfileData();
   }, []);
 
-  const [FeedList, setFeedList] = useState([]);
-  const [hasFeed, setHasFeed] = useState(false);
-  const hasFeedHandler = () => {
-    setHasFeed((prevState) => !prevState);
-  };
+  // 팔로우한 유저가 있다면 유저 들의 게시물 전부 불러오기
+  useEffect(() => {
+    const followedUserFeedList = async () => {
+      if (hasFollowList) {
+        try {
+          const feedList = await getFollowedUserFeedList();
+          setFollowedUserFeedList(feedList.posts);
+          console.log(feedList.posts);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    followedUserFeedList();
+  }, [hasFollowList]);
+
+  useEffect(() => {
+    console.log(followedUserFeedList);
+  }, [followedUserFeedList]);
+
   return (
     <>
       <StyledHomePage>
         <HomeHeader />
-        {hasFeed ? (
-          <HomeContent hasFeedHandler={hasFeedHandler} />
+        {hasFollowList ? (
+          <HomeContent followedUserFeedList={followedUserFeedList} />
         ) : (
           <HomeNonFeed />
         )}

@@ -35,10 +35,15 @@ const StyledHomeFeed = styled.li`
     font-size: 12px;
     color: #767676;
   }
+
   & .feed .feed-content img {
     margin-top: 16px;
     border-radius: 10px;
     box-sizing: border-box;
+    object-fit: cover;
+    width: 304px;
+    height: 228px;
+    cursor: pointer;
   }
   /* 좋아요 버튼, 메세지 버튼 스타일 시작 */
   & .feed .feed-info button {
@@ -68,20 +73,49 @@ const StyledHomeFeed = styled.li`
     font-size: 10px;
     color: #767676;
   }
+  & .feed .feed-info time span:not(:last-child) {
+    margin-right: 2px;
+  }
+
   /* 좋아요 버튼, 메세지 버튼 스타일 끝 */
 `;
 
-export default function HomeFeed() {
+export default function HomeFeed({ post }) {
+  console.log(post);
+  const serverStandardImg = 'http://146.56.183.55:5050/Ellipse.png';
   const [isHeartClick, setIsHeartClick] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
   const navigate = useNavigate();
+
   const gopost = () => {
-    navigate('./post/mine');
+    navigate(`./post/${post.author.accountname}/${post.id}`);
   };
 
   const onClickHeartHandler = () => {
     setIsHeartClick((prevState) => !prevState);
   };
+
+  // 서버 기본이미지인지 확인
+  const checkAuthorImg = (authorImage) => {
+    if (authorImage === serverStandardImg) {
+      return profileImage;
+    } else {
+      return authorImage;
+    }
+  };
+
+  // feed 날짜 정보
+  const feedUpdatedAtDate = {
+    updateyear: new Date(post.updatedAt).getFullYear(),
+    updatemonth: new Date(post.updatedAt).getMonth() + 1,
+    updateday: new Date(post.updatedAt).getDate(),
+  };
+  const feedCreatedAtDate = {
+    createyear: new Date(post.createdAt).getFullYear(),
+    createmonth: new Date(post.createdAt).getMonth() + 1,
+    createday: new Date(post.createdAt).getDate(),
+  };
+  console.log(feedCreatedAtDate.month);
 
   useEffect(() => {
     setHeartCount((prevState) =>
@@ -97,21 +131,19 @@ export default function HomeFeed() {
     <StyledHomeFeed>
       <h3 className="a11y-hidden">펄로우한 계정 게시물</h3>
       <div className="img-profile">
-        <img src={profileImage} alt="프로필 사진" />
+        <img src={checkAuthorImg(post.author.image)} alt="프로필 사진" />
       </div>
       <section className="feed">
         <div className="feed-header">
-          <p className="feed-title">애월읍 위니브 감귤농장</p>
-          <p className="feed-writer">&#64;weniv_Mandarin</p>
+          <p className="feed-title">{post.author.username}</p>
+          <p className="feed-writer">&#64;{post.author.accountname}</p>
         </div>
         <div className="feed-content">
-          <p>
-            옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
-            이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는
-            풍부하게 뛰노는 인생의 힘있다.
-          </p>
+          <p>{post.content}</p>
           {/* 조건부 렌더링 : 이미지 데이터가 있을경우에 렌더링*/}
-          <img src={feedImage} alt="피드 사진" />
+          <div className="feed-img-wrapper">
+            <img src={post.image} alt="피드 사진" onClick={gopost} />
+          </div>
         </div>
         <div className="feed-info">
           <div className="icons">
@@ -131,10 +163,14 @@ export default function HomeFeed() {
                 <img src={commentCircle} alt="댓글" />
                 <span className="a11y-hidden">댓글목록 보기</span>
               </button>
-              <span>12</span>
+              <span>{post.commentCount}</span>
             </div>
           </div>
-          <time dateTime="2020-10-21">2020년 10월 21일</time>
+          <time dateTime="2020-10-21">
+            <span>{feedCreatedAtDate.createyear}년</span>
+            <span>{feedCreatedAtDate.createmonth}년</span>
+            <span>{feedCreatedAtDate.createday}년</span>
+          </time>
         </div>
       </section>
     </StyledHomeFeed>

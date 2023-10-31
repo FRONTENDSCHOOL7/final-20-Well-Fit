@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import ModalDeleteComment from '../../Components/common/Modal/ModalDeleteComment';
 import ModalDeclareComment from '../../Components/common/Modal/ModalDeclareComment';
 import PostContent from '../../Components/Post/PostContent';
 import PostHeader from '../../Components/Post/PostHeader';
+import { useParams } from 'react-router-dom';
+import { getFollowedPostDetail } from '../../api/GETFollowedPostDetail';
 
 const StyledPostPageUser = styled.div`
   width: 390px;
@@ -36,12 +38,32 @@ export default function PagePostUser() {
     setIsModalOpen((prevState) => !prevState);
   };
 
+  const params = useParams();
+  console.log(params);
+
+  const [currentPostDetail, setCurrentPostDetail] = useState({});
+
+  useEffect(() => {
+    const getPostDetail = async () => {
+      const postDetail = await getFollowedPostDetail(params.postid);
+      setCurrentPostDetail(postDetail.post);
+    };
+    getPostDetail();
+  }, [params]);
+
+  useEffect(() => {
+    console.log(currentPostDetail);
+  }, [currentPostDetail]);
+
   return (
     <>
-      <StyledPostPageUser isModalOpen={isModalOpen}>
+      <StyledPostPageUser>
         <PostHeader />
-        <PostContent modalHandler={modalHandler} />
-        {isModalOpen ? <ModalDeclareComment isModalOpen={isModalOpen} /> : null}
+        <PostContent
+          modalHandler={modalHandler}
+          currentPostDetail={currentPostDetail}
+        />
+        {isModalOpen ? <ModalDeclareComment /> : null}
       </StyledPostPageUser>
       {isModalOpen ? (
         <StyledModalBackground onClick={modalHandler}></StyledModalBackground>
