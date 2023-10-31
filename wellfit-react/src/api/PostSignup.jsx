@@ -1,7 +1,7 @@
 import { infoInstance } from './instance';
 
 // 회원가입
-export const postUserSignup = async (
+export const postSignup = async (
   username,
   email,
   password,
