@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import MainHeader from '../../Components/common/Header/MainHeader';
 import ProfileMine from '../../Components/Profile/ProfileMine';
 import ListAlbumSwitch from '../../Components/Profile/ListAlbumSwitch';
@@ -8,6 +8,7 @@ import AlbumFeed from '../../Components/Profile/AlbumFeed';
 import ModalUserList from '../../Components/common/Modal/ModalUserList';
 import GoodListMine from '../../Components/Profile/GoodListMine';
 import Footer from '../../Components/common/Footer/Footer';
+import axios from 'axios';
 
 const StyledMainHeader = styled.header`
   background-color: #fff;
@@ -25,6 +26,21 @@ const StyledOverlay = styled.div`
 export default function PageMineProfile() {
   const [isList, setIsList] = useState(false);
   const [isModal, setIsModal] = useState(false);
+  const [myInfo, setMyInfo] = useState({});
+
+  const myProfileData = async () => {
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2Y1NjdjYjJjYjIwNTY2MzkwMWZjOCIsImV4cCI6MTcwMzg0MDMzMywiaWF0IjoxNjk4NjU2MzMzfQ.3OiAqm7A6QqsqH2zdrLcB7PA-GpZnsN1LhIDhbOzN0k';
+    const response = await axios.get(
+      'https://api.mandarin.weniv.co.kr/user/myInfo',
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setMyInfo(response.data.user);
+  };
+
+  useEffect(() => {
+    myProfileData();
+  }, []);
 
   const handleModalClick = () => {
     setIsModal(!isModal);
@@ -42,7 +58,7 @@ export default function PageMineProfile() {
       <StyledMainHeader>
         <MainHeader isModal={isModal} onModalClick={handleModalClick} />
       </StyledMainHeader>
-      <ProfileMine />
+      <ProfileMine myInfo={myInfo} />
       <GoodListMine />
       <ListAlbumSwitch
         isList={isList}
