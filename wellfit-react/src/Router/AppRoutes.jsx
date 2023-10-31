@@ -3,7 +3,7 @@ import SplashPage from '../Pages/Splash/SplashPage';
 import PageHome from '../Pages/Home/PageHome';
 import PageMineProfile from '../Pages/Profile/PageMineProfile';
 import PageUsersProfile from '../Pages/Profile/PageUsersProfile';
-import PageProfileSetting from '../Pages/Profile/PageProfileSetting';
+import PageProfileSetting from '../Pages/Signup/PageProfileSetting';
 import PageProfileModification from '../Pages/Profile/PageProfileModification';
 import PageChattingList from '../Pages/Chatting/PageChattingList';
 import PageChatting from '../Pages/Chatting/PageChatting';

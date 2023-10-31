@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
 import { useNavigate } from 'react-router-dom';
+import { postEmailDuplicate } from '../../api/PostSignup';
 
 export default function PageSignup() {
   const navigate = useNavigate();
@@ -25,6 +26,21 @@ export default function PageSignup() {
       setEmailValid(true);
       setEmailErrorMsg('');
       setUserEmail(userEmail);
+    }
+  };
+
+  // 중복된 이메일 검사
+  const handleEmailDuplicate = async (e) => {
+    try {
+      const checkEmail = await postEmailDuplicate(e.target.value);
+      if (checkEmail.message === '이미 가입된 이메일 주소 입니다.') {
+        setEmailErrorMsg('*이미 가입된 이메일 주소 입니다.');
+      } else if (checkEmail.message === '사용 가능한 이메일 입니다.') {
+        setEmailValid(true);
+        setEmailErrorMsg('');
+      }
+    } catch (error) {
+      setEmailErrorMsg('*이메일 확인 중 오류가 발생했습니다.');
     }
   };
 
