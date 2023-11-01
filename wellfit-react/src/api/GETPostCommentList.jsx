@@ -1,11 +1,10 @@
 import { authInstance } from './instance';
 
-export const getFollowedUserFeedList = async () => {
-  const URL = 'post/feed';
+export const getPostCommentList = async (postId) => {
+  const POST_COMMENT_LIST_URL = `post/${postId}/comments`;
 
   try {
-    const response = await authInstance.get(URL);
-    console.log(response);
+    const response = await authInstance.get(POST_COMMENT_LIST_URL);
     if (response.data.status === 404 || response.status === 404) {
       throw new Error('404 에러');
     }

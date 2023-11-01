@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import moreVerticalIcon from '../../images/s-icon-more-vertical.svg';
+import profileBasicImage from '../../images/basic-profile-small.svg';
 
 const StyledPostCommentItem = styled.li`
   /* section-comment 시작 */
@@ -46,16 +47,34 @@ const StyledPostCommentItem = styled.li`
   /* section-comment 끝 */
 `;
 
-export default function PostCommentItem({
-  id,
-  userName,
-  content,
-  profileImage,
-  date,
-  modalHandler,
-}) {
-  console.log(id, userName, content, profileImage, date);
-  console.log(date);
+export default function PostCommentItem({ modalHandler, comment }) {
+  console.log(comment);
+  const serverStandardImg = 'http://146.56.183.55:5050/Ellipse.png';
+
+  const calculateTimeAgo = (date) => {
+    const commentTime = new Date(date);
+    const currentTime = new Date();
+    const diffSeconds = Math.floor((currentTime - commentTime) / 1000);
+
+    if (diffSeconds < 60) {
+      return `${diffSeconds}초 전`;
+    } else if (diffSeconds < 3600) {
+      return `${Math.floor(diffSeconds / 60)}분 전`;
+    } else if (diffSeconds < 86400) {
+      return `${Math.floor(diffSeconds / 3600)}시간 전`;
+    } else {
+      return `${Math.floor(diffSeconds / 86400)}일 전`;
+    }
+  };
+
+  // 서버 기본이미지인지 확인
+  const checkAuthorImg = (authorImage) => {
+    if (authorImage === serverStandardImg) {
+      return profileBasicImage;
+    } else {
+      return authorImage;
+    }
+  };
 
   // 모달
   // 내 댓글인지 아닌지는 token값으로 확인
@@ -63,19 +82,22 @@ export default function PostCommentItem({
     modalHandler();
   };
 
+  if (!comment) {
+    return <div>Loading...</div>;
+  }
   return (
     <StyledPostCommentItem>
       <div className="comment">
         <img
-          src={profileImage}
+          src={checkAuthorImg(comment.author.image)}
           alt="프로필 사진"
           className="img-comment-profile"
         />
         <div className="comment-content-wrapper">
           <div className="comment-info">
             <div>
-              <strong>{userName}</strong>
-              <time dateTime="">· 5분 전</time>
+              <strong>{comment.author.username}</strong>
+              <time dateTime="">{calculateTimeAgo(comment.createdAt)}</time>
             </div>
             <button
               type="button"
@@ -86,7 +108,7 @@ export default function PostCommentItem({
               <span className="a11y-hidden">토글</span>
             </button>
           </div>
-          <p className="comment-text">{content}</p>
+          <p className="comment-text">{comment.content}</p>
         </div>
       </div>
     </StyledPostCommentItem>

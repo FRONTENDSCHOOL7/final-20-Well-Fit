@@ -19,7 +19,7 @@ const StyledHomePage = styled.div`
 
 export default function PageHome() {
   // 내가 팔로우한 상대 게시물 상태
-  const [followedUserFeedList, setFollowedUserFeedList] = useState([]);
+  const [followedUserFeedList, setFollowedUserFeedList] = useState(null);
 
   // followList 상태
   const [hasFollowList, setHasFollowList] = useState(false);
@@ -37,13 +37,12 @@ export default function PageHome() {
           setHasFollowList(true);
         } else {
           // setHasFollowList(false);
-          return;
+          setHasFollowList(false);
         }
       } catch (error) {
         console.error(error);
       }
     };
-
     getUserProfileData();
   }, []);
 
@@ -54,6 +53,7 @@ export default function PageHome() {
         try {
           const feedList = await getFollowedUserFeedList();
           setFollowedUserFeedList(feedList.posts);
+
           console.log(feedList.posts);
         } catch (error) {
           console.error(error);
@@ -65,8 +65,14 @@ export default function PageHome() {
 
   useEffect(() => {
     console.log(followedUserFeedList);
+    if (!followedUserFeedList || followedUserFeedList.length === 0) {
+      setHasFollowList(false);
+    }
   }, [followedUserFeedList]);
 
+  if (!followedUserFeedList) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <StyledHomePage>

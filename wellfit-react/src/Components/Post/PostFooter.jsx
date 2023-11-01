@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import profileImage from '../../images/basic-profile-small.svg';
+import profileBasicImage from '../../images/basic-profile-small.svg';
+import { postComment } from '../../api/POSTComment';
+import { useParams } from 'react-router-dom';
+import { getPostCommentList } from '../../api/GETPostCommentList';
 
 const StyledFooter = styled.footer`
   position: absolute;
@@ -35,29 +38,41 @@ const StyledFooter = styled.footer`
   }
 `;
 
-export default function PostFooter({ addComment }) {
-  // postFooter에서 addCommet으로 postContent에 데이터를 전달하면
-  // postContent에서 데이터를 추가하고 그 데이터를 다시 postCommentList에 전달
-  // 이떄 addComment에 전달해야할 데이터의 형태는 객체이고
-  // 키 값으로는 id, 프로필이미지, 내용, 유저이름, 작성시간이다.
+export default function PostFooter({ myProfile, setCommentList }) {
   const [comment, setComment] = useState('');
-  const [date, setDate] = useState();
+  const serverStandardImg = 'http://146.56.183.55:5050/Ellipse.png';
+  console.log(myProfile);
+  const params = useParams();
+  console.log(params);
 
-  //
   const onChangeCommentHandler = (e) => {
     setComment(e.target.value);
   };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const createDate = new Date();
-    setDate(createDate);
 
-    addComment();
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await postComment(params.postid, comment);
+    const updatedCommentList = await getPostCommentList(params.postid);
+    setCommentList(updatedCommentList.comments);
+    setComment('');
   };
+
+  // 서버 기본이미지인지 확인
+  const checkAuthorImg = (authorImage) => {
+    if (authorImage === serverStandardImg) {
+      return profileBasicImage;
+    } else {
+      return authorImage;
+    }
+  };
+
+  if (!myProfile) {
+    return <div>Loading...</div>;
+  }
   return (
     <StyledFooter>
       <form className="form-comment-wrapper" action="#" onSubmit={onSubmit}>
-        <img src={profileImage} alt="프로필 사진" />
+        <img src={checkAuthorImg(myProfile.user.image)} alt="프로필 사진" />
         <div className="input-comment-wrapper">
           <label htmlFor="input-comment" className="a11y-hidden">
             댓글 입력
