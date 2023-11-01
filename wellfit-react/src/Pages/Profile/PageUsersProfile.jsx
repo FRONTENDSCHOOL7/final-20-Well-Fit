@@ -4,10 +4,13 @@ import MainHeader from '../../Components/common/Header/MainHeader';
 import ProfileUsers from '../../Components/Profile/ProfileUsers';
 import GoodListUsers from '../../Components/Profile/GoodListUsers';
 import ListAlbumSwitch from '../../Components/Profile/ListAlbumSwitch';
-import ListFeed from '../../Components/Profile/ListFeed';
+import ListUserFeed from '../../Components/Profile/ListUserFeed';
 import AlbumFeed from '../../Components/Profile/AlbumFeed';
 import ModalUserList from '../../Components/common/Modal/ModalUserList';
 import Footer from '../../Components/common/Footer/Footer';
+import { useParams } from 'react-router-dom';
+import { getUserInfo } from '../../api/GETUserInfo';
+import { getUserPost } from '../../api/GETUserListPost';
 
 const StyledMainHeader = styled.header`
   background-color: #fff;
@@ -31,6 +34,36 @@ const StyledOverlay = styled.div`
 export default function PageUsersProfile() {
   const [isList, setIsList] = useState(false);
   const [isModal, setIsModal] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+  const [userFeed, setUserFeed] = useState([]);
+  const { accountname } = useParams();
+
+  const userProfileData = async () => {
+    try {
+      const userData = await getUserInfo(accountname);
+      setUserInfo(userData.profile);
+    } catch (error) {
+      console.error(error);
+    }
+
+    console.log(userInfo);
+  };
+
+  const userFeedData = async () => {
+    try {
+      const userFeedList = await getUserPost(accountname);
+      setUserFeed(userFeedList.post);
+    } catch (error) {
+      console.error(error);
+    }
+
+    console.log(userFeed);
+  };
+
+  useEffect(() => {
+    userProfileData();
+    userFeedData();
+  }, [accountname]);
 
   const handleModalClick = () => {
     setIsModal(!isModal);
@@ -48,14 +81,14 @@ export default function PageUsersProfile() {
       <StyledMainHeader>
         <MainHeader isModal={isModal} onModalClick={handleModalClick} />
       </StyledMainHeader>
-      <ProfileUsers />
+      <ProfileUsers userInfo={userInfo} />
       <GoodListUsers />
       <ListAlbumSwitch
         isList={isList}
         onListClick={handleListClick}
         onAlbumClick={handleAlbumClick}
       />
-      {isList ? <AlbumFeed /> : <ListFeed />}
+      {isList ? <AlbumFeed /> : <ListUserFeed userFeed={userFeed} />}
       {isModal && (
         <>
           <StyledOverlay onClick={handleModalClick} />

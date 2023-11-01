@@ -53,7 +53,7 @@ const AppRoutes = () => {
       />
 
       {/* userprofile Page */}
-      <Route path="/userProfile" element={<PageUsersProfile />} />
+      <Route path="/userProfile/:accountname" element={<PageUsersProfile />} />
 
       {/* chatting Page */}
       <Route path="/chattinglist" element={<PageChattingList />} />
