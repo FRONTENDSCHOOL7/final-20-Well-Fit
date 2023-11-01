@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ProfileHeader from '../../Components/common/Header/ProfileHeader';
 import Input from '../../Components/Input/Input';
-import ProfileImage from '../../images/basic-profile.svg';
+import BasicProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
 import { useNavigate } from 'react-router-dom';
 import { getMyInfo } from '../../api/PostMyInfo';
 import { postAccountnameDuplicate } from '../../api/PostSignup';
 import { UserContext } from '../../Contexts/UserContext';
+import { postUploadImage } from '../../api/PostUploadImage';
+import { putProfileEdit } from '../../api/PutProfileEdit';
 
 export default function PageProfileModification() {
   const navigate = useNavigate();
@@ -27,23 +29,35 @@ export default function PageProfileModification() {
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
   const { userInfo, setUserInfo } = useContext(UserContext);
 
-  // //기본 프로필 불러오기
-  // useEffect(() => {
-  //   const fetchMyInfo = async () => {
-  //     const profileData = await getMyInfo();
-  //     setUserInfo({
-  //       ...prevState,
-  //       username: profileData.user.username,
-  //       accountname: profileData.user.accountname,
-  //       intro: profileData.user.intro,
-  //       image: profileData.user.image,
-  //     });
-  //   };
-  //   fetchMyInfo();
-  // }, []);
+  //기본 프로필 불러오기
+  useEffect(() => {
+    const fetchMyInfo = async () => {
+      const profileData = await getMyInfo();
+      setUserInfo((prev) => ({
+        ...prev,
+        username: profileData.user.username,
+        accountname: profileData.user.accountname,
+        intro: profileData.user.intro,
+        image: profileData.user.image,
+      }));
+    };
+    fetchMyInfo();
+  }, []);
 
   // 이미지 업로드
-  const handleInputImage = (e) => {};
+  const handleInputImage = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      try {
+        const response = await postUploadImage(formData);
+        setImage(response.newFileName);
+      } catch (error) {
+        console.error('이미지 업로드에 실패했습니다.');
+      }
+    }
+  };
 
   // userName 유효성 검사
   const handleInputUserName = (e) => {
@@ -154,6 +168,22 @@ export default function PageProfileModification() {
       selectedAge &&
       selectedAge !== '나이'
     ) {
+      await putProfileEdit({
+        userName,
+        accountId,
+        intro,
+        image,
+      });
+      setUserInfo({
+        ...userInfo,
+        username: userName,
+        accountname: accountId,
+        intro: intro,
+        image: image,
+      });
+      navigate('/myprofile');
+    } else {
+      console.error('프로필 설정 중 오류가 발생했습니다.');
     }
   };
 
@@ -182,12 +212,15 @@ export default function PageProfileModification() {
           <Form onSubmit={handleProfileModification}>
             <ImgContainer>
               <ImgLabel htmlFor="upload-img">
-                <Image src={ProfileImage} alt="기본 프로필" />
+                <Image
+                  src={image ? image : BasicProfileImage}
+                  alt="기본 프로필"
+                />
               </ImgLabel>
               <ImgInput
                 id="upload-img"
                 type="file"
-                accept="image/*"
+                accept="image/png, image/jpg, image/jpeg"
                 onChange={handleInputImage}
               />
             </ImgContainer>

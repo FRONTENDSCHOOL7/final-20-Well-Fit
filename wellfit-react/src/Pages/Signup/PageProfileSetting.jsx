@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
 import BasicProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
 import { postAccountnameDuplicate, postSignup } from '../../api/PostSignup';
+import { postUploadImage } from '../../api/PostUploadImage';
+import { UserContext } from '../../Contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function PageProfileSetting() {
@@ -24,12 +26,22 @@ export default function PageProfileSetting() {
   const [accountIdValid, setAccountIdValid] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
+  const { userInfo, setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // 이미지 업로드 - 추후에 구현할 예정
-  const handleInputImage = (e) => {
+  // 이미지 업로드
+  const handleInputImage = async (e) => {
     const file = e.target.files[0];
-    setImage(file);
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      try {
+        const response = await postUploadImage(formData);
+        setImage(response.newFileName);
+      } catch (error) {
+        console.error('이미지 업로드에 실패했습니다.');
+      }
+    }
   };
 
   // 소개
@@ -189,7 +201,7 @@ export default function PageProfileSetting() {
           </ImgContainer>
           <Input
             label="사용자 이름"
-            placeholder="영문 2~10자 이내여야 합니다."
+            placeholder="2~10자 이내여야 합니다."
             id="username"
             type="text"
             name="username"

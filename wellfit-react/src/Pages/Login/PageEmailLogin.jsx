@@ -32,8 +32,9 @@ export default function PageEmailLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const loginData = await PostLogin(userEmail, userPassword);
-      if (loginData && loginData.status === 422) {
+      const response = await PostLogin(userEmail, userPassword);
+      const loginData = await response.json();
+      if (response.status === 422) {
         setErrorMsg('*이메일 또는 비밀번호가 일치하지 않습니다.');
       } else {
         setUserInfo({
