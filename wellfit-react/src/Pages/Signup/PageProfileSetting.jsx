@@ -153,15 +153,27 @@ export default function PageProfileSetting() {
       selectedAge &&
       selectedAge !== '나이'
     ) {
-      const signupData = await postSignup(
-        userName,
-        userEmail,
-        userPassword,
-        accountId,
-        intro,
-        image
-      );
-      navigate('/mainlogin/emaillogin');
+      try {
+        const signupData = await postSignup(
+          userName,
+          userEmail,
+          userPassword,
+          accountId,
+          intro,
+          image
+        );
+        setUserInfo({
+          username: userName,
+          email: userEmail,
+          password: userPassword,
+          accountname: accountId,
+          intro: intro,
+          image: image,
+        });
+        navigate('/mainlogin/emaillogin');
+      } catch (error) {
+        console.error('회원가입에 실패했습니다.');
+      }
     } else {
       console.error('프로필 설정 중 오류가 발생했습니다.');
     }
