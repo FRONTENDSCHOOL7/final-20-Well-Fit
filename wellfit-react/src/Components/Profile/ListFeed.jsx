@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import item4 from './images/item_4.png';
 import ImgHeart from '../../images/icon-heart.svg';
 import ImgMessage from '../../images/icon-message-circle.svg';
 import ImgBasicProfileSmall from '../../images/basic-profile-small.svg';
 import ImgMore from '../../images/s-icon-more-vertical.svg';
 import ModalListPost from '../common/Modal/ModalListPost';
+import { getMyFeedList } from '../../api/GETMineFeedList';
 
 const StyledListFeed = styled.section`
   background-color: #fff;
@@ -107,51 +107,77 @@ const StyledOverlay = styled.div`
 
 export default function ListFeed() {
   const [isModal, setIsModal] = useState(false);
+  const [myFeed, setMyFeed] = useState([]);
 
   const handleModalClick = () => {
     setIsModal(!isModal);
   };
+
+  const myFeedData = async () => {
+    try {
+      const myData = await getMyFeedList();
+      setMyFeed(myData.post);
+      // console.log(myData.post);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  console.log(myFeed);
+
+  useEffect(() => {
+    myFeedData();
+  }, []);
+
   return (
     <>
       <StyledListFeed>
-        <span className="total-wrapper">
-          <article className="profile-writter">
-            <img src={ImgBasicProfileSmall} alt="프로필" />
-            <span className="profile-info-wrapper">
-              <p className="profile-info-name">웰핏 헬스 공장</p>
-              <p className="profile-info-account">@wellfit_MINJAE</p>
-            </span>
-          </article>
-          <button type="button" onClick={handleModalClick}>
-            <img src={ImgMore} />
-          </button>
-        </span>
+        {myFeed.map((post, index) => {
+          return (
+            <div key={index}>
+              <span className="total-wrapper">
+                <article className="profile-writter">
+                  <img src={ImgBasicProfileSmall} alt="프로필" />
+                  <span className="profile-info-wrapper">
+                    <p className="profile-info-name">
+                      {post.author ? post.author.username : ''}
+                    </p>
+                    <p className="profile-info-account">
+                      {post.author ? post.author.accountname : ''}
+                    </p>
+                  </span>
+                </article>
+                <button type="button" onClick={handleModalClick}>
+                  <img src={ImgMore} />
+                </button>
+              </span>
 
-        <h2 className="a11y-hidden">글쓰기 피드 부분</h2>
-        <article className="writting-wrapper">
-          <span className="writting-contents">
-            옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
-            이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는
-            풍부하게 뛰노는 인생의 힘있다.
-          </span>
-          <img src={item4} alt="피드 사진" />
+              <h2 className="a11y-hidden">글쓰기 피드 부분</h2>
+              <article className="writting-wrapper">
+                <span className="writting-contents">
+                  {post.content ? post.content : ''}
+                </span>
+                <img src={post.img ? post.img : ''} alt="피드 사진" />
 
-          <div className="writting-btn-wrapper">
-            <span>
-              <button type="submit" className="writting-btn-like">
-                <img src={ImgHeart} alt="좋아요 버튼" />
-              </button>
-              <span className="writting-btn-like-count">58</span>
-            </span>
-            <span>
-              <button type="submit" className="writting-btn-chatting">
-                <img src={ImgMessage} alt="댓글 버튼" />
-              </button>
-              <span className="writting-btn-chatting-count">12</span>
-            </span>
-          </div>
-          <p className="date-content">2020년 10월 21일</p>
-        </article>
+                <div className="writting-btn-wrapper">
+                  <span>
+                    <button type="submit" className="writting-btn-like">
+                      <img src={ImgHeart} alt="좋아요 버튼" />
+                    </button>
+                    <span className="writting-btn-like-count">58</span>
+                  </span>
+                  <span>
+                    <button type="submit" className="writting-btn-chatting">
+                      <img src={ImgMessage} alt="댓글 버튼" />
+                    </button>
+                    <span className="writting-btn-chatting-count">12</span>
+                  </span>
+                </div>
+                <p className="date-content">2020년 10월 21일</p>
+              </article>
+            </div>
+          );
+        })}
       </StyledListFeed>
       {isModal && (
         <>
