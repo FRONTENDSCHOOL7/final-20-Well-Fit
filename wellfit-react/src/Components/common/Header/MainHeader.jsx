@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const StyledChattingUserListHeader = styled.header`
   border-bottom: 1px solid #dbdbdb;
+  background-color: #fff;
 
   & .search-bar {
     display: flex;

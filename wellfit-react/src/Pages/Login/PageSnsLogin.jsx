@@ -54,20 +54,6 @@ const StyledPageSnsLogin = styled.div`
   width: 390px;
   height: 844px;
   background-color: #092147;
-
-  & .div-a {
-    margin-top: 20px;
-    text-align: center;
-  }
-  & .div-a a {
-    color: #767676;
-    font-size: 12px;
-  }
-  & .link-email::after {
-    content: '|';
-    padding: 12px;
-    color: #c4c4c4;
-  }
 `;
 
 const Header = styled.header`
@@ -162,7 +148,7 @@ const LinkContainer = styled.div`
     font-size: 12px;
   }
 
-  &.login-go::after {
+  & .login-go::after {
     content: '|';
     padding: 12px;
     color: #c4c4c4;

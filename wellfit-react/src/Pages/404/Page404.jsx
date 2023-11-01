@@ -1,6 +1,23 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import Img404 from '../../images/logo-notfound.svg';
+import { useNavigate } from 'react-router-dom';
+
+export default function Page404() {
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+  return (
+    <StyledPage404>
+      <img src={Img404} alt="404로고" />
+      <p>페이지를 찾을 수 없습니다. :(</p>
+      <button className="btn-return" onClick={handleGoBack}>
+        이전 페이지
+      </button>
+    </StyledPage404>
+  );
+}
 
 const StyledPage404 = styled.main`
   display: flex;
@@ -27,13 +44,3 @@ const StyledPage404 = styled.main`
     background-color: #004aad;
   }
 `;
-
-export default function Page404() {
-  return (
-    <StyledPage404>
-      <img src={Img404} alt="404로고" />
-      <p>페이지를 찾을 수 없습니다. :(</p>
-      <button className="btn-return">이전 페이지</button>
-    </StyledPage404>
-  );
-}

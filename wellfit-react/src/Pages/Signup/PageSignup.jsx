@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
 import { useNavigate } from 'react-router-dom';
 import { postEmailDuplicate } from '../../api/PostSignup';
+import { UserContext } from '../../Contexts/UserContext';
 
 export default function PageSignup() {
   const navigate = useNavigate();
@@ -13,73 +14,79 @@ export default function PageSignup() {
   const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
+  const [isButtonActivated, setIsButtonActivated] = useState(false);
+  const { setUserInfo } = useContext(UserContext);
 
-  // 이메일 유효성 검사
-  const handleInputEmail = (e) => {
-    const userEmail = e.target.value;
+  // 이메일 유효성 및 중복 검사
+  const handleInputEmail = async (e) => {
+    const email = e.target.value;
     const emailRegEx = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    if (userEmail === '') {
-      setEmailErrorMsg('*입력해주세요');
-    } else if (!emailRegEx.test(userEmail)) {
-      setEmailErrorMsg('*이메일의 형식이 올바르지 않습니다.');
-    } else {
-      setEmailValid(true);
-      setEmailErrorMsg('');
-      setUserEmail(userEmail);
-    }
-  };
+    setUserEmail(email);
 
-  // 중복된 이메일 검사
-  const handleEmailDuplicate = async (e) => {
-    try {
-      const checkEmail = await postEmailDuplicate(e.target.value);
-      if (checkEmail.message === '이미 가입된 이메일 주소 입니다.') {
-        setEmailErrorMsg('*이미 가입된 이메일 주소 입니다.');
-      } else if (checkEmail.message === '사용 가능한 이메일 입니다.') {
-        setEmailValid(true);
-        setEmailErrorMsg('');
+    if (email === '') {
+      setEmailErrorMsg('*입력해주세요');
+      setEmailValid(false);
+    } else if (!emailRegEx.test(email)) {
+      setEmailErrorMsg('*이메일의 형식이 올바르지 않습니다.');
+      setEmailValid(false);
+    } else {
+      try {
+        const checkEmail = await postEmailDuplicate(email);
+        if (checkEmail.message === '이미 가입된 이메일 주소 입니다.') {
+          setEmailErrorMsg('*이미 가입된 이메일 주소 입니다.');
+          setEmailValid(false);
+        } else {
+          setEmailValid(true);
+          setEmailErrorMsg('');
+        }
+      } catch (error) {
+        setEmailErrorMsg('*이메일 확인 중 오류가 발생했습니다.');
       }
-    } catch (error) {
-      setEmailErrorMsg('*이메일 확인 중 오류가 발생했습니다.');
     }
   };
 
   // 비밀번호 유효성 검사
   const handleInputPassword = (e) => {
-    const userPassword = e.target.value;
+    const password = e.target.value;
     const passwordRegEx =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$/;
-    if (!passwordRegEx.test(userPassword)) {
+    setUserPassword(password);
+
+    if (!passwordRegEx.test(password)) {
       setPasswordErrorMsg(
         '*영문+숫자+특수기호 조합으로 6자리 이상 입력해주세요'
       );
+      setPasswordValid(false);
     } else {
       setPasswordValid(true);
       setPasswordErrorMsg('');
-      setUserPassword(userPassword);
     }
   };
 
+  // 이메일 및 비밀번호 변화 감지 및 버튼 활성화
+  useEffect(() => {
+    setIsButtonActivated(emailValid && passwordValid);
+  }, [emailValid, passwordValid]);
+
   // 에러메세지 초기화
   useEffect(() => {
-    setEmailErrorMsg('');
-    setPasswordErrorMsg('');
-  }, [userEmail]);
-
-  useEffect(() => {
-    setPasswordErrorMsg('');
-  }, [userPassword]);
+    if (userEmail === '') setEmailErrorMsg('');
+    if (userPassword === '') setPasswordErrorMsg('');
+  }, [userEmail, userPassword]);
 
   // 이메일, 비밀번호 조건 충족시....
   const handleSignup = async (e) => {
     e.preventDefault();
     if (emailValid && passwordValid) {
+      setUserInfo((prevState) => ({
+        ...prevState,
+        email: userEmail,
+        password: userPassword,
+      }));
+      navigate('/mainlogin/signup/profilesetting');
+    } else {
+      console.error('회원가입 중 오류가 발생했습니다.');
     }
-  };
-
-  // 버튼 활성화
-  const handleActivateButton = () => {
-    return emailValid && passwordValid;
   };
 
   return (
@@ -115,7 +122,7 @@ export default function PageSignup() {
               <StyledErrorMessage>{passwordErrorMsg}</StyledErrorMessage>
             )}
           </SignupSection>
-          <AccountButton text="다음" disabled={!handleActivateButton()} />
+          <AccountButton text="다음" disabled={!isButtonActivated} />
         </SignupForm>
       </SignupMain>
     </StyledWrap>
