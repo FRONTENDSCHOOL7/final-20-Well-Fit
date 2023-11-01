@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ProfileHeader from '../../Components/common/Header/ProfileHeader';
 import Input from '../../Components/Input/Input';
@@ -6,6 +6,8 @@ import ProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
 import { useNavigate } from 'react-router-dom';
 import { getMyInfo } from '../../api/PostMyInfo';
+import { postAccountnameDuplicate } from '../../api/PostSignup';
+import { UserContext } from '../../Contexts/UserContext';
 
 export default function PageProfileModification() {
   const navigate = useNavigate();
@@ -23,22 +25,22 @@ export default function PageProfileModification() {
   const [accountIdValid, setAccountIdValid] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
-  const { setUserInfo } = useContext(UserContext);
+  const { userInfo, setUserInfo } = useContext(UserContext);
 
-  // 기본 프로필 불러오기
-  useEffect(() => {
-    const fetchMyInfo = async () => {
-      const profileData = await getMyInfo();
-      setUserInfo({
-        ...prevState,
-        username: profileData.user.username,
-        accountname: profileData.user.accountname,
-        intro: profileData.user.intro,
-        image: profileData.user.image,
-      });
-    };
-    fetchMyInfo();
-  }, []);
+  // //기본 프로필 불러오기
+  // useEffect(() => {
+  //   const fetchMyInfo = async () => {
+  //     const profileData = await getMyInfo();
+  //     setUserInfo({
+  //       ...prevState,
+  //       username: profileData.user.username,
+  //       accountname: profileData.user.accountname,
+  //       intro: profileData.user.intro,
+  //       image: profileData.user.image,
+  //     });
+  //   };
+  //   fetchMyInfo();
+  // }, []);
 
   // 이미지 업로드
   const handleInputImage = (e) => {};
