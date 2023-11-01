@@ -10,7 +10,7 @@ const StyledChatRoomModal = styled.div`
     margin: 0 auto;
     padding-top: 16px;
     border-radius: 10px 10px 0 0;
-    top: 755px;
+    top: 801px;
   }
 
   & .modal-line {

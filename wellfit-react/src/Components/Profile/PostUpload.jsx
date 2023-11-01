@@ -1,8 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import iconImage from '../../images/icon-image.svg';
 import bagicProfile from '../../images/basic-profile.svg';
 import iconX from '../../images/x.svg';
+import { uploadImages } from '../../api/PostImage';
+import { uploadPost } from '../../api/Posting';
+
 const StyledUpload = styled.div`
   height: 772px;
   width: 390px;
@@ -85,8 +89,9 @@ const StyledUpload = styled.div`
     display: none;
   }
 `;
-export default function PostUpload({ setActive }) {
-  const [message, setMessage] = useState('');
+export default function PostUpload({ setActive, submit, setSubmit }) {
+  const navigate = useNavigate();
+  const [content, setContent] = useState('');
   const [images, setImages] = useState();
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -99,10 +104,29 @@ export default function PostUpload({ setActive }) {
     }
   };
   useEffect(() => {
-    console.log(images);
-    if (message !== '' || images?.length > 0) setActive(true);
+    if (submit) {
+      async function fetchData() {
+        const imagesFileName = images
+          ? await uploadImages(images).then((data) => {
+              if (typeof data === 'object') {
+                return data.map((image) => image.filename).join();
+              }
+              return null;
+            })
+          : null;
+        uploadPost(content, imagesFileName).then((data) => {
+          if (data?.post?.id) {
+            navigate('/home');
+          }
+        });
+      }
+      fetchData();
+    }
+  }, [submit, images, content, navigate]);
+  useEffect(() => {
+    if (content !== '' || images?.length > 0) setActive(true);
     else setActive(false);
-  }, [message, images, setActive]);
+  }, [content, images, setActive]);
   return (
     <StyledUpload>
       <div className="div-postingMain">
@@ -115,8 +139,8 @@ export default function PostUpload({ setActive }) {
           <textarea
             placeholder="게시글 입력하기..."
             className="textarea-post"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
 
