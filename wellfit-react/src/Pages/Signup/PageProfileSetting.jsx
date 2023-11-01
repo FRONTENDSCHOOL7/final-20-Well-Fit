@@ -4,7 +4,8 @@ import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
 import BasicProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
-import { postSignup } from '../../api/PostSignup';
+import { postAccountnameDuplicate, postSignup } from '../../api/PostSignup';
+import { useNavigate } from 'react-router-dom';
 
 export default function PageProfileSetting() {
   const [userEmail, setUserEmail] = useState('');
@@ -23,6 +24,7 @@ export default function PageProfileSetting() {
   const [accountIdValid, setAccountIdValid] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
+  const navigate = useNavigate();
 
   // 이미지 업로드 - 추후에 구현할 예정
   const handleInputImage = (e) => {
@@ -53,11 +55,15 @@ export default function PageProfileSetting() {
   };
 
   // accountId 유효성 검사 - 이미 존재하는 계정은 구현 못함. 추후 할 예정
-  const handleInputAccountId = (e) => {
+  const handleInputAccountId = async (e) => {
     const accountId = e.target.value;
     const accountIdRegEx = /^[a-zA-Z0-9._]+$/;
+    const checkAccountname = await postAccountnameDuplicate(accountId);
     if (accountId === '') {
       setAccountIdErrorMsg('*입력해 주세요.');
+      setAccountIdValid(false);
+    } else if (checkAccountname.message === '이미 가입된 계정ID 입니다.') {
+      setAccountIdErrorMsg('*이미 가입된 계정ID 입니다.');
       setAccountIdValid(false);
     } else if (!accountIdRegEx.test(accountId)) {
       setAccountIdErrorMsg('*영문, 숫자, 특수문자 ., _ 만 입력해주세요.');
@@ -143,6 +149,9 @@ export default function PageProfileSetting() {
         intro,
         image
       );
+      navigate('/mainlogin/emaillogin');
+    } else {
+      console.error('프로필 설정 중 오류가 발생했습니다.');
     }
   };
 

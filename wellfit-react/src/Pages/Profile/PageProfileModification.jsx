@@ -4,8 +4,11 @@ import ProfileHeader from '../../Components/common/Header/ProfileHeader';
 import Input from '../../Components/Input/Input';
 import ProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
+import { useNavigate } from 'react-router-dom';
+import { getMyInfo } from '../../api/PostMyInfo';
 
 export default function PageProfileModification() {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
@@ -20,9 +23,22 @@ export default function PageProfileModification() {
   const [accountIdValid, setAccountIdValid] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
+  const { setUserInfo } = useContext(UserContext);
 
   // 기본 프로필 불러오기
-  useEffect(() => {});
+  useEffect(() => {
+    const fetchMyInfo = async () => {
+      const profileData = await getMyInfo();
+      setUserInfo({
+        ...prevState,
+        username: profileData.user.username,
+        accountname: profileData.user.accountname,
+        intro: profileData.user.intro,
+        image: profileData.user.image,
+      });
+    };
+    fetchMyInfo();
+  }, []);
 
   // 이미지 업로드
   const handleInputImage = (e) => {};
@@ -44,11 +60,15 @@ export default function PageProfileModification() {
   };
 
   // accountId 유효성 검사 - 이미 존재하는 계정은 구현 못함. 추후 할 예정
-  const handleInputAccountId = (e) => {
+  const handleInputAccountId = async (e) => {
     const accountId = e.target.value;
     const accountIdRegEx = /^[a-zA-Z0-9._]+$/;
+    const checkAccountname = await postAccountnameDuplicate(accountId);
     if (accountId === '') {
       setAccountIdErrorMsg('*입력해 주세요.');
+      setAccountIdValid(false);
+    } else if (checkAccountname.message === '이미 가입된 계정ID 입니다.') {
+      setAccountIdErrorMsg('*이미 가입된 계정ID 입니다.');
       setAccountIdValid(false);
     } else if (!accountIdRegEx.test(accountId)) {
       setAccountIdErrorMsg('*영문, 숫자, 특수문자 ., _ 만 입력해주세요.');
@@ -122,7 +142,7 @@ export default function PageProfileModification() {
   }, [weight]);
 
   // 프로필 수정
-  const handleProfileModification = (e) => {
+  const handleProfileModification = async (e) => {
     e.preventDefault();
     if (
       userNameValid &&
