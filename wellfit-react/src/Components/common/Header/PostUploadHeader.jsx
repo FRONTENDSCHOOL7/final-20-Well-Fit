@@ -34,7 +34,7 @@ const StyledGoodsUploadPage = styled.div`
     background-color: #9ec1f1 !important;
   }
 `;
-export default function UploadHeader({ active }) {
+export default function UploadHeader({ active, setSubmit }) {
   const navigate = useNavigate();
   const goback = () => {
     navigate(-1);
@@ -46,7 +46,7 @@ export default function UploadHeader({ active }) {
         <button className="btn-back" type="button" onClick={goback}>
           <img src={arrowLeft} alt="뒤로가기 버튼" />
         </button>
-        <button className="btn-upload" type="submit" disabled={!active}>
+        <button className="btn-upload" type="submit" disabled={!active} onClick={() => setSubmit(true)}>
           업로드
         </button>
       </div>

@@ -142,7 +142,11 @@ export default function HomeFeed({ post }) {
           <p>{post.content}</p>
           {/* 조건부 렌더링 : 이미지 데이터가 있을경우에 렌더링*/}
           <div className="feed-img-wrapper">
-            <img src={post.image} alt="피드 사진" onClick={gopost} />
+            <img
+              src={`https://api.mandarin.weniv.co.kr/${post.image}`}
+              alt="피드 사진"
+              onClick={gopost}
+            />
           </div>
         </div>
         <div className="feed-info">

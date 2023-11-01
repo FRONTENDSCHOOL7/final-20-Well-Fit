@@ -2,11 +2,13 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 import basicProfile from '../../images/basic-profile.svg';
+import sampleImg from '../../images/sampleImg.png';
 const StyledChatRoomList = styled.div`
   & .div-chatRoom {
     display: flex;
     flex-direction: column;
     background-color: #f2f2f2;
+    min-height: 771px;
   }
 
   & .div-reception {
@@ -104,31 +106,29 @@ export default function ChatRoomList() {
     <>
       <StyledChatRoomList>
         <div class="div-chatRoom">
-          <span class="span-date">2023년 4월 15일</span>
+          <span class="span-date">2023년 10월 15일</span>
           <ul>
             <li>
               <div class="div-reception">
                 <img src={basicProfile} class="img-chatProfil" />
                 <div class="div-receptionChat">
                   <span class="span-receptionChat">
-                    옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여,
-                    뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고,
-                    못할 넣는 풍부하게 뛰노는 인생의 힘있다.
+                    안녕하세요~ 강의 등록 관련해서 궁금한 게 있어요.
                   </span>
                   <span class="span-time">12:39</span>
                 </div>
               </div>
             </li>
 
-            <li>
+            {/* <li>
               <div class="div-reception">
                 <img src={basicProfile} class="img-chatProfil" />
                 <div class="div-receptionChat">
-                  <img src="../../../img/sample1.png" class="img-sendingImg" />
+                  <img src={sampleImg} class="img-sendingImg" />
                   <span class="span-time">12:39</span>
                 </div>
               </div>
-            </li>
+            </li> */}
             <li>
               <div class="div-sending">
                 <div class="div-sendingChat">
@@ -142,7 +142,7 @@ export default function ChatRoomList() {
               <div class="div-sending">
                 <div class="div-sendingChat">
                   <span class="span-time">12:39</span>
-                  <img src="../../../img/sample3.png" class="img-sendingImg" />
+                  <img src={sampleImg} class="img-sendingImg" />
                 </div>
               </div>
             </li>

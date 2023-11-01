@@ -11,7 +11,8 @@ const StyledChatRoomFooter = styled.div`
     background-color: white;
     width: 100%;
     height: 61px;
-    position: sticky;
+    position: stinky;
+    bottom: 0;
   }
 
   & .label-image {
