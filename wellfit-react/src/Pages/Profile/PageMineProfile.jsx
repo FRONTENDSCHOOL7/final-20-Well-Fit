@@ -8,7 +8,7 @@ import AlbumFeed from '../../Components/Profile/AlbumFeed';
 import ModalUserList from '../../Components/common/Modal/ModalUserList';
 import GoodListMine from '../../Components/Profile/GoodListMine';
 import Footer from '../../Components/common/Footer/Footer';
-import axios from 'axios';
+import { getMyInfo } from '../../api/PostMyInfo';
 
 const StyledMainHeader = styled.header`
   background-color: #fff;
@@ -29,13 +29,13 @@ export default function PageMineProfile() {
   const [myInfo, setMyInfo] = useState({});
 
   const myProfileData = async () => {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2Y1NjdjYjJjYjIwNTY2MzkwMWZjOCIsImV4cCI6MTcwMzg0MDMzMywiaWF0IjoxNjk4NjU2MzMzfQ.3OiAqm7A6QqsqH2zdrLcB7PA-GpZnsN1LhIDhbOzN0k';
-    const response = await axios.get(
-      'https://api.mandarin.weniv.co.kr/user/myInfo',
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    setMyInfo(response.data.user);
+    try {
+      const myData = await getMyInfo();
+      setMyInfo(myData.user);
+      console.log(myData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
