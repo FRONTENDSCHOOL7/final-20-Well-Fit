@@ -57,7 +57,10 @@ const AppRoutes = () => {
 
       {/* chatting Page */}
       <Route path="/chattinglist" element={<PageChattingList />} />
-      <Route path="/chattinglist/ongoing" element={<PageChatting />} />
+      <Route
+        path="/chattinglist/:accountname/ongoing"
+        element={<PageChatting />}
+      />
 
       {/* post Page */}
       <Route path="/postupload" element={<PagePostUpload />} />
