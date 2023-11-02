@@ -144,7 +144,10 @@ export default function PageUploadProduct() {
             <ImgContainer>
               <ImgLabel htmlFor="upload-img">
                 <ImgTxt>이미지 등록</ImgTxt>
-                <Image src={AddProduct} alt="기본 프로필" />
+                <Image
+                  src={previewImage ? previewImage : AddProduct}
+                  alt="기본 프로필"
+                />
               </ImgLabel>
               <ImgInput
                 id="upload-img"
