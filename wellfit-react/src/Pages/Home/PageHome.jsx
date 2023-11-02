@@ -20,58 +20,60 @@ const StyledHomePage = styled.div`
 export default function PageHome() {
   // 내가 팔로우한 상대 게시물 상태
   const [followedUserFeedList, setFollowedUserFeedList] = useState(null);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   // followList 상태
   const [hasFollowList, setHasFollowList] = useState(false);
-
-  // follow list 가 있는지 확인
+  const [token, setToken] = useState(localStorage.getItem('token'));
   useEffect(() => {
-    const getUserProfileData = async () => {
+    const fetchData = async () => {
       try {
-        const myInfo = await getMyInfo();
+        setLoading(true);
+        setError(null);
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        console.log('getUserProfileData 실행전');
         const myFollowList = await getMyFollowList();
-        console.log('나의 프로필 정보');
-        console.log(myInfo.user);
         console.log('나의 팔로우 리스트');
         console.log(myFollowList);
+        setHasFollowList(myFollowList.length !== 0);
+        console.log('getUserProfileData 실행후');
 
         if (myFollowList.length !== 0) {
-          setHasFollowList(true);
-        } else {
-          // setHasFollowList(false);
-          setHasFollowList(false);
+          console.log('followedUserFeedList 실행전');
+          const feedList = await getFollowedUserFeedList();
+          setFollowedUserFeedList(feedList.posts);
+          console.log('followedUserFeedList 실행후');
         }
       } catch (error) {
         console.error(error);
+        setError(error);
+      } finally {
+        setLoading(false);
       }
     };
-    getUserProfileData();
-  }, []);
-
-  // 팔로우한 유저가 있다면 유저 들의 게시물 전부 불러오기
-  useEffect(() => {
-    const followedUserFeedList = async () => {
-      if (hasFollowList) {
-        try {
-          const feedList = await getFollowedUserFeedList();
-          setFollowedUserFeedList(feedList.posts);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
-    followedUserFeedList();
-  }, [hasFollowList]);
-
-  useEffect(() => {
-    console.log('팔로우한 유저의 피드 리스트');
-    console.log(followedUserFeedList);
-    if (!followedUserFeedList || followedUserFeedList.length === 0) {
-      setHasFollowList(false);
+    if (token) {
+      fetchData();
     }
+  }, [token]);
+
+  useEffect(() => {
+    console.log(followedUserFeedList);
   }, [followedUserFeedList]);
 
-  if (!followedUserFeedList) {
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>에러가 발생했습니다: {error.message}</div>;
+  }
+
+  // if (!followedUserFeedList) {
+  //   return <div>팔로우한 사용자가 없습니다.</div>;
+  // }
+  if (loading) {
     return <div>Loading...</div>;
   }
   return (
