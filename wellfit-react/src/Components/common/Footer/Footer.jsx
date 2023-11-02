@@ -15,7 +15,7 @@ const StyledMainFooter = styled.footer`
     width: 390px;
     height: 60px;
     border-top: 1px solid #dbdbdb;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     background-color: #fefefe;
   }
   & .tapbar button {

@@ -5,7 +5,7 @@ import ImgMessage from '../../images/icon-message-circle.svg';
 import ImgBasicProfileSmall from '../../images/basic-profile-small.svg';
 import ImgMore from '../../images/s-icon-more-vertical.svg';
 import ModalListPost from '../common/Modal/ModalListPost';
-import { getMyFeedList } from '../../api/GETMineFeedList';
+import { useNavigate } from 'react-router-dom';
 
 const StyledListFeed = styled.section`
   background-color: #fff;
@@ -105,34 +105,22 @@ const StyledOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export default function ListFeed() {
+export default function ListFeed({ userFeed }) {
   const [isModal, setIsModal] = useState(false);
-  const [myFeed, setMyFeed] = useState([]);
+  const navigate = useNavigate();
+
+  const handleChattingClick = () => {
+    navigate('/home/post/mine');
+  };
 
   const handleModalClick = () => {
     setIsModal(!isModal);
   };
 
-  const myFeedData = async () => {
-    try {
-      const myData = await getMyFeedList();
-      setMyFeed(myData.post);
-      // console.log(myData.post);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  console.log(myFeed);
-
-  useEffect(() => {
-    myFeedData();
-  }, []);
-
   return (
     <>
       <StyledListFeed>
-        {myFeed.map((post, index) => {
+        {userFeed.map((post, index) => {
           return (
             <div key={index}>
               <span className="total-wrapper">
@@ -164,16 +152,34 @@ export default function ListFeed() {
                     <button type="submit" className="writting-btn-like">
                       <img src={ImgHeart} alt="좋아요 버튼" />
                     </button>
-                    <span className="writting-btn-like-count">58</span>
+                    <span className="writting-btn-like-count">
+                      {post.heartCount ? post.heartCount : ''}
+                    </span>
                   </span>
                   <span>
-                    <button type="submit" className="writting-btn-chatting">
+                    <button
+                      type="submit"
+                      className="writting-btn-chatting"
+                      onClick={handleChattingClick}
+                    >
                       <img src={ImgMessage} alt="댓글 버튼" />
                     </button>
-                    <span className="writting-btn-chatting-count">12</span>
+                    <span className="writting-btn-chatting-count">
+                      {post.commentCount ? post.commentCount : ''}
+                    </span>
                   </span>
                 </div>
-                <p className="date-content">2020년 10월 21일</p>
+                <p className="date-content">
+                  {post.updatedAt
+                    ? (() => {
+                        const date = new Date(post.updatedAt);
+                        const year = date.getFullYear();
+                        const month = date.getMonth() + 1; // JavaScript의 월은 0부터 시작합니다.
+                        const day = date.getDate();
+                        return `${year}년 ${month}월 ${day}일`;
+                      })()
+                    : ''}
+                </p>
               </article>
             </div>
           );

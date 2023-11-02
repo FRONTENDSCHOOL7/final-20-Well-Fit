@@ -23,12 +23,17 @@ const StyledHomeFeed = styled.li`
 
   & .feed {
     font-size: 14px;
+    width: 304px;
   }
   & .feed .feed-header {
     margin-bottom: 16px;
 
     /* 프로필이미지 옆에있는 텍스트를 내리기 위해 적용 */
     margin-top: 8px;
+  }
+
+  & .feed .feed-content > p {
+    overflow-wrap: break-word;
   }
 
   & .feed .feed-header .feed-writer {
@@ -81,8 +86,8 @@ const StyledHomeFeed = styled.li`
 `;
 
 export default function HomeFeed({ post }) {
-  console.log(post);
-  const serverStandardImg = 'http://146.56.183.55:5050/Ellipse.png';
+  const SERVER_STANDARD_IMG_URL = 'http://146.56.183.55:5050/Ellipse.png';
+  const SERVER_IMG_UPLOAD_URL = 'https://api.mandarin.weniv.co.kr/';
   const [isHeartClick, setIsHeartClick] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
   const navigate = useNavigate();
@@ -97,11 +102,21 @@ export default function HomeFeed({ post }) {
 
   // 서버 기본이미지인지 확인
   const checkAuthorImg = (authorImage) => {
-    if (authorImage === serverStandardImg) {
+    if (authorImage === SERVER_STANDARD_IMG_URL) {
       return profileImage;
     } else {
       return authorImage;
     }
+  };
+
+  // 파일 업로드 시 이미지 없으면 서버주소/null
+  // 파일 업로드 시 이미지 있으면 서부주소/이미지이름.확장자
+  const checkPostImgUrl = (postImgUrl) => {
+    return !postImgUrl ? false : true;
+  };
+
+  const postImgList = (postImg) => {
+    return post.image.split(',');
   };
 
   // feed 날짜 정보
@@ -115,7 +130,6 @@ export default function HomeFeed({ post }) {
     createmonth: new Date(post.createdAt).getMonth() + 1,
     createday: new Date(post.createdAt).getDate(),
   };
-  console.log(feedCreatedAtDate.month);
 
   useEffect(() => {
     setHeartCount((prevState) =>
@@ -141,13 +155,18 @@ export default function HomeFeed({ post }) {
         <div className="feed-content">
           <p>{post.content}</p>
           {/* 조건부 렌더링 : 이미지 데이터가 있을경우에 렌더링*/}
-          <div className="feed-img-wrapper">
-            <img
-              src={`https://api.mandarin.weniv.co.kr/${post.image}`}
-              alt="피드 사진"
-              onClick={gopost}
-            />
-          </div>
+          {checkPostImgUrl(post.image) &&
+            postImgList(post.image).map((img, idx) => {
+              return (
+                <div className="feed-img-wrapper" key={idx}>
+                  <img
+                    src={SERVER_IMG_UPLOAD_URL + img}
+                    alt="피드 사진"
+                    onClick={gopost}
+                  />
+                </div>
+              );
+            })}
         </div>
         <div className="feed-info">
           <div className="icons">

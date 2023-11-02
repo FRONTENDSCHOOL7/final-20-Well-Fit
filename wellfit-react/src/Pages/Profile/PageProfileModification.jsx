@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ProfileHeader from '../../Components/common/Header/ProfileHeader';
 import Input from '../../Components/Input/Input';
-import ProfileImage from '../../images/basic-profile.svg';
+import BasicProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
 import { useNavigate } from 'react-router-dom';
 import { getMyInfo } from '../../api/PostMyInfo';
+import { postAccountnameDuplicate } from '../../api/PostSignup';
+import { UserContext } from '../../Contexts/UserContext';
+import { postUploadImage } from '../../api/PostUploadImage';
+import { putProfileEdit } from '../../api/PutProfileEdit';
 
 export default function PageProfileModification() {
   const navigate = useNavigate();
@@ -13,6 +17,7 @@ export default function PageProfileModification() {
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
   const [image, setImage] = useState('');
+  const [previewImage, setPreviewImage] = useState(null);
   const [tall, setTall] = useState(0);
   const [weight, setWeight] = useState(0);
   const [userNameErrorMsg, setUserNameErrorMsg] = useState('');
@@ -23,25 +28,46 @@ export default function PageProfileModification() {
   const [accountIdValid, setAccountIdValid] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
-  const { setUserInfo } = useContext(UserContext);
+  const { userInfo, setUserInfo } = useContext(UserContext);
 
-  // 기본 프로필 불러오기
+  //기본 프로필 불러오기
   useEffect(() => {
     const fetchMyInfo = async () => {
       const profileData = await getMyInfo();
-      setUserInfo({
-        ...prevState,
+      setUserInfo((prev) => ({
+        ...prev,
         username: profileData.user.username,
         accountname: profileData.user.accountname,
         intro: profileData.user.intro,
         image: profileData.user.image,
-      });
+      }));
     };
     fetchMyInfo();
   }, []);
 
   // 이미지 업로드
-  const handleInputImage = (e) => {};
+  const handleInputImage = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // 이미지 미리보기 처리
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        // 미리보기 이미지를 상태로 설정
+        setPreviewImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+
+      // 이미지 업로드 처리
+      const formData = new FormData();
+      formData.append('image', file);
+      try {
+        const response = await postUploadImage(formData);
+        setImage(response.newFileName);
+      } catch (error) {
+        console.error('이미지 업로드에 실패했습니다.');
+      }
+    }
+  };
 
   // userName 유효성 검사
   const handleInputUserName = (e) => {
@@ -141,20 +167,36 @@ export default function PageProfileModification() {
     setWeightErrorMsg('');
   }, [weight]);
 
-  // // 프로필 수정
-  // const handleProfileModification = async (e) => {
-  //   e.preventDefault();
-  //   if (
-  //     userNameValid &&
-  //     accountIdValid &&
-  //     tall &&
-  //     weight &&
-  //     selectedAge &&
-  //     selectedAge !== '나이'
-  //   ) {
-  //   }
-  // };
-
+  // 프로필 수정
+  const handleProfileModification = async (e) => {
+    e.preventDefault();
+    if (
+      userNameValid &&
+      accountIdValid &&
+      tall &&
+      weight &&
+      selectedAge &&
+      selectedAge !== '나이'
+    ) {
+      await putProfileEdit({
+        userName,
+        accountId,
+        intro,
+        image,
+      });
+      setUserInfo({
+        ...userInfo,
+        username: userName,
+        accountname: accountId,
+        intro: intro,
+        image: image,
+      });
+      navigate('/myprofile');
+    } else {
+      console.error('프로필 설정 중 오류가 발생했습니다.');
+    }
+  };
+  
   // 버튼 활성화
   const handleActivateButton = () => {
     return (
@@ -180,12 +222,15 @@ export default function PageProfileModification() {
           <Form onSubmit={handleProfileModification}>
             <ImgContainer>
               <ImgLabel htmlFor="upload-img">
-                <Image src={ProfileImage} alt="기본 프로필" />
+                <Image
+                  src={previewImage ? previewImage : BasicProfileImage}
+                  alt="기본 프로필"
+                />
               </ImgLabel>
               <ImgInput
                 id="upload-img"
                 type="file"
-                accept="image/*"
+                accept="image/png, image/jpg, image/jpeg"
                 onChange={handleInputImage}
               />
             </ImgContainer>
