@@ -39,7 +39,6 @@ export default function PagePostUser() {
   };
 
   const params = useParams();
-  console.log(params);
 
   const [currentPostDetail, setCurrentPostDetail] = useState({});
 
@@ -52,6 +51,7 @@ export default function PagePostUser() {
   }, [params]);
 
   useEffect(() => {
+    console.log('현재 게시물 상세정보');
     console.log(currentPostDetail);
   }, [currentPostDetail]);
 

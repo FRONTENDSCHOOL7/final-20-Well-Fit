@@ -32,10 +32,12 @@ export default function PostContent({ modalHandler, currentPostDetail }) {
   }, []);
 
   useEffect(() => {
+    console.log('게시물 댓글 목록');
     console.log(commentList);
   }, [commentList]);
 
   useEffect(() => {
+    console.log('나의 프로필 정보');
     console.log(myProfile);
   }, [myProfile]);
 

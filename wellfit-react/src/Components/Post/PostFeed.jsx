@@ -11,6 +11,25 @@ const StyledPostFeed = styled.article`
   display: flex;
   gap: 12px;
   padding: 20px 16px 24px 16px;
+  max-height: 405px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  /* Chrome, Safari */
+  &::-webkit-scrollbar {
+    /* display: none; */ /* 스크롤 바 숨기기 */
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgrey; /* 스크롤 바 색상 */
+    border-radius: 10px; /* 스크롤 바 모서리 둥글게 */
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent; /* 스크롤 바 배경 색상 */
+  }
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: darkgrey transparent; /* 스크롤 바 색상, 스크롤 바 배경 색상 */
   & .post-detail-mine-content .feed .img-feed {
     width: 304px;
     height: 228px;
@@ -32,6 +51,7 @@ const StyledPostFeed = styled.article`
   /* feed 시작 */
   & .feed {
     font-size: 14px;
+    width: 310px;
   }
   & .feed .feed-header {
     margin-bottom: 16px;
@@ -50,6 +70,13 @@ const StyledPostFeed = styled.article`
   }
   & .feed .feed-header .feed-writer {
     color: #767676;
+  }
+  & .feed .feed-content {
+    /* background-color: red; */
+    width: 100%;
+  }
+  & .feed .feed-content > p {
+    overflow-wrap: break-word;
   }
   & .feed .feed-content img {
     margin-top: 16px;
@@ -94,9 +121,21 @@ const StyledPostFeed = styled.article`
 export default function PostFeed({ currentPostDetail }) {
   const [isHeartClick, setIsHeartClick] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
+  const SERVER_STANDARD_IMG_URL = 'http://146.56.183.55:5050/Ellipse.png';
+  const SERVER_IMG_UPLOAD_URL = 'https://api.mandarin.weniv.co.kr/';
 
   const onClickHeartHandler = () => {
     setIsHeartClick((prevState) => !prevState);
+  };
+
+  // 파일 업로드 시 이미지 없으면 서버주소/null
+  // 파일 업로드 시 이미지 있으면 서부주소/이미지이름.확장자
+  const checkPostImgUrl = (postImgUrl) => {
+    return !postImgUrl ? false : true;
+  };
+
+  const postImgList = (postImg) => {
+    return currentPostDetail.image.split(',');
   };
 
   useEffect(() => {
@@ -133,11 +172,18 @@ export default function PostFeed({ currentPostDetail }) {
         </div>
         <div className="feed-content">
           <p>{currentPostDetail.content}</p>
-          <img
-            className="img-feed"
-            src={currentPostDetail.image}
-            alt="피드 사진"
-          />
+          {checkPostImgUrl(currentPostDetail.image) &&
+            postImgList(currentPostDetail.image).map((img, idx) => {
+              return (
+                <div className="feed-img-wrapper" key={idx}>
+                  <img
+                    className="img-feed"
+                    src={SERVER_IMG_UPLOAD_URL + img}
+                    alt="피드 사진"
+                  />
+                </div>
+              );
+            })}
         </div>
         <div className="feed-info">
           <div className="icons">

@@ -30,7 +30,9 @@ export default function PageHome() {
       try {
         const myInfo = await getMyInfo();
         const myFollowList = await getMyFollowList();
+        console.log('나의 프로필 정보');
         console.log(myInfo.user);
+        console.log('나의 팔로우 리스트');
         console.log(myFollowList);
 
         if (myFollowList.length !== 0) {
@@ -53,8 +55,6 @@ export default function PageHome() {
         try {
           const feedList = await getFollowedUserFeedList();
           setFollowedUserFeedList(feedList.posts);
-
-          console.log(feedList.posts);
         } catch (error) {
           console.error(error);
         }
@@ -64,6 +64,7 @@ export default function PageHome() {
   }, [hasFollowList]);
 
   useEffect(() => {
+    console.log('팔로우한 유저의 피드 리스트');
     console.log(followedUserFeedList);
     if (!followedUserFeedList || followedUserFeedList.length === 0) {
       setHasFollowList(false);
