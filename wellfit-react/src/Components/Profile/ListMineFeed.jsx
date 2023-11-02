@@ -111,10 +111,11 @@ export default function ListFeed() {
   const [myFeed, setMyFeed] = useState([]);
   const navigate = useNavigate();
 
-  const handleChattingClick = () => {
-    navigate('/home/post/mine');
+  const handleChattingClick = (accountname, postId) => {
+    return () => {
+      navigate(`/home/post/myprofile/${accountname}/${postId}`);
+    };
   };
-
   const handleModalClick = () => {
     setIsModal(!isModal);
   };
@@ -177,7 +178,10 @@ export default function ListFeed() {
                     <button
                       type="submit"
                       className="writting-btn-chatting"
-                      onClick={handleChattingClick}
+                      onClick={handleChattingClick(
+                        post.author.accountname,
+                        post.id
+                      )}
                     >
                       <img src={ImgMessage} alt="댓글 버튼" />
                     </button>
