@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import GoBack from '../../../images/icon-arrow-left.svg';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileHeader({ text, disabled = false, onClick }) {
+  const navigate = useNavigate();
+  const goback = () => {
+    navigate(-1);
+  };
   return (
     <StyledProfileHeader>
       <Container>
-        <BackButton>
+        <BackButton onClick={goback}>
           <span className="a11y-hidden">뒤로가기</span>
         </BackButton>
         <SaveButton onClick={onClick} disabled={disabled}>
