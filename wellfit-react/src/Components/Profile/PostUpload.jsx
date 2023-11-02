@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import iconImage from '../../images/icon-image.svg';
@@ -6,19 +6,15 @@ import bagicProfile from '../../images/basic-profile.svg';
 import iconX from '../../images/x.svg';
 import { uploadImages } from '../../api/PostImage';
 import { uploadPost } from '../../api/Posting';
-const UploadImg = styled.div`
-  position: relative;
-  width: 168px;
-  height: 126px;
-  & :first-child {
-    margin-left: 70px;
-  }
-`;
+
 const StyledUpload = styled.div`
   width: 390px;
   background-color: white;
 
-  overflow: auto;
+  & .div-postingMain {
+    position: relative;
+    height: 772px;
+  }
   & .div-posting {
     display: flex;
   }
@@ -43,45 +39,30 @@ const StyledUpload = styled.div`
   & .div-postImg {
     display: flex;
     gap: 8px;
-    top: 174px;
-    left: 70px;
+    padding-bottom: 20px;
+    overflow-y: hidden;
   }
 
   & .img-postingImg {
-    width: 168px;
-    height: 126px;
+    max-width: 168px;
+    max-height: 126px;
     border-radius: 10px;
     border: 0.5px;
   }
 
   & .img-postingImg.single {
-    width: 304px;
-    height: 228px;
-  }
-
-  & .img-postingImg:first-child {
-    margin-left: 70px;
+    min-width: 304px;
+    max-width: 304px;
+    min-height: 228px;
   }
 
   & .btn-imgDelete {
     position: absolute;
     top: 6px;
-    right: 6px;
+    left: 6px;
     width: 20px;
     height: 20px;
   }
-  // & .label-image {
-  //   position: absolute;
-  //   width: 50px;
-  //   height: 50px;
-  //   background-color: #004aad;
-  //   border-radius: 100%;
-  //   right: 16px;
-  //   bottom: 20px;
-  //   background-image: url(${iconImage});
-  //   background-position: center center;
-  //   background-repeat: no-repeat;
-  // }
 
   & .label-image {
     position: absolute;
@@ -105,16 +86,24 @@ const StyledUpload = styled.div`
     display: none;
   }
 `;
+
+const UploadImg = styled.div`
+  position: relative;
+  width: 168px;
+  min-height: 126px;
+  & :first-child {
+    margin-left: 70px;
+  }
+`;
+
 export default function PostUpload({ setActive, submit, setSubmit }) {
   const navigate = useNavigate();
   const [content, setContent] = useState('');
   const [images, setImages] = useState();
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
-
-    // 원래 3개까지 첨부 가능인데 피드에서 여러 장 볼 수 있는 기능 개발 전까지 일단 1개 제한
-    if ((images?.length ?? 0) + files.length > 1) {
-      alert('이미지는 최대 1개까지 첨부할 수 있습니다.');
+    if ((images?.length ?? 0) + files.length > 3) {
+      alert('이미지는 최대 3개까지 첨부할 수 있습니다.');
     } else if (images?.length > 0) {
       setImages([...images, ...files]);
     } else {
