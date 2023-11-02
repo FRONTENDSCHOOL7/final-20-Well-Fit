@@ -196,7 +196,7 @@ export default function PageProfileModification() {
       console.error('프로필 설정 중 오류가 발생했습니다.');
     }
   };
-  
+
   // 버튼 활성화
   const handleActivateButton = () => {
     return (
@@ -310,7 +310,7 @@ export default function PageProfileModification() {
 
 const StyledProfileWrap = styled.div`
   width: 390px;
-  height: 844px;
+  height: 785px;
   background-color: #fff;
   display: flex;
   flex-direction: column;

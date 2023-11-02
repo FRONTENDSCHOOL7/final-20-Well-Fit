@@ -19,6 +19,7 @@ import Check from '../../images/check.svg';
 
 const StyledPageMore = styled.main`
   width: 390px;
+  height: 732px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -180,7 +181,7 @@ export default function PageMore() {
             </div>
           </div>
         </section>
-        <section class="section-category">
+        <section className="section-category">
           <h2>카테고리</h2>
           <div className="category">
             <MoreCategory src={Location} alt="위치" />

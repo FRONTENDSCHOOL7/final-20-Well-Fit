@@ -6,6 +6,7 @@ import AddProduct from '../../images/product-img.svg';
 import UploadImage from '../../images/img-button.svg';
 import { postAddProduct } from '../../api/PostAddProduct';
 import { postUploadImage } from '../../api/PostUploadImage';
+import { useNavigate } from 'react-router-dom';
 
 export default function PageUploadProduct() {
   const [image, setImage] = useState('');
@@ -18,6 +19,7 @@ export default function PageUploadProduct() {
   const [priceErrorMsg, setPriceErrorMsg] = useState('');
   const [urlErrorMsg, setUrlErrorMsg] = useState('');
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const navigate = useNavigate();
 
   // 이미지 업로드
   const handleInputImage = async (e) => {
@@ -124,6 +126,7 @@ export default function PageUploadProduct() {
     };
     try {
       await postAddProduct(product);
+      navigate('/myprofile');
     } catch (error) {
       console.error(error);
     }
@@ -136,7 +139,11 @@ export default function PageUploadProduct() {
 
   return (
     <>
-      <ProfileHeader text="저장" disabled={!isButtonActive} />
+      <ProfileHeader
+        text="저장"
+        disabled={!isButtonActive}
+        onClick={handleUploadProduct}
+      />
       <StyledProfileWrap>
         <Main>
           <Title className="a11y-hidden">상품 등록</Title>
@@ -146,7 +153,7 @@ export default function PageUploadProduct() {
                 <ImgTxt>이미지 등록</ImgTxt>
                 <Image
                   src={previewImage ? previewImage : AddProduct}
-                  alt="기본 프로필"
+                  alt="기본 상품 이미지"
                 />
               </ImgLabel>
               <ImgInput
@@ -196,7 +203,7 @@ export default function PageUploadProduct() {
 
 const StyledProfileWrap = styled.div`
   width: 390px;
-  height: 844px;
+  height: 785px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -237,7 +244,9 @@ const ImgTxt = styled.p`
   color: #767676;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  border-radius: 10px;
+`;
 
 const ImgInput = styled.input`
   position: absolute;
