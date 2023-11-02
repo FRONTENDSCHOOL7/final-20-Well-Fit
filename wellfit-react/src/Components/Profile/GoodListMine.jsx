@@ -52,7 +52,7 @@ const StyledOverlay = styled.div`
   z-index: 90;
   background-color: rgba(0, 0, 0, 0.5);
 `;
-export default function GoodListMines() {
+export default function GoodListMines({ products }) {
   const [isGoods, setIsGoods] = useState(false);
 
   const handleGoodsClick = () => {
@@ -63,21 +63,14 @@ export default function GoodListMines() {
       <StyledGoodListMines>
         <p>판매 중인 상품</p>
         <ul className="item-list">
-          <li className="item" onClick={handleGoodsClick}>
-            <img src={item1} alt="아이템1" />
-            <span className="item-name">웰핏 프로틴 감귤</span>
-            <span className="item-price">35,000원</span>
-          </li>
-          <li className="item" onClick={handleGoodsClick}>
-            <img src={item2} alt="아이템2" />
-            <span className="item-name">웰핏 프로틴 한라봉</span>
-            <span className="item-price">45,000원</span>
-          </li>
-          <li className="item" onClick={handleGoodsClick}>
-            <img src={item3} alt="아이템3" />
-            <span className="item-name">감귤 복압 벨트</span>
-            <span className="item-price">25,000원</span>
-          </li>
+          {products &&
+            products.map((product, index) => (
+              <li className="item" onClick={handleGoodsClick} key={index}>
+                <img src={product.itemImage} alt={`아이템${index + 1}`} />
+                <span className="item-name">{product.itemName}</span>
+                <span className="item-price">{`${product.price}원`}</span>
+              </li>
+            ))}
         </ul>
       </StyledGoodListMines>
       {isGoods && (

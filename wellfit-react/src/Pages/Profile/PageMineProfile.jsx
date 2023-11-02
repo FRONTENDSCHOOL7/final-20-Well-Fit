@@ -9,6 +9,7 @@ import ModalUserList from '../../Components/common/Modal/ModalUserList';
 import GoodListMine from '../../Components/Profile/GoodListMine';
 import Footer from '../../Components/common/Footer/Footer';
 import { getMyInfo } from '../../api/PostMyInfo';
+import { getProductList } from '../../api/GETProductList';
 
 const StyledMainHeader = styled.header`
   background-color: #fff;
@@ -27,20 +28,41 @@ export default function PageMineProfile() {
   const [isList, setIsList] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [myInfo, setMyInfo] = useState({});
+  const [myProduct, setMyProduct] = useState({});
 
   const myProfileData = async () => {
     try {
       const myData = await getMyInfo();
       setMyInfo(myData.user);
-      console.log(myData);
+      return myData.user.accountname;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const myProductList = async (accountname) => {
+    try {
+      const myProductData = await getProductList(accountname);
+      if (myProductData) {
+        setMyProduct(myProductData);
+      } else {
+        console.error('No product found');
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    myProfileData();
+    myProfileData().then((accountname) => {
+      if (accountname) {
+        myProductList(accountname);
+      }
+    });
   }, []);
+
+  console.log(myInfo);
+  console.log(myProduct.product);
 
   const handleModalClick = () => {
     setIsModal(!isModal);
@@ -53,19 +75,22 @@ export default function PageMineProfile() {
   const handleAlbumClick = () => {
     setIsList(true);
   };
+
   return (
     <>
       <StyledMainHeader>
         <MainHeader isModal={isModal} onModalClick={handleModalClick} />
       </StyledMainHeader>
       <ProfileMine myInfo={myInfo} />
-      <GoodListMine />
+      {myProduct.data && myProduct.data !== 0 && (
+        <GoodListMine myProduct={myProduct.product} />
+      )}
       <ListAlbumSwitch
         isList={isList}
         onListClick={handleListClick}
         onAlbumClick={handleAlbumClick}
       />
-      {isList ? <AlbumFeed /> : <ListMineFeed />}
+      {isList ? <AlbumFeed /> : <ListMineFeed product={myProduct.product} />}
       {isModal && (
         <>
           <StyledOverlay onClick={handleModalClick} />
