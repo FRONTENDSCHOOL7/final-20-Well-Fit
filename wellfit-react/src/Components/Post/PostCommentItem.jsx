@@ -48,8 +48,7 @@ const StyledPostCommentItem = styled.li`
 `;
 
 export default function PostCommentItem({ modalHandler, comment }) {
-  console.log(comment);
-  const serverStandardImg = 'http://146.56.183.55:5050/Ellipse.png';
+  const SERVER_STANDARD_IMG_URL = 'http://146.56.183.55:5050/Ellipse.png';
 
   const calculateTimeAgo = (date) => {
     const commentTime = new Date(date);
@@ -69,7 +68,7 @@ export default function PostCommentItem({ modalHandler, comment }) {
 
   // 서버 기본이미지인지 확인
   const checkAuthorImg = (authorImage) => {
-    if (authorImage === serverStandardImg) {
+    if (authorImage === SERVER_STANDARD_IMG_URL) {
       return profileBasicImage;
     } else {
       return authorImage;

@@ -41,10 +41,7 @@ const StyledFooter = styled.footer`
 export default function PostFooter({ myProfile, setCommentList }) {
   const [comment, setComment] = useState('');
   const serverStandardImg = 'http://146.56.183.55:5050/Ellipse.png';
-  console.log(myProfile);
   const params = useParams();
-  console.log(params);
-
   const onChangeCommentHandler = (e) => {
     setComment(e.target.value);
   };

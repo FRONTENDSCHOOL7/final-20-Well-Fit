@@ -23,12 +23,17 @@ const StyledHomeFeed = styled.li`
 
   & .feed {
     font-size: 14px;
+    width: 304px;
   }
   & .feed .feed-header {
     margin-bottom: 16px;
 
     /* 프로필이미지 옆에있는 텍스트를 내리기 위해 적용 */
     margin-top: 8px;
+  }
+
+  & .feed .feed-content > p {
+    overflow-wrap: break-word;
   }
 
   & .feed .feed-header .feed-writer {
@@ -151,11 +156,11 @@ export default function HomeFeed({ post }) {
           <p>{post.content}</p>
           {/* 조건부 렌더링 : 이미지 데이터가 있을경우에 렌더링*/}
           {checkPostImgUrl(post.image) &&
-            postImgList(post.image).map((img) => {
+            postImgList(post.image).map((img, idx) => {
               return (
-                <div className="feed-img-wrapper">
+                <div className="feed-img-wrapper" key={idx}>
                   <img
-                    src={`${SERVER_IMG_UPLOAD_URL}${img}`}
+                    src={SERVER_IMG_UPLOAD_URL + img}
                     alt="피드 사진"
                     onClick={gopost}
                   />
