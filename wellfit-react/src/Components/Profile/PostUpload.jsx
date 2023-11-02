@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import iconImage from '../../images/icon-image.svg';
@@ -8,7 +8,6 @@ import { uploadImages } from '../../api/PostImage';
 import { uploadPost } from '../../api/Posting';
 
 const StyledUpload = styled.div`
-  height: 772px;
   width: 390px;
   background-color: white;
 
@@ -39,30 +38,28 @@ const StyledUpload = styled.div`
 
   & .div-postImg {
     display: flex;
-    top: 174px;
-    left: 70px;
+    gap: 8px;
+    padding-bottom: 20px;
+    overflow-y: hidden;
   }
 
   & .img-postingImg {
-    width: 168px;
-    height: 126px;
+    max-width: 168px;
+    max-height: 126px;
     border-radius: 10px;
     border: 0.5px;
   }
 
   & .img-postingImg.single {
-    width: 304px;
-    height: 228px;
-  }
-
-  & .img-postingImg:first-child {
-    margin-left: 70px;
+    min-width: 304px;
+    max-width: 304px;
+    min-height: 228px;
   }
 
   & .btn-imgDelete {
-    position: relative;
+    position: absolute;
     top: 6px;
-    left: -28px;
+    left: 6px;
     width: 20px;
     height: 20px;
   }
@@ -89,6 +86,16 @@ const StyledUpload = styled.div`
     display: none;
   }
 `;
+
+const UploadImg = styled.div`
+  position: relative;
+  width: 168px;
+  min-height: 126px;
+  & :first-child {
+    margin-left: 70px;
+  }
+`;
+
 export default function PostUpload({ setActive, submit, setSubmit }) {
   const navigate = useNavigate();
   const [content, setContent] = useState('');
@@ -146,7 +153,7 @@ export default function PostUpload({ setActive, submit, setSubmit }) {
 
         <div className="div-postImg">
           {images?.map((image) => (
-            <Fragment key={image.name}>
+            <UploadImg key={image.name}>
               <img
                 className={`img-postingImg ${
                   images.length === 1 ? 'single' : ''
@@ -161,7 +168,7 @@ export default function PostUpload({ setActive, submit, setSubmit }) {
               >
                 <img alt={`delete_image_${image.name}`} src={iconX}></img>
               </button>
-            </Fragment>
+            </UploadImg>
           ))}
         </div>
         <label htmlFor="input-image" className="label-image"></label>

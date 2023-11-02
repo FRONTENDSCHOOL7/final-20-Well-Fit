@@ -14,12 +14,12 @@ const StyledChatRoomHeader = styled.div`
   & .div-uploadHeader {
     top: 0px;
     display: flex;
-    position: sticky;
+    position: fixed;
     justify-content: space-between;
-    width: 100%;
     height: 48px;
     border-bottom: 0.5px solid #dbdbdb;
     background-color: white;
+    width: 390px;
   }
 
   & .btn-back {
@@ -44,11 +44,15 @@ export default function ChatRoomHeader({ open, setOpen }) {
   return (
     <>
       <StyledChatRoomHeader>
-        <div class="div-uploadHeader">
-          <button class="btn-back" type="button" onClick={goback}>
+        <div className="div-uploadHeader">
+          <button className="btn-back" type="button" onClick={goback}>
             <img src={arrowLeft} alt="뒤로가기 버튼" />
           </button>
-          <button type="button" class="btn-plus" onClick={() => setOpen(!open)}>
+          <button
+            type="button"
+            className="btn-plus"
+            onClick={() => setOpen(!open)}
+          >
             <img src={more} alt="더보기 버튼" />
           </button>
         </div>

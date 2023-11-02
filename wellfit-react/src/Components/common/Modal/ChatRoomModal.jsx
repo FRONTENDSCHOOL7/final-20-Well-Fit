@@ -10,7 +10,7 @@ const StyledChatRoomModal = styled.div`
     margin: 0 auto;
     padding-top: 16px;
     border-radius: 10px 10px 0 0;
-    top: 801px;
+    bottom: 0;
   }
 
   & .modal-line {
@@ -32,10 +32,10 @@ export default function ChatRoomModal() {
   return (
     <>
       <StyledChatRoomModal>
-        <div class="modal-delete">
-          <div class="modal-line"></div>
-          <div class="wrapper-btn">
-            <button type="button" class="btn-exit">
+        <div className="modal-delete">
+          <div className="modal-line"></div>
+          <div className="wrapper-btn">
+            <button type="button" className="btn-exit">
               채팅방 나가기
             </button>
           </div>
