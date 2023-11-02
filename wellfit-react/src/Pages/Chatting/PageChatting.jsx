@@ -6,7 +6,7 @@ import ChatRoomModal from '../../Components/common/Modal/ChatRoomModal';
 import { styled } from 'styled-components';
 
 const StyledChattingPage = styled.div`
-  height: 820px;
+  height: 844px;
   overflow: auto;
 `;
 

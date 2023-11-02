@@ -13,7 +13,7 @@ const StyledUpload = styled.div`
 
   & .div-postingMain {
     position: relative;
-    height: 772px;
+    height: 795px;
   }
   & .div-posting {
     display: flex;
@@ -41,13 +41,16 @@ const StyledUpload = styled.div`
     gap: 8px;
     padding-bottom: 20px;
     overflow-y: hidden;
+    margin-right: 10px;
   }
 
   & .img-postingImg {
     max-width: 168px;
-    max-height: 126px;
+    min-height: 126px;
     border-radius: 10px;
     border: 0.5px;
+
+    object-fit: cover;
   }
 
   & .img-postingImg.single {
