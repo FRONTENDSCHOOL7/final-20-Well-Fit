@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MainHeader from '../../Components/common/Header/MainHeader';
 import ProfileMine from '../../Components/Profile/ProfileMine';
 import ListAlbumSwitch from '../../Components/Profile/ListAlbumSwitch';
-import ListFeed from '../../Components/Profile/ListFeed';
+import ListMineFeed from '../../Components/Profile/ListMineFeed';
 import AlbumFeed from '../../Components/Profile/AlbumFeed';
 import ModalUserList from '../../Components/common/Modal/ModalUserList';
 import GoodListMine from '../../Components/Profile/GoodListMine';
@@ -65,7 +65,7 @@ export default function PageMineProfile() {
         onListClick={handleListClick}
         onAlbumClick={handleAlbumClick}
       />
-      {isList ? <AlbumFeed /> : <ListFeed />}
+      {isList ? <AlbumFeed /> : <ListMineFeed />}
       {isModal && (
         <>
           <StyledOverlay onClick={handleModalClick} />

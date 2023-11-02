@@ -1,15 +1,14 @@
 import { authInstance } from './instance';
 
-// 상대방 프로필 정보 받아오기
-const USER_DATA_URL = 'profile';
+// Product List 가져오기
+const PRODUCT_LIST = 'product';
 
-export const getUserInfo = async (accountname) => {
+export const getProductList = async (accountname) => {
   try {
-    const response = await authInstance.get(`${USER_DATA_URL}/${accountname}`);
+    const response = await authInstance.get(`${PRODUCT_LIST}/${accountname}`);
     if (response.status === 404) {
       throw new Error('404 에러');
     }
-
     return response.data;
   } catch (error) {
     console.error(error);

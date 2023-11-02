@@ -113,7 +113,7 @@ const StyledProfileUsers = styled.section`
   }
 `;
 
-export default function ProfileUsers() {
+export default function ProfileUsers({ userInfo }) {
   const [isFollowing, setIsFollowing] = useState(true);
   const navigate = useNavigate();
 
@@ -126,12 +126,16 @@ export default function ProfileUsers() {
       {/* 팔로워 프로필 팔로잉 */}
       <div className="profile-wrapper">
         <span className="span-followers">
-          <p className="followers count">2950</p>
+          <p className="followers count">
+            {userInfo ? userInfo.followerCount : ''}
+          </p>
           <p className="followers content">followers</p>
         </span>
         <img src={ImgBasicProfile} alt="프로필로고" />
         <span className="span-followings">
-          <p className="followings count">128</p>
+          <p className="followings count">
+            {userInfo ? userInfo.followingCount : ''}
+          </p>
           <p className="followings content">followings</p>
         </span>
       </div>
@@ -139,8 +143,12 @@ export default function ProfileUsers() {
       {/* 이름, 계정, 소개 부분 */}
       <h2 className="a11y-hidden">이름, 계정, 소개 부분</h2>
       <div className="profile-data-wrapper">
-        <span className="content-name">웰핏 헬스공장</span>
-        <span className="content-accountName">@wellfit_MINJAE</span>
+        <span className="content-name">
+          {userInfo ? userInfo.username : ''}
+        </span>
+        <span className="content-accountName">
+          @{userInfo ? userInfo.accountname : ''}
+        </span>
         <span className="content-explain">
           엘핏 스포츠 강습권, 전국 거래, 저렴한 강습권
         </span>

@@ -52,7 +52,7 @@ const StyledOverlay = styled.div`
   z-index: 90;
   background-color: rgba(0, 0, 0, 0.5);
 `;
-export default function GoodList() {
+export default function GoodList({ productList }) {
   const [isGoods, setIsGoods] = useState(false);
 
   const handleGoodsClick = () => {
