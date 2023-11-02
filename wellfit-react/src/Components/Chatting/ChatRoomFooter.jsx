@@ -9,10 +9,10 @@ const StyledChatRoomFooter = styled.div`
     display: flex;
     align-items: center;
     background-color: white;
-    width: 100%;
     height: 61px;
-    position: stinky;
-    bottom: 0;
+    position: fixed;
+    top: 759px;
+    width: 390px;
   }
 
   & .label-image {
@@ -70,7 +70,7 @@ export default function ChatRoomFooter() {
   return (
     <>
       <StyledChatRoomFooter>
-        <div class="div-chatFooter">
+        <div className="div-chatFooter">
           <label htmlFor="input-image" className="label-image"></label>
           <input
             type="file"
@@ -80,14 +80,14 @@ export default function ChatRoomFooter() {
             onChange={(e) => setImage(e.target.files[0])}
           ></input>
           <textarea
-            class="textarea-message"
+            className="textarea-message"
             placeholder="메시지 입력하기"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
           <button
             type="submit"
-            class="btn-submit"
+            className="btn-submit"
             disabled={message === '' && !image}
           >
             전송
@@ -95,7 +95,7 @@ export default function ChatRoomFooter() {
         </div>
 
         {/* <!--모달 css 아직 없음--> */}
-        <div class="div-modal a11y-hidden">
+        <div className="div-modal a11y-hidden">
           <ul>
             <li>채팅방 나가기</li>
           </ul>

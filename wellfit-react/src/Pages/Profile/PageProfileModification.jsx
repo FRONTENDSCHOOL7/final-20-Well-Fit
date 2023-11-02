@@ -141,19 +141,19 @@ export default function PageProfileModification() {
     setWeightErrorMsg('');
   }, [weight]);
 
-  // 프로필 수정
-  const handleProfileModification = async (e) => {
-    e.preventDefault();
-    if (
-      userNameValid &&
-      accountIdValid &&
-      tall &&
-      weight &&
-      selectedAge &&
-      selectedAge !== '나이'
-    ) {
-    }
-  };
+  // // 프로필 수정
+  // const handleProfileModification = async (e) => {
+  //   e.preventDefault();
+  //   if (
+  //     userNameValid &&
+  //     accountIdValid &&
+  //     tall &&
+  //     weight &&
+  //     selectedAge &&
+  //     selectedAge !== '나이'
+  //   ) {
+  //   }
+  // };
 
   // 버튼 활성화
   const handleActivateButton = () => {
