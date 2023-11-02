@@ -82,9 +82,9 @@ export default function PageMineProfile() {
         <MainHeader isModal={isModal} onModalClick={handleModalClick} />
       </StyledMainHeader>
       <ProfileMine myInfo={myInfo} />
-      {myProduct.data && myProduct.data !== 0 && (
+      {myProduct.data && myProduct.data !== 0 ? (
         <GoodListMine myProduct={myProduct.product} />
-      )}
+      ) : null}
       <ListAlbumSwitch
         isList={isList}
         onListClick={handleListClick}

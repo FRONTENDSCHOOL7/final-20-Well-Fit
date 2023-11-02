@@ -106,7 +106,7 @@ const StyledOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export default function ListFeed() {
+export default function ListFeed({}) {
   const [isModal, setIsModal] = useState(false);
   const [myFeed, setMyFeed] = useState([]);
   const navigate = useNavigate();
