@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import ChattingUserList from './ChattingUserList';
+import { getMyFollowList } from '../../api/GETMyFollowList';
 
 const StyledChattingUserListContent = styled.main`
   padding: 24px 16px;
@@ -11,9 +12,24 @@ const StyledChattingUserListContent = styled.main`
 `;
 
 export default function ChattingUserListContent() {
+  const [myFollowList, setMyFollowList] = useState(null);
+
+  useEffect(() => {
+    const getFollowList = async () => {
+      const followList = await getMyFollowList();
+      setMyFollowList(followList);
+    };
+    getFollowList();
+  }, []);
+
+  useEffect(() => {
+    console.log('나의 팔로우 리스트');
+    console.log(myFollowList);
+  }, [myFollowList]);
+
   return (
     <StyledChattingUserListContent>
-      <ChattingUserList />
+      <ChattingUserList myFollowList={myFollowList} />
     </StyledChattingUserListContent>
   );
 }

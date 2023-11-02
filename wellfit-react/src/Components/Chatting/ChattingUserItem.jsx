@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import profileImage from '../../images/basic-profile-small.svg';
 
 const StyledChattingUserItem = styled.li`
+  cursor: pointer;
   & + li {
     margin-top: 20px;
   }
@@ -57,10 +59,17 @@ const StyledChattingUserItem = styled.li`
   }
 `;
 
-export default function ChattingUserItem() {
+export default function ChattingUserItem({ user }) {
+  console.log('팔로우한 유저 정보');
+  console.log(user);
+
+  const navigate = useNavigate();
+  const goChattingRomm = () => {
+    navigate(`./${user.accountname}/ongoing`);
+  };
   return (
     <StyledChattingUserItem>
-      <article className="search-result">
+      <article className="search-result" onClick={goChattingRomm}>
         <h3 className="a11y-hidden">대화상대 유저</h3>
         <div className="user-wrap">
           <div className="img-profile">
@@ -68,7 +77,7 @@ export default function ChattingUserItem() {
             <img src={profileImage} alt="프로필 사진" />
           </div>
           <div className="user-info">
-            <p className="user-name">애월읍 한라봉 최고 맛집</p>
+            <p className="user-name">{user.username}</p>
             <p className="user-comment">이번에 정정 언제하맨마씸?</p>
           </div>
         </div>

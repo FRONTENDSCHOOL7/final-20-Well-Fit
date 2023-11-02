@@ -44,7 +44,15 @@ export default function PageEmailLogin() {
           image: loginData.user.image,
           intro: loginData.user.intro,
         });
-        localStorage.setItem('token', loginData.user.token);
+
+        await new Promise((resolve, reject) => {
+          try {
+            localStorage.setItem('token', loginData.user.token);
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        });
         setErrorMsg('');
         navigate('/home');
       }
