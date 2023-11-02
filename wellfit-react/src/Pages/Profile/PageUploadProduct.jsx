@@ -4,9 +4,12 @@ import ProfileHeader from '../../Components/common/Header/ProfileHeader';
 import Input from '../../Components/Input/Input';
 import AddProduct from '../../images/product-img.svg';
 import UploadImage from '../../images/img-button.svg';
+import { postAddProduct } from '../../api/PostAddProduct';
+import { postUploadImage } from '../../api/PostUploadImage';
 
 export default function PageUploadProduct() {
   const [image, setImage] = useState('');
+  const [previewImage, setPreviewImage] = useState(null);
   const [field, setField] = useState('');
   const [price, setPrice] = useState('');
   const [url, setUrl] = useState('');
@@ -14,14 +17,33 @@ export default function PageUploadProduct() {
   const [fieldErrorMsg, setFieldErrorMsg] = useState('');
   const [priceErrorMsg, setPriceErrorMsg] = useState('');
   const [urlErrorMsg, setUrlErrorMsg] = useState('');
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
-  // 이미지 업로드 - 추후 수정예정
-  const handleInputImage = (e) => {
+  // 이미지 업로드
+  const handleInputImage = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage(file.name);
-      setImageErrorMsg('');
+      // 이미지 미리보기 처리
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        // 미리보기 이미지를 상태로 설정
+        setPreviewImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+
+      // 이미지 업로드 처리
+      const formData = new FormData();
+      formData.append('image', file);
+      try {
+        const response = await postUploadImage(formData);
+        setImage(response.newFileName);
+        setImageErrorMsg('');
+      } catch (error) {
+        console.error('이미지 업로드에 실패했습니다.');
+        setImageErrorMsg('*이미지 업로드에 실패했습니다.');
+      }
     } else {
+      setPreviewImage(null); // 미리보기 이미지 상태를 null로 설정
       setImage('');
       setImageErrorMsg('*이미지를 업로드해 주세요.');
     }
@@ -92,18 +114,29 @@ export default function PageUploadProduct() {
   }, [url]);
 
   // 상품 등록
-  const handleUploadProduct = (e) => {
+  const handleUploadProduct = async (e) => {
     e.preventDefault();
+    const product = {
+      itemName: field,
+      price: Number(price),
+      link: url,
+      itemImage: image,
+    };
+    try {
+      await postAddProduct(product);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // 버튼 활성화
-  const handleActivateButton = () => {
-    return image && field && price && url;
-  };
+  useEffect(() => {
+    setIsButtonActive(image && field && price && url);
+  }, [image, field, price, url]);
 
   return (
     <>
-      <ProfileHeader text="저장" disabled={!handleActivateButton()} />
+      <ProfileHeader text="저장" disabled={!isButtonActive} />
       <StyledProfileWrap>
         <Main>
           <Title className="a11y-hidden">상품 등록</Title>
@@ -116,7 +149,7 @@ export default function PageUploadProduct() {
               <ImgInput
                 id="upload-img"
                 type="file"
-                accept="image/*"
+                accept="image/png, image/jpg, image/jpeg"
                 onChange={handleInputImage}
               />
             </ImgContainer>

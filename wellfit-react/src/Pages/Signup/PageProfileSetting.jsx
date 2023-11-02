@@ -16,6 +16,7 @@ export default function PageProfileSetting() {
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
   const [image, setImage] = useState('');
+  const [previewImage, setPreviewImage] = useState(null);
   const [tall, setTall] = useState(0);
   const [weight, setWeight] = useState(0);
   const [userNameErrorMsg, setUserNameErrorMsg] = useState('');
@@ -33,8 +34,17 @@ export default function PageProfileSetting() {
   const handleInputImage = async (e) => {
     const file = e.target.files[0];
     if (file) {
+      // 이미지 미리보기 처리
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        // 미리보기 이미지를 상태로 설정
+        setPreviewImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+
+      // 이미지 업로드 처리
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('image', file);
       try {
         const response = await postUploadImage(formData);
         setImage(response.newFileName);
@@ -200,7 +210,7 @@ export default function PageProfileSetting() {
           <ImgContainer>
             <ImgLabel htmlFor="upload-img">
               <Image
-                src={image ? image : BasicProfileImage}
+                src={previewImage ? previewImage : BasicProfileImage}
                 alt="프로필 이미지"
               />
             </ImgLabel>
