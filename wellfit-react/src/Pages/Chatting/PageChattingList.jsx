@@ -21,8 +21,8 @@ export default function PageChattingList() {
       <StyledChattingListPage>
         <ChattingUserListHeader />
         <ChattingUserListContent />
-        <Footer />
       </StyledChattingListPage>
+      <Footer />
     </>
   );
 }
