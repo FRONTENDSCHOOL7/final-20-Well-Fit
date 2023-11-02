@@ -11,6 +11,7 @@ import Footer from '../../Components/common/Footer/Footer';
 import { useParams } from 'react-router-dom';
 import { getUserInfo } from '../../api/GETUserInfo';
 import { getUserPost } from '../../api/GETUserListPost';
+import { getProductList } from '../../api/GETProductList';
 
 const StyledMainHeader = styled.header`
   background-color: #fff;
@@ -36,6 +37,7 @@ export default function PageUsersProfile() {
   const [isModal, setIsModal] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [userFeed, setUserFeed] = useState([]);
+  const [productList, setProductList] = useState({});
   const { accountname } = useParams();
 
   const userProfileData = async () => {
@@ -45,8 +47,6 @@ export default function PageUsersProfile() {
     } catch (error) {
       console.error(error);
     }
-
-    console.log(userInfo);
   };
 
   const userFeedData = async () => {
@@ -56,13 +56,23 @@ export default function PageUsersProfile() {
     } catch (error) {
       console.error(error);
     }
+  };
 
-    console.log(userFeed);
+  const productListData = async () => {
+    try {
+      const productData = await getProductList(accountname);
+      setProductList(productData.product);
+    } catch (error) {
+      console.error(error);
+    }
+
+    console.log(productList);
   };
 
   useEffect(() => {
     userProfileData();
     userFeedData();
+    productListData();
   }, [accountname]);
 
   const handleModalClick = () => {
@@ -82,7 +92,7 @@ export default function PageUsersProfile() {
         <MainHeader isModal={isModal} onModalClick={handleModalClick} />
       </StyledMainHeader>
       <ProfileUsers userInfo={userInfo} />
-      <GoodListUsers />
+      <GoodListUsers productList={productList} />
       <ListAlbumSwitch
         isList={isList}
         onListClick={handleListClick}

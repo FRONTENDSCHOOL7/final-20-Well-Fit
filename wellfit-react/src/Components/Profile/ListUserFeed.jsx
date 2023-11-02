@@ -5,6 +5,7 @@ import ImgMessage from '../../images/icon-message-circle.svg';
 import ImgBasicProfileSmall from '../../images/basic-profile-small.svg';
 import ImgMore from '../../images/s-icon-more-vertical.svg';
 import ModalListPost from '../common/Modal/ModalListPost';
+import { useNavigate } from 'react-router-dom';
 
 const StyledListFeed = styled.section`
   background-color: #fff;
@@ -106,6 +107,11 @@ const StyledOverlay = styled.div`
 
 export default function ListFeed({ userFeed }) {
   const [isModal, setIsModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChattingClick = () => {
+    navigate('/home/post/mine');
+  };
 
   const handleModalClick = () => {
     setIsModal(!isModal);
@@ -151,7 +157,11 @@ export default function ListFeed({ userFeed }) {
                     </span>
                   </span>
                   <span>
-                    <button type="submit" className="writting-btn-chatting">
+                    <button
+                      type="submit"
+                      className="writting-btn-chatting"
+                      onClick={handleChattingClick}
+                    >
                       <img src={ImgMessage} alt="댓글 버튼" />
                     </button>
                     <span className="writting-btn-chatting-count">
