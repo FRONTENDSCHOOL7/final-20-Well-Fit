@@ -1,16 +1,29 @@
 import React from 'react';
-import { styled } from 'styled-components';
+import { styled, keyframes } from 'styled-components';
+
+const fadeinModal = keyframes`
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const StyledChatRoomModal = styled.div`
   & .modal-delete {
-    position: fixed;
+    position: absolute;
+
+    top: 736px;
     z-index: 1;
+    animation: ${fadeinModal} 0.5s ease forwards;
     background-color: #fff;
     width: 390px;
+    height: 92px;
     margin: 0 auto;
     padding-top: 16px;
     border-radius: 10px 10px 0 0;
-    bottom: 0;
   }
 
   & .modal-line {

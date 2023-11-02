@@ -8,10 +8,10 @@ const StyledChatRoomFooter = styled.div`
     z-index: 0;
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: #fff;
     height: 61px;
     position: fixed;
-    top: 759px;
+    top: 783px;
     width: 390px;
   }
 
