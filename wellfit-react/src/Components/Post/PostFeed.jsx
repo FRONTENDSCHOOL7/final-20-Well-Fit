@@ -149,7 +149,7 @@ export default function PostFeed({ currentPostDetail }) {
     setHeartCount(0);
   }, []);
 
-  if (Object.keys(currentPostDetail).length === 0) {
+  if (!currentPostDetail || Object.keys(currentPostDetail).length === 0) {
     return <div>Loading....</div>;
   }
 

@@ -6,6 +6,7 @@ import ImgBasicProfileSmall from '../../images/basic-profile-small.svg';
 import ImgMore from '../../images/s-icon-more-vertical.svg';
 import ModalListPost from '../common/Modal/ModalListPost';
 import { getMyFeedList } from '../../api/GETMineFeedList';
+import { useNavigate } from 'react-router-dom';
 
 const StyledListFeed = styled.section`
   background-color: #fff;
@@ -108,6 +109,11 @@ const StyledOverlay = styled.div`
 export default function ListFeed() {
   const [isModal, setIsModal] = useState(false);
   const [myFeed, setMyFeed] = useState([]);
+  const navigate = useNavigate();
+
+  const handleChattingClick = () => {
+    navigate('/home/post/mine');
+  };
 
   const handleModalClick = () => {
     setIsModal(!isModal);
@@ -117,13 +123,10 @@ export default function ListFeed() {
     try {
       const myData = await getMyFeedList();
       setMyFeed(myData.post);
-      // console.log(myData.post);
     } catch (error) {
       console.error(error);
     }
   };
-
-  console.log(myFeed);
 
   useEffect(() => {
     myFeedData();
@@ -157,7 +160,9 @@ export default function ListFeed() {
                 <span className="writting-contents">
                   {post.content ? post.content : ''}
                 </span>
-                <img src={post.img ? post.img : ''} alt="피드 사진" />
+                {post.image && (
+                  <img src={post.image ? post.image : ''} alt="피드 사진" />
+                )}
 
                 <div className="writting-btn-wrapper">
                   <span>
@@ -169,7 +174,11 @@ export default function ListFeed() {
                     </span>
                   </span>
                   <span>
-                    <button type="submit" className="writting-btn-chatting">
+                    <button
+                      type="submit"
+                      className="writting-btn-chatting"
+                      onClick={handleChattingClick}
+                    >
                       <img src={ImgMessage} alt="댓글 버튼" />
                     </button>
                     <span className="writting-btn-chatting-count">
