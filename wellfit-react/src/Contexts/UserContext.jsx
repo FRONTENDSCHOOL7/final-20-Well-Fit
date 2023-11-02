@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const UserContext = createContext({
   userInfo: {
@@ -11,21 +11,44 @@ export const UserContext = createContext({
     image: '',
   },
   setUserInfo: (info) => {},
+  logout: () => {},
 });
 
 export const UserProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState({
-    _id: '',
-    username: '',
-    email: '',
-    password: '',
-    accountname: '',
-    intro: '',
-    image: '',
+  const [userInfo, setUserInfo] = useState(() => {
+    const savedUserInfo = localStorage.getItem('userInfo');
+    return savedUserInfo
+      ? JSON.parse(savedUserInfo)
+      : {
+          _id: '',
+          username: '',
+          email: '',
+          password: '',
+          accountname: '',
+          intro: '',
+          image: '',
+        };
   });
 
+  useEffect(() => {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+  }, [userInfo]);
+
+  const logout = () => {
+    setUserInfo({
+      _id: '',
+      username: '',
+      email: '',
+      password: '',
+      accountname: '',
+      intro: '',
+      image: '',
+    });
+    localStorage.removeItem('userInfo');
+  };
+
   return (
-    <UserContext.Provider value={{ userInfo, setUserInfo }}>
+    <UserContext.Provider value={{ userInfo, setUserInfo, logout }}>
       {children}
     </UserContext.Provider>
   );

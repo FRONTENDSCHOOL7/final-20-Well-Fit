@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
 import BasicProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
 import { postAccountnameDuplicate, postSignup } from '../../api/PostSignup';
+import { postUploadImage } from '../../api/PostUploadImage';
+import { UserContext } from '../../Contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function PageProfileSetting() {
@@ -14,6 +16,7 @@ export default function PageProfileSetting() {
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
   const [image, setImage] = useState('');
+  const [previewImage, setPreviewImage] = useState(null);
   const [tall, setTall] = useState(0);
   const [weight, setWeight] = useState(0);
   const [userNameErrorMsg, setUserNameErrorMsg] = useState('');
@@ -24,12 +27,31 @@ export default function PageProfileSetting() {
   const [accountIdValid, setAccountIdValid] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
+  const { userInfo, setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // 이미지 업로드 - 추후에 구현할 예정
-  const handleInputImage = (e) => {
+  // 이미지 업로드
+  const handleInputImage = async (e) => {
     const file = e.target.files[0];
-    setImage(file);
+    if (file) {
+      // 이미지 미리보기 처리
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        // 미리보기 이미지를 상태로 설정
+        setPreviewImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+
+      // 이미지 업로드 처리
+      const formData = new FormData();
+      formData.append('image', file);
+      try {
+        const response = await postUploadImage(formData);
+        setImage(response.newFileName);
+      } catch (error) {
+        console.error('이미지 업로드에 실패했습니다.');
+      }
+    }
   };
 
   // 소개
@@ -141,15 +163,27 @@ export default function PageProfileSetting() {
       selectedAge &&
       selectedAge !== '나이'
     ) {
-      const signupData = await postSignup(
-        userName,
-        userEmail,
-        userPassword,
-        accountId,
-        intro,
-        image
-      );
-      navigate('/mainlogin/emaillogin');
+      try {
+        const signupData = await postSignup(
+          userName,
+          userEmail,
+          userPassword,
+          accountId,
+          intro,
+          image
+        );
+        setUserInfo({
+          username: userName,
+          email: userEmail,
+          password: userPassword,
+          accountname: accountId,
+          intro: intro,
+          image: image,
+        });
+        navigate('/mainlogin/emaillogin');
+      } catch (error) {
+        console.error('회원가입에 실패했습니다.');
+      }
     } else {
       console.error('프로필 설정 중 오류가 발생했습니다.');
     }
@@ -176,7 +210,7 @@ export default function PageProfileSetting() {
           <ImgContainer>
             <ImgLabel htmlFor="upload-img">
               <Image
-                src={image ? image : BasicProfileImage}
+                src={previewImage ? previewImage : BasicProfileImage}
                 alt="프로필 이미지"
               />
             </ImgLabel>
@@ -189,7 +223,7 @@ export default function PageProfileSetting() {
           </ImgContainer>
           <Input
             label="사용자 이름"
-            placeholder="영문 2~10자 이내여야 합니다."
+            placeholder="2~10자 이내여야 합니다."
             id="username"
             type="text"
             name="username"

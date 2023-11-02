@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../Contexts/UserContext';
 import BlackLogo from '../../images/logo-black.svg';
 
 export default function SplashPage() {
   const navigate = useNavigate();
+  const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/mainlogin');
+      if (userInfo && userInfo.username) {
+        navigate('/home');
+      } else {
+        navigate('/mainlogin');
+      }
     }, 2000);
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [navigate, userInfo]);
 
   return (
     <StyledSplashPage>
