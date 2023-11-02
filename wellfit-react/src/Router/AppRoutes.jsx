@@ -37,7 +37,10 @@ const AppRoutes = () => {
       {/* home Page */}
       <Route path="/home" element={<PageHome />} />
       <Route path="/home/search" element={<PageSearch />} />
-      <Route path="/home/post/mine" element={<PagePost />} />
+      <Route
+        path="/home/post/myprofile/:useraccoutname/:postid"
+        element={<PagePost />}
+      />
       <Route
         path="/home/post/:useraccoutname/:postid"
         element={<PagePostUser />}
