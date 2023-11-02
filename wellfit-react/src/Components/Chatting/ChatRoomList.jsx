@@ -2,7 +2,9 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 import basicProfile from '../../images/basic-profile.svg';
-import sampleImg from '../../images/sampleImg.png';
+import sampleImg1 from '../../images/chat-sample-img1.jpg';
+import sampleImg2 from '../../images/chat-sample-img2.jpg';
+import sampleImg3 from '../../images/chat-sample-img3.jpg';
 const StyledChatRoomList = styled.div`
   & .div-chatRoom {
     display: flex;
@@ -117,7 +119,7 @@ export default function ChatRoomList() {
                 <img src={basicProfile} className="img-chatProfil" />
                 <div className="div-receptionChat">
                   <span className="span-receptionChat">
-                    안녕하세요~ 강의 등록 관련해서 궁금한 게 있어요.
+                    오늘 점심에 먹은 메뉴입니다~
                   </span>
                   <span className="span-time">12:39</span>
                 </div>
@@ -127,7 +129,16 @@ export default function ChatRoomList() {
               <div className="div-reception">
                 <img src={basicProfile} className="img-chatProfil" />
                 <div className="div-receptionChat">
-                  <img src={sampleImg} className="img-sendingImg" />
+                  <img src={sampleImg1} className="img-sendingImg" />
+                  <span className="span-time">12:39</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="div-reception">
+                <img src={basicProfile} className="img-chatProfil" />
+                <div className="div-receptionChat">
+                  <img src={sampleImg2} className="img-sendingImg" />
                   <span className="span-time">12:39</span>
                 </div>
               </div>
@@ -137,16 +148,26 @@ export default function ChatRoomList() {
               <div className="div-sending">
                 <div className="div-sendingChat">
                   <span className="span-time">12:40</span>
-                  <span className="span-sendingChat"> 네 말씀하세요. </span>
+                  <span className="span-sendingChat">회원님!!</span>
                 </div>
               </div>
             </li>
-            {/* <!--이미지 파일을 전송할 경우--> */}
+
             <li>
               <div className="div-sending">
                 <div className="div-sendingChat">
                   <span className="span-time">12:43</span>
-                  <img src={sampleImg} className="img-sendingImg" />
+                  <span className="span-sendingChat">
+                    바디프로필 찍는 날까지 일주일 남았어요 ㅜㅜㅜㅜ
+                  </span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="div-sending">
+                <div className="div-sendingChat">
+                  <span className="span-time">12:43</span>
+                  <img src={sampleImg3} className="img-sendingImg" />
                 </div>
               </div>
             </li>
@@ -155,7 +176,7 @@ export default function ChatRoomList() {
                 <div className="div-sendingChat">
                   <span className="span-time">12:43</span>
                   <span className="span-sendingChat">
-                    이번 달 예약은 끝났습니다. 다음 달에 다시 문의주세요.
+                    오늘 저녁 헬스장에서 먹은만큼 운동합시다
                   </span>
                 </div>
               </div>

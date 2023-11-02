@@ -45,18 +45,18 @@ const StyledUpload = styled.div`
   }
 
   & .img-postingImg {
-    max-width: 168px;
-    min-height: 126px;
+    width: 168px;
+    height: 126px;
     border-radius: 10px;
     border: 0.5px;
-
     object-fit: cover;
   }
 
   & .img-postingImg.single {
     min-width: 304px;
     max-width: 304px;
-    min-height: 228px;
+    height: 228px;
+    object-fit: cover;
   }
 
   & .btn-imgDelete {
