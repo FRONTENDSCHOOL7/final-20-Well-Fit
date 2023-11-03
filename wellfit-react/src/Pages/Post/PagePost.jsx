@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import ModalDeleteComment from '../../Components/common/Modal/ModalDeleteComment';
 import PostContent from '../../Components/Post/PostContent';
 import PostHeader from '../../Components/Post/PostHeader';
 import { useParams } from 'react-router-dom';
-
+import { getFollowedPostDetail } from '../../api/GETFollowedPostDetail';
 const StyledPostPage = styled.div`
   width: 390px;
   height: 820px;
@@ -29,17 +29,35 @@ const StyledModalBackground = styled.div`
 
 export default function PagePost() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPostDetail, setCurrentPostDetail] = useState({});
+  const params = useParams();
+  console.log(params);
+
   const modalHandler = () => {
     setIsModalOpen((prevState) => !prevState);
   };
-  const params = useParams();
-  console.log(params);
+
+  useEffect(() => {
+    const getPostDetail = async () => {
+      const postDetail = await getFollowedPostDetail(params.postid);
+      setCurrentPostDetail(postDetail.post);
+    };
+    getPostDetail();
+  }, [params]);
+
+  useEffect(() => {
+    console.log('현재 게시물 상세정보');
+    console.log(currentPostDetail);
+  }, [currentPostDetail]);
 
   return (
     <>
       <StyledPostPage>
         <PostHeader />
-        <PostContent modalHandler={modalHandler} />
+        <PostContent
+          modalHandler={modalHandler}
+          currentPostDetail={currentPostDetail}
+        />
         {isModalOpen ? <ModalDeleteComment /> : null}
       </StyledPostPage>
       {isModalOpen ? (
