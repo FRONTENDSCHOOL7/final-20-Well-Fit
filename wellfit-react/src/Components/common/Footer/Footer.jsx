@@ -1,11 +1,85 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import HomeIcon from '../../../images/icon-home.svg';
+import HomeIconFill from '../../../images/icon-home-fill.svg';
 import ChatIcon from '../../../images/icon-message-circle-1.svg';
-import editIcon from '../../../images/icon-edit.svg';
-import profileIcon from '../../../images/icon-user.svg';
-import moreIcon from '../../../images/icon-more-square.svg';
-import { useNavigate } from 'react-router-dom';
+import ChatIconFill from '../../../images/icon-message-circle-fill.svg';
+import EditIcon from '../../../images/icon-edit.svg';
+import ProfileIcon from '../../../images/icon-user.svg';
+import ProfileIconFill from '../../../images/icon-user-fill.svg';
+import MoreIcon from '../../../images/icon-more-square.svg';
+import MoreIconFill from '../../../images/icon-more-square-fill.svg';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+export default function Footer() {
+  const [activeTab, setActiveTab] = useState('home');
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/home':
+        setActiveTab('home');
+        break;
+      case '/chattinglist':
+        setActiveTab('chat');
+        break;
+      case '/postupload':
+        setActiveTab('post');
+        break;
+      case '/myprofile':
+        setActiveTab('profile');
+        break;
+      case '/pagemore':
+        setActiveTab('more');
+        break;
+      default:
+        setActiveTab('');
+        break;
+    }
+  }, [location.pathname]);
+
+  const handleTabClick = (path) => {
+    // 페이지 이동만 수행
+    navigate(path);
+  };
+
+  return (
+    <StyledMainFooter>
+      <div className="tapbar">
+        <button onClick={() => handleTabClick('/home')}>
+          <img src={activeTab === 'home' ? HomeIconFill : HomeIcon} alt="홈" />
+          <div>홈</div>
+        </button>
+        <button onClick={() => handleTabClick('/chattinglist')}>
+          <img
+            src={activeTab === 'chat' ? ChatIconFill : ChatIcon}
+            alt="채팅"
+          />
+          <div>채팅</div>
+        </button>
+        <button onClick={() => handleTabClick('/postupload')}>
+          <img src={EditIcon} alt="게시물 작성" />
+          <div>게시물 작성</div>
+        </button>
+        <button onClick={() => handleTabClick('/myprofile')}>
+          <img
+            src={activeTab === 'profile' ? ProfileIconFill : ProfileIcon}
+            alt="프로필"
+          />
+          <div>프로필</div>
+        </button>
+        <button onClick={() => handleTabClick('/pagemore')}>
+          <img
+            src={activeTab === 'more' ? MoreIconFill : MoreIcon}
+            alt="더보기"
+          />
+          <div>더보기</div>
+        </button>
+      </div>
+    </StyledMainFooter>
+  );
+}
 
 const StyledMainFooter = styled.footer`
   & .tapbar {
@@ -32,53 +106,3 @@ const StyledMainFooter = styled.footer`
     margin-top: 4px;
   }
 `;
-
-export default function Footer() {
-  const navigate = useNavigate();
-
-  const handleHomeClick = () => {
-    navigate('/home');
-  };
-
-  const handleChattingClick = () => {
-    navigate('/chattinglist');
-  };
-
-  const handleUploadClick = () => {
-    navigate('/postupload');
-  };
-
-  const handleProfileClick = () => {
-    navigate('/myprofile');
-  };
-
-  const handleMoreClick = () => {
-    navigate('/pagemore');
-  };
-  return (
-    <StyledMainFooter>
-      <div className="tapbar">
-        <button onClick={handleHomeClick}>
-          <img src={HomeIcon} alt="홈" />
-          <div>홈</div>
-        </button>
-        <button onClick={handleChattingClick}>
-          <img src={ChatIcon} alt="채팅" />
-          <div>채팅</div>
-        </button>
-        <button onClick={handleUploadClick}>
-          <img src={editIcon} alt="게시물 작성" />
-          <div>게시물 작성</div>
-        </button>
-        <button onClick={handleProfileClick}>
-          <img src={profileIcon} alt="프로필" />
-          <div>프로필</div>
-        </button>
-        <button onClick={handleMoreClick}>
-          <img src={moreIcon} alt="더보기" />
-          <div>더보기</div>
-        </button>
-      </div>
-    </StyledMainFooter>
-  );
-}
