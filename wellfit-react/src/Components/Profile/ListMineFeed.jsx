@@ -106,10 +106,19 @@ const StyledOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export default function ListFeed({}) {
+export default function ListMineFeed({ product, setFeedImages }) {
+  useEffect(() => {
+    if (product) {
+      const images = product
+        .filter((feed) => feed.image)
+        .map((feed) => SERVER_IMG_UPLOAD_URL + feed.image);
+      setFeedImages(images);
+    }
+  }, [product, setFeedImages]);
   const [isModal, setIsModal] = useState(false);
   const [myFeed, setMyFeed] = useState([]);
   const navigate = useNavigate();
+  const SERVER_IMG_UPLOAD_URL = 'https://api.mandarin.weniv.co.kr/';
 
   const handleChattingClick = (accountname, postId) => {
     return () => {
@@ -162,7 +171,10 @@ export default function ListFeed({}) {
                   {post.content ? post.content : ''}
                 </span>
                 {post.image && (
-                  <img src={post.image ? post.image : ''} alt="피드 사진" />
+                  <img
+                    src={post.image ? SERVER_IMG_UPLOAD_URL + post.image : ''}
+                    alt="피드 사진"
+                  />
                 )}
 
                 <div className="writting-btn-wrapper">

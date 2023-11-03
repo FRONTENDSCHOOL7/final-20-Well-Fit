@@ -28,27 +28,12 @@ const StyledAlbumFeed = styled.section`
   }
 `;
 
-export default function AlbumFeed() {
+export default function AlbumFeed({ feedImages }) {
   return (
     <StyledAlbumFeed>
-      <img src={sample} alt="피드이미지" />
-      <span>
-        <img src={sample} alt="피드이미지" />
-        <img className="many-img" src={ImgMany} alt="복수 표시" />
-      </span>
-      <img src={sample} alt="피드이미지" />
-      <img src={sample} alt="피드이미지" />
-      <img src={sample} alt="피드이미지" />
-      <span>
-        <img src={sample} alt="피드이미지" />
-        <img className="many-img" src={ImgMany} alt="복수 표시" />
-      </span>
-      <img src={sample} alt="피드이미지" />
-      <img src={sample} alt="피드이미지" />
-      <span>
-        <img src={sample} alt="피드이미지" />
-        <img className="many-img" src={ImgMany} alt="복수 표시" />
-      </span>
+      {feedImages.map((image, index) => (
+        <img key={index} src={image} alt={`피드 이미지 ${index + 1}`} />
+      ))}
     </StyledAlbumFeed>
   );
 }

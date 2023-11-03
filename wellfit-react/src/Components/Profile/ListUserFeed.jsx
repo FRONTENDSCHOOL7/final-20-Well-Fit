@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ImgHeart from '../../images/icon-heart.svg';
 import ImgMessage from '../../images/icon-message-circle.svg';
-import ImgBasicProfileSmall from '../../images/basic-profile-small.svg';
 import ImgMore from '../../images/s-icon-more-vertical.svg';
 import ModalListPost from '../common/Modal/ModalListPost';
 import { useNavigate } from 'react-router-dom';
@@ -108,6 +107,7 @@ const StyledOverlay = styled.div`
 export default function ListFeed({ userFeed }) {
   const [isModal, setIsModal] = useState(false);
   const navigate = useNavigate();
+  const SERVER_IMG_UPLOAD_URL = 'https://api.mandarin.weniv.co.kr/';
 
   const handleChattingClick = () => {
     navigate('/home/post/mine');
@@ -125,7 +125,10 @@ export default function ListFeed({ userFeed }) {
             <div key={index}>
               <span className="total-wrapper">
                 <article className="profile-writter">
-                  <img src={ImgBasicProfileSmall} alt="프로필" />
+                  <img
+                    src={post.author.image ? post.author.image : ''}
+                    alt="프로필"
+                  />
                   <span className="profile-info-wrapper">
                     <p className="profile-info-name">
                       {post.author ? post.author.username : ''}
@@ -145,7 +148,10 @@ export default function ListFeed({ userFeed }) {
                 <span className="writting-contents">
                   {post.content ? post.content : ''}
                 </span>
-                <img src={post.img ? post.img : ''} alt="피드 사진" />
+                <img
+                  src={post.image ? SERVER_IMG_UPLOAD_URL + post.image : ''}
+                  alt="피드 사진"
+                />
 
                 <div className="writting-btn-wrapper">
                   <span>
