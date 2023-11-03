@@ -16,19 +16,17 @@ export default function PostContent({ modalHandler, currentPostDetail }) {
   const params = useParams();
   const [commentList, setCommentList] = useState(null);
   const [myProfile, setMyProfile] = useState(null);
+  const [myPostDetail, setMyPostDetail] = useState(null);
 
   useEffect(() => {
-    const getCommentList = async () => {
+    const fetchData = async () => {
       const comments = await getPostCommentList(params.postid);
       setCommentList(comments.comments);
-    };
-    getCommentList();
-
-    const getMyProfile = async () => {
       const profile = await getMyInfo();
       setMyProfile(profile);
+      setMyPostDetail(currentPostDetail);
     };
-    getMyProfile();
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -40,6 +38,11 @@ export default function PostContent({ modalHandler, currentPostDetail }) {
     console.log('나의 프로필 정보');
     console.log(myProfile);
   }, [myProfile]);
+
+  useEffect(() => {
+    console.log('포스트 디테일');
+    console.log(currentPostDetail);
+  }, [myPostDetail]);
 
   return (
     <main>

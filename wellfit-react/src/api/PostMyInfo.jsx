@@ -2,14 +2,12 @@ import { tokenInstance } from './instance';
 
 // 내 프로필 정보 받아오기
 const MY_INFO_URL = 'user/myinfo';
-console.log(MY_INFO_URL);
 
 export const getMyInfo = async () => {
   try {
     const response = await tokenInstance.get(MY_INFO_URL, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
-    console.log(response);
     if (response.status === 404) {
       throw new Error('404 에러');
     }
