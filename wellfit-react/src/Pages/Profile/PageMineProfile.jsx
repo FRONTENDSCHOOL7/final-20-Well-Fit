@@ -29,6 +29,7 @@ export default function PageMineProfile() {
   const [isModal, setIsModal] = useState(false);
   const [myInfo, setMyInfo] = useState({});
   const [myProduct, setMyProduct] = useState({});
+  const [feedImages, setFeedImages] = useState([]); // 앨범형으로 넘길 이미지 상태 관리
 
   const myProfileData = async () => {
     try {
@@ -76,6 +77,7 @@ export default function PageMineProfile() {
     setIsList(true);
   };
 
+  console.log(myProduct.product);
   return (
     <>
       <StyledMainHeader>
@@ -90,7 +92,14 @@ export default function PageMineProfile() {
         onListClick={handleListClick}
         onAlbumClick={handleAlbumClick}
       />
-      {isList ? <AlbumFeed /> : <ListMineFeed product={myProduct.product} />}
+      {isList ? (
+        <AlbumFeed feedImages={feedImages} />
+      ) : (
+        <ListMineFeed
+          product={myProduct.product}
+          setFeedImages={setFeedImages}
+        />
+      )}
       {isModal && (
         <>
           <StyledOverlay onClick={handleModalClick} />
