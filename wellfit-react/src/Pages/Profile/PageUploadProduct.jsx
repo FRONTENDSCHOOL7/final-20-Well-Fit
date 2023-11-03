@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import imageCompression from 'browser-image-compression';
 import ProfileHeader from '../../Components/common/Header/ProfileHeader';
 import Input from '../../Components/Input/Input';
 import AddProduct from '../../images/product-img.svg';
@@ -7,10 +8,10 @@ import UploadImage from '../../images/img-button.svg';
 import { postAddProduct } from '../../api/PostAddProduct';
 import { postUploadImage } from '../../api/PostUploadImage';
 import { useNavigate } from 'react-router-dom';
+import HomeNonFeed from '../../Components/Home/HomeNonFeed';
 
 export default function PageUploadProduct() {
   const [image, setImage] = useState('');
-  const [previewImage, setPreviewImage] = useState(null);
   const [field, setField] = useState('');
   const [price, setPrice] = useState('');
   const [url, setUrl] = useState('');
@@ -18,36 +19,36 @@ export default function PageUploadProduct() {
   const [fieldErrorMsg, setFieldErrorMsg] = useState('');
   const [priceErrorMsg, setPriceErrorMsg] = useState('');
   const [urlErrorMsg, setUrlErrorMsg] = useState('');
-  const [isButtonActive, setIsButtonActive] = useState(false);
   const navigate = useNavigate();
+  const imgInputRef = useRef();
+  const URL = 'https://api.mandarin.weniv.co.kr/';
+  const formData = new FormData();
+  const blobToFile = (blob, filename) => {
+    const file = new File([blob], filename);
+    return file;
+  };
 
   // 이미지 업로드
   const handleInputImage = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      // 이미지 미리보기 처리
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        // 미리보기 이미지를 상태로 설정
-        setPreviewImage(event.target.result);
-      };
-      reader.readAsDataURL(file);
-
-      // 이미지 업로드 처리
-      const formData = new FormData();
-      formData.append('image', file);
-      try {
-        const response = await postUploadImage(formData);
-        setImage(response.newFileName);
-        setImageErrorMsg('');
-      } catch (error) {
-        console.error('이미지 업로드에 실패했습니다.');
-        setImageErrorMsg('*이미지 업로드에 실패했습니다.');
-      }
-    } else {
-      setPreviewImage(null); // 미리보기 이미지 상태를 null로 설정
-      setImage('');
+    if (!file) {
       setImageErrorMsg('*이미지를 업로드해 주세요.');
+      return;
+    }
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 322,
+      useWebWorker: true, // 웹 워커 사용 여부
+    };
+    try {
+      const compressedImg = await imageCompression(file, options);
+      const compressedFile = blobToFile(compressedImg, file.name);
+      formData.append('image', compressedFile);
+      const imgData = await postUploadImage(formData);
+      setImage(URL + imgData.filename);
+    } catch (error) {
+      console.log(error);
+      setImageErrorMsg('*이미지 업로드에 실패했습니다.');
     }
   };
 
@@ -133,15 +134,15 @@ export default function PageUploadProduct() {
   };
 
   // 버튼 활성화
-  useEffect(() => {
-    setIsButtonActive(image && field && price && url);
-  }, [image, field, price, url]);
+  const handleActivateButton = () => {
+    return image && field && price && url;
+  };
 
   return (
     <>
       <ProfileHeader
         text="저장"
-        disabled={!isButtonActive}
+        disabled={!handleActivateButton()}
         onClick={handleUploadProduct}
       />
       <StyledProfileWrap>
@@ -152,7 +153,7 @@ export default function PageUploadProduct() {
               <ImgLabel htmlFor="upload-img">
                 <ImgTxt>이미지 등록</ImgTxt>
                 <Image
-                  src={previewImage ? previewImage : AddProduct}
+                  src={image ? image : AddProduct}
                   alt="기본 상품 이미지"
                 />
               </ImgLabel>
@@ -160,6 +161,7 @@ export default function PageUploadProduct() {
                 id="upload-img"
                 type="file"
                 accept="image/png, image/jpg, image/jpeg"
+                ref={imgInputRef}
                 onChange={handleInputImage}
               />
             </ImgContainer>
@@ -246,6 +248,8 @@ const ImgTxt = styled.p`
 
 const Image = styled.img`
   border-radius: 10px;
+  width: 322px;
+  height: 204px;
 `;
 
 const ImgInput = styled.input`

@@ -345,7 +345,11 @@ const ImgLabel = styled.label`
   }
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+`;
 
 const ImgInput = styled.input`
   position: absolute;
