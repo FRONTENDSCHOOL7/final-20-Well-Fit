@@ -181,6 +181,15 @@ export default function ChatRoomList() {
                 </div>
               </div>
             </li>
+            {/* 채팅 기능 */}
+            {/* <li>
+              <div className="div-sending">
+                <div className="div-sendingChat">
+                  <span className="span-time">12:43</span>
+                  <span className="span-sendingChat">보낸 메시지</span>
+                </div>
+              </div>
+            </li> */}
           </ul>
           <div className="div-space"></div>
         </div>
