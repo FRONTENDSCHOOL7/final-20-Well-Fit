@@ -3,20 +3,20 @@ import styled, { keyframes } from 'styled-components';
 import ModalLogout from './ModalLogout';
 
 const fadeInUp = keyframes`
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+from {
+  opacity: 0;
+  visibility: hidden;
+}
+to {
+  opacity: 1;
+}
 `;
 
 const StyledModalBG = styled.div`
   position: fixed;
-  bottom: 0;
+  top: 706px;
   z-index: 100;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 0 9999px;
   margin: 0 auto;
   width: 390px;
   height: 138px;
