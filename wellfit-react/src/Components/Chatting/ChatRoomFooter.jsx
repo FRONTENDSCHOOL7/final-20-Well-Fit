@@ -34,6 +34,7 @@ const StyledChatRoomFooter = styled.div`
     padding: auto;
     width: 250px;
     margin-right: 20px;
+    resize: none;
   }
 
   & .textarea-message::placeholder {
@@ -48,6 +49,7 @@ const StyledChatRoomFooter = styled.div`
     color: #c4c4c4;
     width: 48px;
     height: 32px;
+    margin-right: 12px;
     border-radius: 8px;
   }
 

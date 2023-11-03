@@ -8,10 +8,13 @@ import moreIcon from '../../../images/icon-more-square.svg';
 import { useNavigate } from 'react-router-dom';
 
 const StyledMainFooter = styled.footer`
+  position: fixed;
+  top: 783px;
+
   & .tapbar {
     display: flex;
     justify-content: space-around;
-    position: absolute;
+
     width: 390px;
     height: 60px;
     border-top: 1px solid #dbdbdb;

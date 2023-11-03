@@ -14,7 +14,7 @@ const StyledHomePage = styled.div`
   background-color: #fff;
 
   /* 게시물 많아지면 스크롤 생성 */
-  overflow: hidden;
+  overflow: auto;
 `;
 
 export default function PageHome() {

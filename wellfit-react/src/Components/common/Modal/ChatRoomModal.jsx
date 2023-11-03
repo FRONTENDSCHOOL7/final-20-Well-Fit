@@ -14,9 +14,7 @@ const fadeinModal = keyframes`
 const StyledChatRoomModal = styled.div`
   & .modal-delete {
     position: absolute;
-
     top: 736px;
-    z-index: 1;
     animation: ${fadeinModal} 0.5s ease forwards;
     background-color: #fff;
     width: 390px;
