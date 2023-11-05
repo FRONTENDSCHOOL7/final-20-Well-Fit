@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 import moreVerticalIcon from '../../images/s-icon-more-vertical.svg';
 import profileBasicImage from '../../images/basic-profile-small.svg';
+import { useNavigate } from 'react-router-dom';
 
 const StyledPostCommentItem = styled.li`
   /* section-comment 시작 */
@@ -49,6 +50,20 @@ const StyledPostCommentItem = styled.li`
 
 export default function PostCommentItem({ modalHandler, comment }) {
   const SERVER_STANDARD_IMG_URL = 'http://146.56.183.55:5050/Ellipse.png';
+  const navigate = useNavigate();
+
+  const handleMovingProfile = (accountname) => {
+    return () => {
+      const loggedInUser = JSON.parse(
+        localStorage.getItem('userInfo')
+      ).accountname;
+      if (accountname === loggedInUser) {
+        navigate(`/myprofile`);
+      } else {
+        navigate(`/userProfile/${accountname}`);
+      }
+    };
+  };
 
   const calculateTimeAgo = (date) => {
     const commentTime = new Date(date);
@@ -91,6 +106,7 @@ export default function PostCommentItem({ modalHandler, comment }) {
           src={checkAuthorImg(comment.author.image)}
           alt="프로필 사진"
           className="img-comment-profile"
+          onClick={handleMovingProfile(comment.author.accountname)}
         />
         <div className="comment-content-wrapper">
           <div className="comment-info">

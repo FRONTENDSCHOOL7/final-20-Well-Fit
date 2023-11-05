@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled, keyframes } from 'styled-components';
-
+import { useNavigate } from 'react-router-dom';
 const modalAnimation = keyframes`
   from {
     opacity: 0;
@@ -42,13 +42,22 @@ const StyledChatRoomModal = styled.div`
 `;
 
 export default function ChatRoomModal() {
+  const navigate = useNavigate();
+
+  const handleGooutChat = () => {
+    navigate(-1);
+  };
   return (
     <>
       <StyledChatRoomModal>
         <div className="modal-delete">
           <div className="modal-line"></div>
           <div className="wrapper-btn">
-            <button type="button" className="btn-exit">
+            <button
+              type="button"
+              className="btn-exit"
+              onClick={handleGooutChat}
+            >
               채팅방 나가기
             </button>
           </div>

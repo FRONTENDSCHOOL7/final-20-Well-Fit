@@ -6,6 +6,7 @@ import profileImage from '../../images/basic-profile-small.svg';
 import heartEmpty from '../../images/icon-heart.svg';
 import commentCircle from '../../images/icon-message-circle.svg';
 import moreIcon from '../../images/s-icon-more-vertical.svg';
+import { useNavigate } from 'react-router-dom';
 
 const StyledPostFeed = styled.article`
   display: flex;
@@ -123,7 +124,20 @@ export default function PostFeed({ currentPostDetail }) {
   const [heartCount, setHeartCount] = useState(0);
   const SERVER_STANDARD_IMG_URL = 'http://146.56.183.55:5050/Ellipse.png';
   const SERVER_IMG_UPLOAD_URL = 'https://api.mandarin.weniv.co.kr/';
+  const navigate = useNavigate();
 
+  const handleMovingProfile = (accountname) => {
+    return () => {
+      const loggedInUser = JSON.parse(
+        localStorage.getItem('userInfo')
+      ).accountname;
+      if (accountname === loggedInUser) {
+        navigate(`/myprofile`);
+      } else {
+        navigate(`/userProfile/${accountname}`);
+      }
+    };
+  };
   const onClickHeartHandler = () => {
     setIsHeartClick((prevState) => !prevState);
   };
@@ -157,7 +171,11 @@ export default function PostFeed({ currentPostDetail }) {
     <StyledPostFeed>
       <h2 className="a11y-hidden">게시물 자세히보기</h2>
       <div className="img-profile">
-        <img src={profileImage} alt="프로필 사진" />
+        <img
+          src={profileImage}
+          alt="프로필 사진"
+          onClick={handleMovingProfile(currentPostDetail.author.accountname)}
+        />
       </div>
       <section className="feed">
         <div className="feed-header">

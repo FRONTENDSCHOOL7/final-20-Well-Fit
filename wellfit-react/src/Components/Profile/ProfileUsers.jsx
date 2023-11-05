@@ -95,7 +95,7 @@ const StyledProfileUsers = styled.section`
     width: 120px;
     height: 34px;
     border-radius: 30px;
-    background: #004AADc;
+    background: #004aad;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 
     color: #fff;
@@ -119,6 +119,17 @@ export default function ProfileUsers({ userInfo }) {
 
   const handleChattingClick = (accountname) => {
     navigate(`/chattinglist/${accountname}/ongoing`);
+  };
+
+  const handleShare = () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        alert('URL이 클립보드에 복사되었습니다.');
+      })
+      .catch((err) => {
+        alert('URL 복사에 실패했습니다: ', err);
+      });
   };
 
   return (
@@ -180,7 +191,7 @@ export default function ProfileUsers({ userInfo }) {
         >
           {isFollowing ? '팔로우' : '언팔로우'}
         </button>
-        <button type="button" className="btn-share">
+        <button type="button" className="btn-share" onClick={handleShare}>
           <img src={ImgShare} alt="공유 하기" />
         </button>
       </div>
