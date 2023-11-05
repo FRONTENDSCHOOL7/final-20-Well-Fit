@@ -92,6 +92,19 @@ export default function HomeFeed({ post }) {
   const [heartCount, setHeartCount] = useState(0);
   const navigate = useNavigate();
 
+  const handleMovingProfile = (accountname) => {
+    return () => {
+      const loggedInUser = JSON.parse(
+        localStorage.getItem('userInfo')
+      ).accountname;
+      if (accountname === loggedInUser) {
+        navigate(`/myprofile`);
+      } else {
+        navigate(`/userProfile/${accountname}`);
+      }
+    };
+  };
+
   const gopost = () => {
     navigate(`./post/${post.author.accountname}/${post.id}`);
   };
@@ -145,7 +158,11 @@ export default function HomeFeed({ post }) {
     <StyledHomeFeed>
       <h3 className="a11y-hidden">펄로우한 계정 게시물</h3>
       <div className="img-profile">
-        <img src={checkAuthorImg(post.author.image)} alt="프로필 사진" />
+        <img
+          src={checkAuthorImg(post.author.image)}
+          alt="프로필 사진"
+          onClick={handleMovingProfile(post.author.accountname)}
+        />
       </div>
       <section className="feed">
         <div className="feed-header">
