@@ -19,6 +19,11 @@ const StyledProfileMine = styled.section`
     align-items: center;
     gap: 40px;
   }
+  & .profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+  }
   & .followers,
   .followings {
     text-align: center;
@@ -106,6 +111,7 @@ export default function ProfileMine({ myInfo }) {
           <p className="followers content">followers</p>
         </Link>
         <img
+          className="profile-img"
           src={
             myInfo.image === 'http://146.56.183.55:5050/Ellipse.png'
               ? ImgBasicProfile
