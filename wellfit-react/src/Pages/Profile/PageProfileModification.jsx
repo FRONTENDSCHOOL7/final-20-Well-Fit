@@ -20,7 +20,6 @@ export default function PageProfileModification() {
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
   const [image, setImage] = useState('');
-  const [previewImage, setPreviewImage] = useState(null);
   const [tall, setTall] = useState(0);
   const [weight, setWeight] = useState(0);
   const [userNameErrorMsg, setUserNameErrorMsg] = useState('');
@@ -38,8 +37,8 @@ export default function PageProfileModification() {
     const fetchMyInfo = async () => {
       const profileData = await getMyInfo();
       console.log('ok', profileData); // 데이터 넘겨받아올때는 늘 잘 넘어왔나 확인해주기!
-      setUserInfo((prev) => ({
-        ...prev,
+      setUserInfo((prevUserInfo) => ({
+        ...prevUserInfo,
         username: profileData.user.username,
         accountname: profileData.user.accountname,
         intro: profileData.user.intro,
@@ -51,25 +50,14 @@ export default function PageProfileModification() {
 
   // 이미지 업로드
   const handleInputImage = async (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // 이미지 미리보기 처리
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        // 미리보기 이미지를 상태로 설정
-        setPreviewImage(event.target.result);
-      };
-      reader.readAsDataURL(file);
-
-      // 이미지 업로드 처리
-      const formData = new FormData();
+    try {
+      const file = e.target.files[0];
       formData.append('image', file);
-      try {
-        const response = await postUploadImage(formData);
-        setImage(response.newFileName);
-      } catch (error) {
-        console.error('이미지 업로드에 실패했습니다.');
-      }
+      const imgData = await postUploadImage(formData);
+      setImage(URL + '/' + imgData.filename);
+    } catch (error) {
+      // 오류가 발생했을 때 실행할 코드
+      console.error('이미지 업로드 중 오류가 발생했습니다.');
     }
   };
 
@@ -188,14 +176,16 @@ export default function PageProfileModification() {
         intro,
         image,
       });
-      setUserInfo({
-        ...userInfo,
+      setUserInfo((prevUserInfo) => ({
+        ...prevUserInfo,
         username: userName,
         accountname: accountId,
         intro: intro,
         image: image,
-      });
+      }));
+
       navigate('/myprofile');
+      console.log('new', userName, accountId);
     } else {
       console.error('프로필 설정 중 오류가 발생했습니다.');
     }
@@ -227,7 +217,7 @@ export default function PageProfileModification() {
             <ImgContainer>
               <ImgLabel htmlFor="upload-img">
                 <Image
-                  src={previewImage ? previewImage : BasicProfileImage}
+                  src={image ? image : BasicProfileImage}
                   alt="기본 프로필"
                 />
               </ImgLabel>
