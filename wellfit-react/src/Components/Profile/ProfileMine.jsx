@@ -126,9 +126,7 @@ export default function ProfileMine({ myInfo }) {
         <span className="content-accountName">
           @{myInfo && myInfo.accountname}
         </span>
-        <span className="content-explain">
-          엘핏 스포츠 강습권, 전국 거래, 저렴한 강습권
-        </span>
+        <span className="content-explain">{myInfo ? myInfo.intro : ''}</span>
       </div>
 
       {/* 프로필 수정, 상품 등록 부분 */}

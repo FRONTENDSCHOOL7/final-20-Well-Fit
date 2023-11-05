@@ -38,6 +38,7 @@ export default function PageUsersProfile() {
   const [userInfo, setUserInfo] = useState({});
   const [userFeed, setUserFeed] = useState([]);
   const [productList, setProductList] = useState({});
+  const [feedImages, setFeedImages] = useState([]); // 앨범형으로 넘길 이미지 상태 관리
   const { accountname } = useParams();
 
   const userProfileData = async () => {
@@ -48,7 +49,14 @@ export default function PageUsersProfile() {
       console.error(error);
     }
   };
-
+  const productListData = async () => {
+    try {
+      const productData = await getProductList(accountname);
+      setProductList(productData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const userFeedData = async () => {
     try {
       const userFeedList = await getUserPost(accountname);
@@ -58,21 +66,11 @@ export default function PageUsersProfile() {
     }
   };
 
-  const productListData = async () => {
-    try {
-      const productData = await getProductList(accountname);
-      setProductList(productData.product);
-    } catch (error) {
-      console.error(error);
-    }
-
-    console.log(productList);
-  };
-
   useEffect(() => {
     userProfileData();
     userFeedData();
     productListData();
+    console.log(userInfo);
   }, [accountname]);
 
   const handleModalClick = () => {
@@ -92,13 +90,19 @@ export default function PageUsersProfile() {
         <MainHeader isModal={isModal} onModalClick={handleModalClick} />
       </StyledMainHeader>
       <ProfileUsers userInfo={userInfo} />
-      <GoodListUsers productList={productList} />
+      {productList.data && productList !== 0 ? (
+        <GoodListUsers productList={productList.product} />
+      ) : null}
       <ListAlbumSwitch
         isList={isList}
         onListClick={handleListClick}
         onAlbumClick={handleAlbumClick}
       />
-      {isList ? <AlbumFeed /> : <ListUserFeed userFeed={userFeed} />}
+      {isList ? (
+        <AlbumFeed feedImages={feedImages} />
+      ) : (
+        <ListUserFeed userFeed={userFeed} setFeedImages={setFeedImages} />
+      )}
       {isModal && (
         <>
           <StyledOverlay onClick={handleModalClick} />

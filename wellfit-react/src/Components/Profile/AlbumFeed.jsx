@@ -18,13 +18,9 @@ const StyledAlbumFeed = styled.section`
   padding-top: 16px;
 
   background-color: #fff;
-
-  & > span {
-    position: relative;
-  }
-  & .many-img {
-    position: absolute;
-    right: 0%;
+  & .img-album {
+    height: 114px;
+    width: 114px;
   }
 `;
 
@@ -32,7 +28,12 @@ export default function AlbumFeed({ feedImages }) {
   return (
     <StyledAlbumFeed>
       {feedImages.map((image, index) => (
-        <img key={index} src={image} alt={`피드 이미지 ${index + 1}`} />
+        <img
+          key={index}
+          src={image}
+          alt={`피드 이미지 ${index + 1}`}
+          className="img-album"
+        />
       ))}
     </StyledAlbumFeed>
   );
