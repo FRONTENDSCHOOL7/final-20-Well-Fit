@@ -11,6 +11,12 @@ const StyledFooter = styled.footer`
   bottom: 0;
   width: 100%;
   border-top: 1px solid #dbdbdb;
+
+  & .img-footer {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
   & .form-comment-wrapper {
     padding: 12.5px 16px 12px 16px;
     display: flex;
@@ -69,7 +75,11 @@ export default function PostFooter({ myProfile, setCommentList }) {
   return (
     <StyledFooter>
       <form className="form-comment-wrapper" action="#" onSubmit={onSubmit}>
-        <img src={checkAuthorImg(myProfile.user.image)} alt="프로필 사진" />
+        <img
+          src={checkAuthorImg(myProfile.user.image)}
+          alt="프로필 사진"
+          className="img-footer"
+        />
         <div className="input-comment-wrapper">
           <label htmlFor="input-comment" className="a11y-hidden">
             댓글 입력
