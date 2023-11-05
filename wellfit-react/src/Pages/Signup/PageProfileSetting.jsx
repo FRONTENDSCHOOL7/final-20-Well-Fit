@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import imageCompression from 'browser-image-compression';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
 import BasicProfileImage from '../../images/basic-profile.svg';
@@ -7,7 +8,7 @@ import UploadImage from '../../images/upload-file.svg';
 import { postAccountnameDuplicate, postSignup } from '../../api/PostSignup';
 import { postUploadImage } from '../../api/PostUploadImage';
 import { UserContext } from '../../Contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function PageProfileSetting() {
   const [userEmail, setUserEmail] = useState('');
@@ -16,9 +17,8 @@ export default function PageProfileSetting() {
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
   const [image, setImage] = useState('');
-  const [previewImage, setPreviewImage] = useState(null);
-  const [tall, setTall] = useState(0);
-  const [weight, setWeight] = useState(0);
+  const [tall, setTall] = useState('');
+  const [weight, setWeight] = useState('');
   const [userNameErrorMsg, setUserNameErrorMsg] = useState('');
   const [accountIdErrorMsg, setAccountIdErrorMsg] = useState('');
   const [tallErrorMsg, setTallErrorMsg] = useState('');
@@ -29,28 +29,32 @@ export default function PageProfileSetting() {
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
   const { userInfo, setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
+  const imgInputRef = useRef();
+  const URL = 'https://api.mandarin.weniv.co.kr/';
+  const formData = new FormData();
+  const blobToFile = (blob, filename) => {
+    const file = new File([blob], filename);
+    return file;
+  };
 
   // 이미지 업로드
   const handleInputImage = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      // 이미지 미리보기 처리
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        // 미리보기 이미지를 상태로 설정
-        setPreviewImage(event.target.result);
-      };
-      reader.readAsDataURL(file);
-
-      // 이미지 업로드 처리
-      const formData = new FormData();
-      formData.append('image', file);
-      try {
-        const response = await postUploadImage(formData);
-        setImage(response.newFileName);
-      } catch (error) {
-        console.error('이미지 업로드에 실패했습니다.');
-      }
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 220,
+      useWebWorker: true, // 웹 워커 사용 여부
+    };
+    try {
+      const compressedImg = await imageCompression(file, options);
+      const compressedFile = blobToFile(compressedImg, file.name);
+      formData.append('image', compressedFile);
+      const imgData = await postUploadImage(formData);
+      console.log(imgData);
+      setImage(URL + imgData.filename);
+      console.log(image);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -76,7 +80,7 @@ export default function PageProfileSetting() {
     }
   };
 
-  // accountId 유효성 검사 - 이미 존재하는 계정은 구현 못함. 추후 할 예정
+  // accountId 유효성 검사
   const handleInputAccountId = async (e) => {
     const accountId = e.target.value;
     const accountIdRegEx = /^[a-zA-Z0-9._]+$/;
@@ -180,7 +184,7 @@ export default function PageProfileSetting() {
           intro: intro,
           image: image,
         });
-        navigate('/mainlogin/emaillogin');
+        // navigate('/mainlogin/emaillogin');
       } catch (error) {
         console.error('회원가입에 실패했습니다.');
       }
@@ -210,7 +214,7 @@ export default function PageProfileSetting() {
           <ImgContainer>
             <ImgLabel htmlFor="upload-img">
               <Image
-                src={previewImage ? previewImage : BasicProfileImage}
+                src={image ? image : BasicProfileImage}
                 alt="프로필 이미지"
               />
             </ImgLabel>
@@ -218,6 +222,7 @@ export default function PageProfileSetting() {
               id="upload-img"
               type="file"
               accept="image/png, image/jpg, image/jpeg"
+              ref={imgInputRef}
               onChange={handleInputImage}
             />
           </ImgContainer>
@@ -344,7 +349,11 @@ const ImgLabel = styled.label`
   }
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+`;
 
 const ImgInput = styled.input`
   position: absolute;

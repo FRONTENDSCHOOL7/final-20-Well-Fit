@@ -2,12 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { postEmailDuplicate } from '../../api/PostSignup';
 import { UserContext } from '../../Contexts/UserContext';
 
 export default function PageSignup() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const email = location.state.email;
+  const password = location.state.password;
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [emailErrorMsg, setEmailErrorMsg] = useState('');
@@ -78,12 +81,12 @@ export default function PageSignup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     if (emailValid && passwordValid) {
-      setUserInfo((prevState) => ({
-        ...prevState,
-        email: userEmail,
-        password: userPassword,
-      }));
-      navigate('/mainlogin/signup/profilesetting');
+      navigate('/join/setprofile', {
+        state: {
+          email: email,
+          password: password,
+        },
+      });
     } else {
       console.error('회원가입 중 오류가 발생했습니다.');
     }
