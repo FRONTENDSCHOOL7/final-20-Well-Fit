@@ -5,7 +5,6 @@ import ImgMessage from '../../images/icon-message-circle.svg';
 import ImgBasicProfileSmall from '../../images/basic-profile-small.svg';
 import ImgMore from '../../images/s-icon-more-vertical.svg';
 import ModalListPost from '../common/Modal/ModalListPost';
-import { getMyFeedList } from '../../api/GETMineFeedList';
 import { useNavigate } from 'react-router-dom';
 
 const StyledListFeed = styled.section`
@@ -106,17 +105,16 @@ const StyledOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export default function ListMineFeed({ product, setFeedImages }) {
+export default function ListMineFeed({ myFeed, setFeedImages }) {
   useEffect(() => {
-    if (product) {
-      const images = product
+    if (myFeed) {
+      const images = myFeed
         .filter((feed) => feed.image)
         .map((feed) => SERVER_IMG_UPLOAD_URL + feed.image);
       setFeedImages(images);
     }
-  }, [product, setFeedImages]);
+  }, [myFeed]);
   const [isModal, setIsModal] = useState(false);
-  const [myFeed, setMyFeed] = useState([]);
   const navigate = useNavigate();
   const SERVER_IMG_UPLOAD_URL = 'https://api.mandarin.weniv.co.kr/';
 
@@ -129,19 +127,6 @@ export default function ListMineFeed({ product, setFeedImages }) {
     setIsModal(!isModal);
   };
 
-  const myFeedData = async () => {
-    try {
-      const myData = await getMyFeedList();
-      setMyFeed(myData.post);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    myFeedData();
-  }, []);
-
   return (
     <>
       <StyledListFeed>
@@ -150,7 +135,15 @@ export default function ListMineFeed({ product, setFeedImages }) {
             <div key={index}>
               <span className="total-wrapper">
                 <article className="profile-writter">
-                  <img src={ImgBasicProfileSmall} alt="프로필" />
+                  <img
+                    src={
+                      post.author.image ===
+                      'http://146.56.183.55:5050/Ellipse.png'
+                        ? ImgBasicProfileSmall
+                        : post.author.image
+                    }
+                    alt="프로필"
+                  />
                   <span className="profile-info-wrapper">
                     <p className="profile-info-name">
                       {post.author ? post.author.username : ''}
@@ -207,7 +200,7 @@ export default function ListMineFeed({ product, setFeedImages }) {
                     ? (() => {
                         const date = new Date(post.updatedAt);
                         const year = date.getFullYear();
-                        const month = date.getMonth() + 1; // JavaScript의 월은 0부터 시작합니다.
+                        const month = date.getMonth() + 1;
                         const day = date.getDate();
                         return `${year}년 ${month}월 ${day}일`;
                       })()

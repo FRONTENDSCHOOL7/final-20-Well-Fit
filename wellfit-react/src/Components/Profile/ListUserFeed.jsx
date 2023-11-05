@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ImgHeart from '../../images/icon-heart.svg';
 import ImgMessage from '../../images/icon-message-circle.svg';
+import ImgBasicProfileSmall from '../../images/basic-profile-small.svg';
 import ImgMore from '../../images/s-icon-more-vertical.svg';
 import ModalListPost from '../common/Modal/ModalListPost';
 import { useNavigate } from 'react-router-dom';
@@ -109,8 +110,10 @@ export default function ListFeed({ userFeed }) {
   const navigate = useNavigate();
   const SERVER_IMG_UPLOAD_URL = 'https://api.mandarin.weniv.co.kr/';
 
-  const handleChattingClick = () => {
-    navigate('/home/post/mine');
+  const handleChattingClick = (accountname, postId) => {
+    return () => {
+      navigate(`/home/post/${accountname}/${postId}`);
+    };
   };
 
   const handleModalClick = () => {
@@ -126,7 +129,12 @@ export default function ListFeed({ userFeed }) {
               <span className="total-wrapper">
                 <article className="profile-writter">
                   <img
-                    src={post.author.image ? post.author.image : ''}
+                    src={
+                      post.author.image ===
+                      'http://146.56.183.55:5050/Ellipse.png'
+                        ? ImgBasicProfileSmall
+                        : post.author.image
+                    }
                     alt="프로필"
                   />
                   <span className="profile-info-wrapper">
@@ -166,7 +174,10 @@ export default function ListFeed({ userFeed }) {
                     <button
                       type="submit"
                       className="writting-btn-chatting"
-                      onClick={handleChattingClick}
+                      onClick={handleChattingClick(
+                        post.author.accountname,
+                        post.id
+                      )}
                     >
                       <img src={ImgMessage} alt="댓글 버튼" />
                     </button>
@@ -180,7 +191,7 @@ export default function ListFeed({ userFeed }) {
                     ? (() => {
                         const date = new Date(post.updatedAt);
                         const year = date.getFullYear();
-                        const month = date.getMonth() + 1; // JavaScript의 월은 0부터 시작합니다.
+                        const month = date.getMonth() + 1;
                         const day = date.getDate();
                         return `${year}년 ${month}월 ${day}일`;
                       })()

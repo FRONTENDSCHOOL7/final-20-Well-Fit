@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import item1 from './images/item_1.png';
-import item2 from './images/item_2.png';
-import item3 from './images/item_3.png';
 import ModalListGoodsMine from '../common/Modal/ModalListGoodsMine';
 
 const StyledGoodListMines = styled.article`
@@ -14,12 +11,19 @@ const StyledGoodListMines = styled.article`
   padding-left: 16px;
   margin-top: 6px;
 
+  & .product-img {
+    width: 140px;
+    height: 92px;
+    border-radius: 8px;
+    border: 0.5px solid #dbdbdb;
+    background: #c4c4c4;
+  }
   & .item-list {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* overflow-x: scroll; */
-    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
   }
   & .store-wrapper > p {
     color: #000;
@@ -66,7 +70,11 @@ export default function GoodListMines({ myProduct }) {
           {myProduct &&
             myProduct.map((product, index) => (
               <li className="item" onClick={handleGoodsClick} key={index}>
-                <img src={product.itemImage} alt={`아이템${index + 1}`} />
+                <img
+                  src={product.itemImage}
+                  alt={`아이템${index + 1}`}
+                  className="product-img"
+                />
                 <span className="item-name">{product.itemName}</span>
                 <span className="item-price">{`${product.price}원`}</span>
               </li>

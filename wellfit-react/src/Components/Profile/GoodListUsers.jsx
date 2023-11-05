@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import item1 from './images/item_1.png';
-import item2 from './images/item_2.png';
-import item3 from './images/item_3.png';
 import ModalListGoodsUsers from '../common/Modal/ModalListGoodsUsers';
 
 const StyledGoodList = styled.article`
@@ -14,12 +11,20 @@ const StyledGoodList = styled.article`
   padding-left: 16px;
   margin-top: 6px;
 
+  & .product-img {
+    width: 140px;
+    height: 92px;
+    border-radius: 8px;
+    border: 0.5px solid #dbdbdb;
+    background: #c4c4c4;
+  }
+
   & .item-list {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* overflow-x: scroll; */
-    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
   }
   & .store-wrapper > p {
     color: #000;
@@ -52,6 +57,7 @@ const StyledOverlay = styled.div`
   z-index: 90;
   background-color: rgba(0, 0, 0, 0.5);
 `;
+// productList
 export default function GoodList({ productList }) {
   const [isGoods, setIsGoods] = useState(false);
 
@@ -63,21 +69,18 @@ export default function GoodList({ productList }) {
       <StyledGoodList>
         <p>판매 중인 상품</p>
         <ul className="item-list">
-          <li className="item" onClick={handleGoodsClick}>
-            <img src={item1} alt="아이템1" />
-            <span className="item-name">웰핏 프로틴 감귤</span>
-            <span className="item-price">35,000원</span>
-          </li>
-          <li className="item" onClick={handleGoodsClick}>
-            <img src={item2} alt="아이템2" />
-            <span className="item-name">웰핏 프로틴 한라봉</span>
-            <span className="item-price">45,000원</span>
-          </li>
-          <li className="item" onClick={handleGoodsClick}>
-            <img src={item3} alt="아이템3" />
-            <span className="item-name">감귤 복압 벨트</span>
-            <span className="item-price">25,000원</span>
-          </li>
+          {productList &&
+            productList.map((product, index) => (
+              <li className="item" onClick={handleGoodsClick} key={index}>
+                <img
+                  src={product.itemImage}
+                  alt={`아이템${index + 1}`}
+                  className="product-img"
+                />
+                <span className="item-name">{product.itemName}</span>
+                <span className="item-price">{`${product.price}원`}</span>
+              </li>
+            ))}
         </ul>
       </StyledGoodList>
       {isGoods && (

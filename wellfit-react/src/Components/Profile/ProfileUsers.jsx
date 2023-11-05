@@ -117,8 +117,8 @@ export default function ProfileUsers({ userInfo }) {
   const [isFollowing, setIsFollowing] = useState(true);
   const navigate = useNavigate();
 
-  const handleChattingClick = () => {
-    navigate('/chattinglist/ongoing');
+  const handleChattingClick = (accountname) => {
+    navigate(`/chattinglist/${accountname}/ongoing`);
   };
 
   return (
@@ -131,7 +131,14 @@ export default function ProfileUsers({ userInfo }) {
           </p>
           <p className="followers content">followers</p>
         </span>
-        <img src={ImgBasicProfile} alt="프로필로고" />
+        <img
+          src={
+            userInfo.image === 'http://146.56.183.55:5050/Ellipse.png'
+              ? ImgBasicProfile
+              : userInfo.image
+          }
+          alt="프로필로고"
+        />
         <span className="span-followings">
           <p className="followings count">
             {userInfo ? userInfo.followingCount : ''}
@@ -150,7 +157,7 @@ export default function ProfileUsers({ userInfo }) {
           @{userInfo ? userInfo.accountname : ''}
         </span>
         <span className="content-explain">
-          엘핏 스포츠 강습권, 전국 거래, 저렴한 강습권
+          {userInfo ? userInfo.intro : ''}
         </span>
       </div>
 

@@ -10,6 +10,7 @@ import GoodListMine from '../../Components/Profile/GoodListMine';
 import Footer from '../../Components/common/Footer/Footer';
 import { getMyInfo } from '../../api/PostMyInfo';
 import { getProductList } from '../../api/GETProductList';
+import { getMyFeedList } from '../../api/GETMineFeedList';
 
 const StyledMainHeader = styled.header`
   background-color: #fff;
@@ -28,6 +29,7 @@ export default function PageMineProfile() {
   const [isList, setIsList] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [myInfo, setMyInfo] = useState({});
+  const [myFeed, setMyFeed] = useState([]);
   const [myProduct, setMyProduct] = useState({});
   const [feedImages, setFeedImages] = useState([]); // 앨범형으로 넘길 이미지 상태 관리
 
@@ -54,16 +56,23 @@ export default function PageMineProfile() {
     }
   };
 
+  const myFeedData = async () => {
+    try {
+      const myData = await getMyFeedList();
+      setMyFeed(myData.post);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     myProfileData().then((accountname) => {
       if (accountname) {
         myProductList(accountname);
       }
+      myFeedData();
     });
   }, []);
-
-  console.log(myInfo);
-  console.log(myProduct.product);
 
   const handleModalClick = () => {
     setIsModal(!isModal);
@@ -95,10 +104,7 @@ export default function PageMineProfile() {
       {isList ? (
         <AlbumFeed feedImages={feedImages} />
       ) : (
-        <ListMineFeed
-          product={myProduct.product}
-          setFeedImages={setFeedImages}
-        />
+        <ListMineFeed myFeed={myFeed} setFeedImages={setFeedImages} />
       )}
       {isModal && (
         <>
