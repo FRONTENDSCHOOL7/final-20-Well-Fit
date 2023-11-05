@@ -28,7 +28,7 @@ const StyledHomeNonFeed = styled.main`
   & section .btn-lg-search {
     width: 120px;
     height: 44px;
-    background-color: #515fec;
+    background-color: #004aad;
     border-radius: 44px;
     color: #fff;
   }

@@ -2,28 +2,28 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import ModalDeletePost from './ModalDeletePost';
 
-const fadeInUp = keyframes`
-  0% {
-    transform: translateY(100%);
+const modalAnimation = keyframes`
+  from {
     opacity: 0;
+    visibility: hidden;
   }
-  100% {
-    transform: translateY(0);
+  to {
     opacity: 1;
   }
 `;
 
 const StyledModalListPost = styled.article`
   position: fixed;
-  bottom: 0;
+  top: 706px;
   z-index: 100;
   margin: 0 auto;
   width: 390px;
   height: 138px;
-  background-color: #fff;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  animation: ${fadeInUp} 1s ease forwards;
+  animation: ${modalAnimation} 1s ease forwards;
+
+  background-color: #fff;
 
   & .mark-wrapper {
     position: relative;

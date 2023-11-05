@@ -85,7 +85,7 @@ const StyledProfileUsers = styled.section`
     width: 120px;
     height: 34px;
     border-radius: 30px;
-    background: #515fec;
+    background: #004aad;
 
     color: #fff;
     font-size: 14px;
@@ -95,7 +95,7 @@ const StyledProfileUsers = styled.section`
     width: 120px;
     height: 34px;
     border-radius: 30px;
-    background: #515fec;
+    background: #004AADc;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 
     color: #fff;

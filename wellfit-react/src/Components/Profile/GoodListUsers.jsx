@@ -43,7 +43,7 @@ const StyledGoodList = styled.article`
   }
   & .item-price {
     padding-top: 4px;
-    color: #515fec;
+    color: #004aad;
     font-size: 12px;
     font-weight: 700;
   }

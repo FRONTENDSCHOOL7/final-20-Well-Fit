@@ -47,7 +47,7 @@ const StyledFollowItem = styled.li`
   /* 팔로우 안 되어있으면 파란색 */
   & .btn-follower.active {
     color: #fff;
-    background-color: #515fec;
+    background-color: #004aad;
   }
   /* 팔로우 되어있으면 회색 */
   & .btn-follower.inactive {
