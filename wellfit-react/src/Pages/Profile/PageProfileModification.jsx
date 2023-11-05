@@ -12,7 +12,10 @@ import { postUploadImage } from '../../api/PostUploadImage';
 import { putProfileEdit } from '../../api/PutProfileEdit';
 
 export default function PageProfileModification() {
+  const URL = 'https://api.mandarin.weniv.co.kr';
   const navigate = useNavigate();
+  const fileInputRef = useRef();
+  const formData = new FormData();
   const [userName, setUserName] = useState('');
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
@@ -34,6 +37,7 @@ export default function PageProfileModification() {
   useEffect(() => {
     const fetchMyInfo = async () => {
       const profileData = await getMyInfo();
+      console.log('ok', profileData); // 데이터 넘겨받아올때는 늘 잘 넘어왔나 확인해주기!
       setUserInfo((prev) => ({
         ...prev,
         username: profileData.user.username,
