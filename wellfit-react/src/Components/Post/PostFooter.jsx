@@ -34,7 +34,7 @@ const StyledFooter = styled.footer`
     color: #c4c4c4;
   }
   & .form-comment-wrapper .btn-comment-submit.active {
-    color: #515fec;
+    color: #004aad;
   }
 `;
 
