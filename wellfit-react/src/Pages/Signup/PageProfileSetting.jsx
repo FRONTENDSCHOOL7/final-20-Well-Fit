@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import imageCompression from 'browser-image-compression';
 import Input from '../../Components/Input/Input';
@@ -7,12 +7,13 @@ import BasicProfileImage from '../../images/basic-profile.svg';
 import UploadImage from '../../images/upload-file.svg';
 import { postAccountnameDuplicate, postSignup } from '../../api/PostSignup';
 import { postUploadImage } from '../../api/PostUploadImage';
-import { UserContext } from '../../Contexts/UserContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function PageProfileSetting() {
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const email = location.state.email;
+  const password = location.state.password;
   const [userName, setUserName] = useState('');
   const [accountId, setAccountId] = useState('');
   const [intro, setIntro] = useState('');
@@ -27,8 +28,6 @@ export default function PageProfileSetting() {
   const [accountIdValid, setAccountIdValid] = useState(false);
   const [selectedAge, setSelectedAge] = useState('');
   const [ageErrorMsg, setAgeErrorMsg] = useState('');
-  const { userInfo, setUserInfo } = useContext(UserContext);
-  const navigate = useNavigate();
   const imgInputRef = useRef();
   const URL = 'https://api.mandarin.weniv.co.kr/';
   const formData = new FormData();
@@ -57,6 +56,8 @@ export default function PageProfileSetting() {
       console.log(error);
     }
   };
+
+  console.log('ok', email, password); // 데이터 넘겨받아올때는 늘 잘 넘어왔나 확인해주기!
 
   // 소개
   const handleInputIntro = (e) => {
@@ -170,21 +171,14 @@ export default function PageProfileSetting() {
       try {
         const signupData = await postSignup(
           userName,
-          userEmail,
-          userPassword,
+          email,
+          password,
           accountId,
           intro,
           image
         );
-        setUserInfo({
-          username: userName,
-          email: userEmail,
-          password: userPassword,
-          accountname: accountId,
-          intro: intro,
-          image: image,
-        });
-        // navigate('/mainlogin/emaillogin');
+
+        navigate('/mainlogin/emaillogin');
       } catch (error) {
         console.error('회원가입에 실패했습니다.');
       }

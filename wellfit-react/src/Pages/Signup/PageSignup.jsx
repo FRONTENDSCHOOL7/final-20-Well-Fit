@@ -1,16 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Input from '../../Components/Input/Input';
 import AccountButton from '../../Components/Button/AccountButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { postEmailDuplicate } from '../../api/PostSignup';
-import { UserContext } from '../../Contexts/UserContext';
 
 export default function PageSignup() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const email = location.state.email;
-  const password = location.state.password;
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [emailErrorMsg, setEmailErrorMsg] = useState('');
@@ -18,7 +14,6 @@ export default function PageSignup() {
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
   const [isButtonActivated, setIsButtonActivated] = useState(false);
-  const { setUserInfo } = useContext(UserContext);
 
   // 이메일 유효성 및 중복 검사
   const handleInputEmail = async (e) => {
@@ -81,10 +76,10 @@ export default function PageSignup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     if (emailValid && passwordValid) {
-      navigate('/join/setprofile', {
+      navigate('/mainlogin/signup/profilesetting', {
         state: {
-          email: email,
-          password: password,
+          email: userEmail,
+          password: userPassword,
         },
       });
     } else {
