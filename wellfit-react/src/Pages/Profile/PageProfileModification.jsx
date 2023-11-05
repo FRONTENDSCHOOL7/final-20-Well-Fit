@@ -171,8 +171,8 @@ export default function PageProfileModification() {
       selectedAge !== '나이'
     ) {
       await putProfileEdit({
-        userName,
-        accountId,
+        username: userName,
+        accountname: accountId,
         intro,
         image,
       });
