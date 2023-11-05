@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import ProfileHeader from '../../Components/common/Header/ProfileHeader';
 import Input from '../../Components/Input/Input';
@@ -235,6 +235,7 @@ export default function PageProfileModification() {
                 id="upload-img"
                 type="file"
                 accept="image/png, image/jpg, image/jpeg"
+                ref={fileInputRef}
                 onChange={handleInputImage}
               />
             </ImgContainer>
