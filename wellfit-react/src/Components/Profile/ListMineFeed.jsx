@@ -12,6 +12,11 @@ const StyledListFeed = styled.section`
   height: 400px;
   overflow-y: scroll;
 
+  & .img-profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+  }
   & .total-wrapper {
     display: flex;
     justify-content: space-between;
@@ -143,6 +148,7 @@ export default function ListMineFeed({ myFeed, setFeedImages }) {
                         : post.author.image
                     }
                     alt="프로필"
+                    className="img-profile"
                   />
                   <span className="profile-info-wrapper">
                     <p className="profile-info-name">
