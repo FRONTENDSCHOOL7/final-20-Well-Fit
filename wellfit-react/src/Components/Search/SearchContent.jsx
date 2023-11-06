@@ -8,6 +8,8 @@ const StyledSearchContent = styled.main`
   overflow: scroll;
   height: 100%;
 
+  position: relative;
+
   /* Chrome, Safari */
   &::-webkit-scrollbar {
     /* display: none; */ /* 스크롤 바 숨기기 */

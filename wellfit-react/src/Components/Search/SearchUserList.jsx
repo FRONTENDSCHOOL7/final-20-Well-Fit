@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useEffect } from 'react';
 import { getSearchList } from '../../api/GETSearch';
 import SearchUserItem from './SearchUserItem';
+import Loading from '../common/Loading/Loading';
 
 export default function SearchUserList({ keyword }) {
   const [searchList, setSearchList] = useState(null);
@@ -28,8 +29,13 @@ export default function SearchUserList({ keyword }) {
   }, [keyword]);
 
   const searchUserList = () => {
+    // 검색어가 없을 경우
+    if (keyword === '') {
+      return <div>유저를 검색해보세요!!</div>;
+    }
+    // 검색결과를 기다리는 페이지
     if (!searchList) {
-      return <div>Loading...</div>;
+      return <Loading />;
     }
     return searchList.map((user) => {
       return <SearchUserItem user={user} key={user._id} keyword={keyword} />;
