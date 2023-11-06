@@ -9,7 +9,7 @@ import { getMyFollowList } from '../../api/GETMyFollowList';
 import { getFollowedUserFeedList } from '../../api/GETFollowedFeedList';
 const StyledHomePage = styled.div`
   width: 390px;
-  height: 844px;
+  height: 732px;
   margin: 0 auto;
   background-color: #fff;
 
@@ -78,8 +78,8 @@ export default function PageHome() {
   }
   return (
     <>
+      <HomeHeader />
       <StyledHomePage>
-        <HomeHeader />
         {hasFollowList ? (
           <HomeContent followedUserFeedList={followedUserFeedList} />
         ) : (
