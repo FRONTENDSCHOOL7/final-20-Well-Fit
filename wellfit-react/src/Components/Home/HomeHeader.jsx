@@ -26,7 +26,7 @@ export default function HomeHeader() {
   return (
     <>
       <StyledHomeHeader>
-        <p className="home-title">감귤마켓 피드</p>
+        <p className="home-title">well-fit 피드</p>
         <button className="btn-search" type="button" onClick={gosearch}>
           <img src={searchIcon} alt="검색" />
         </button>

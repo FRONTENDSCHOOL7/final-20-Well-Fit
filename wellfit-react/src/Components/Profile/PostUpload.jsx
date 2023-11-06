@@ -6,6 +6,7 @@ import bagicProfile from '../../images/basic-profile.svg';
 import iconX from '../../images/x.svg';
 import { uploadImages } from '../../api/PostImage';
 import { uploadPost } from '../../api/Posting';
+import { getMyInfo } from '../../api/PostMyInfo';
 
 const StyledUpload = styled.div`
   width: 390px;
@@ -24,6 +25,7 @@ const StyledUpload = styled.div`
     height: 42px;
     margin: 16px;
     margin-right: 13px;
+    border-radius: 50%;
   }
 
   & .textarea-post {
@@ -103,6 +105,7 @@ export default function PostUpload({ setActive, submit, setSubmit }) {
   const navigate = useNavigate();
   const [content, setContent] = useState('');
   const [images, setImages] = useState();
+  const [myInfo, setMyInfo] = useState('');
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     if ((images?.length ?? 0) + files.length > 3) {
@@ -137,13 +140,28 @@ export default function PostUpload({ setActive, submit, setSubmit }) {
     if (content !== '' || images?.length > 0) setActive(true);
     else setActive(false);
   }, [content, images, setActive]);
+
+  const myProfileData = async () => {
+    try {
+      const myData = await getMyInfo();
+      setMyInfo(myData.user);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  console.log('new', myInfo);
+
+  useEffect(() => {
+    myProfileData();
+  }, []);
+
   return (
     <StyledUpload>
       <div className="div-postingMain">
         <div className="div-posting">
           <img
             className="img-uploadProfile"
-            src={bagicProfile}
+            src={myInfo.image ? myInfo.image : bagicProfile}
             alt="프로필 이미지"
           />
           <textarea

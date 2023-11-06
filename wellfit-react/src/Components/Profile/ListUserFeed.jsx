@@ -9,8 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 const StyledListFeed = styled.section`
   background-color: #fff;
-  height: 400px;
-  overflow-y: scroll;
 
   & .total-wrapper {
     display: flex;

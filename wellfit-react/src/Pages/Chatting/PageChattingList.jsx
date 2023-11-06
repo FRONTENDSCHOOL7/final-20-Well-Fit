@@ -6,7 +6,7 @@ import Footer from '../../Components/common/Footer/Footer';
 
 const StyledChattingListPage = styled.div`
   width: 390px;
-  height: 820px;
+  height: 732px;
   margin: 0 auto;
   font-size: 14px;
   background-color: #fff;
@@ -18,8 +18,8 @@ const StyledChattingListPage = styled.div`
 export default function PageChattingList() {
   return (
     <>
+      <ChattingUserListHeader />
       <StyledChattingListPage>
-        <ChattingUserListHeader />
         <ChattingUserListContent />
       </StyledChattingListPage>
       <Footer />

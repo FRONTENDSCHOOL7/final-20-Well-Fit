@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import ModalUserList from '../../Components/common/Modal/ModalUserList';
 import MainHeader from '../../Components/common/Header/MainHeader';
 import Footer from '../../Components/common/Footer/Footer';
 import MoreSmallWidget from '../../Components/More/MoreSmallWidget';
@@ -16,6 +17,152 @@ import Partner from '../../images/partner.svg';
 import Challenge from '../../images/challenge.svg';
 import Store from '../../images/store.svg';
 import Check from '../../images/check.svg';
+
+export default function PageMore() {
+  const [date, setDate] = useState(new Date());
+  const [tasks, setTasks] = useState([
+    { id: 1, text: '물 많이 마시기', isEditing: false },
+    { id: 2, text: '걷기', isEditing: false },
+    { id: 3, text: '뛰기', isEditing: false },
+  ]);
+  const [isModal, setIsModal] = useState(false);
+
+  useEffect(() => {
+    // 매일 자정에 이 함수가 호출되도록 타이머를 설정합니다.
+    const timer = setInterval(() => {
+      setDate(new Date());
+    }, 1000 * 60 * 60 * 24); // 24시간마다
+
+    // 컴포넌트가 언마운트될 때 타이머를 정리합니다.
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  // 요일을 한글로 변환하는 함수
+  const getKoreanDayOfWeek = (date) => {
+    const days = [
+      '일요일',
+      '월요일',
+      '화요일',
+      '수요일',
+      '목요일',
+      '금요일',
+      '토요일',
+    ];
+    return days[date.getDay()];
+  };
+
+  const handleDoubleClick = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, isEditing: !task.isEditing } : task
+      )
+    );
+  };
+
+  const handleEditChange = (id, newText) => {
+    setTasks(
+      tasks.map((task) => (task.id === id ? { ...task, text: newText } : task))
+    );
+  };
+
+  const handleSave = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, isEditing: false } : task
+      )
+    );
+  };
+
+  const handleModalClick = () => {
+    setIsModal(!isModal);
+  };
+  return (
+    <>
+      <MainHeader isModal={isModal} onModalClick={handleModalClick} />
+      <StyledPageMore>
+        <h1 className="a11y-hidden">더보기</h1>
+        <section className="section-widget">
+          <div className="container">
+            <div className="today">
+              <div className="calendar">
+                <strong>{date.getDate()}</strong>
+                <p>{getKoreanDayOfWeek(date)}</p>
+              </div>
+              <div>
+                <p>To Do List</p>
+                <ul>
+                  {tasks.map((task) => (
+                    <li
+                      key={task.id}
+                      onDoubleClick={() => handleDoubleClick(task.id)}
+                    >
+                      {task.isEditing ? (
+                        <input
+                          className="inp-list"
+                          type="text"
+                          value={task.text}
+                          onChange={(e) =>
+                            handleEditChange(task.id, e.target.value)
+                          }
+                          onBlur={() => handleSave(task.id)}
+                        />
+                      ) : (
+                        task.text
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <MoreSmallWidget src={Music} alt="음악" text="음악추천" />
+            <MoreSmallWidget src={Calorie} alt="칼로리" text="칼로리 계산" />
+            <div className="part">
+              <p>운동 부위 추천</p>
+              <div className="part-body">
+                <a href="">
+                  <img src={Leg} alt="하체" />
+                  <div>하체</div>
+                </a>
+                <a href="">
+                  <img src={Shoulder} alt="어깨" />
+                  <div>어깨</div>
+                </a>
+                <a href="">
+                  <img src={Chest} alt="가슴" />
+                  <div>가슴</div>
+                </a>
+                <a href="">
+                  <img src={Back} alt="등" />
+                  <div>등</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section-category">
+          <h2>카테고리</h2>
+          <div className="category">
+            <MoreCategory src={Location} alt="위치" text="위치찾기" />
+            <MoreCategory src={Tip} alt="꿀팁" text="꿀팁" />
+            <MoreCategory src={Partner} alt="파트너" text="파트너 구하기" />
+            <MoreCategory src={Challenge} alt="도전" text="목표설정" />
+            <MoreCategory src={Store} alt="상점" text="상점" />
+            <MoreCategory src={Check} alt="출석체크" text="출석체크" />
+          </div>
+        </section>
+      </StyledPageMore>
+      {isModal && (
+        <>
+          <StyledOverlay onClick={handleModalClick} />
+          <ModalUserList isModal={isModal} />
+        </>
+      )}
+      <Footer />
+    </>
+  );
+}
 
 const StyledPageMore = styled.main`
   width: 390px;
@@ -73,6 +220,16 @@ const StyledPageMore = styled.main`
   }
   & .calendar {
     text-align: center;
+  }
+  & .inp-list {
+    background-color: #dff6ff;
+    border: 0;
+    outline: none;
+    border-bottom: 1px solid #dbdbdb;
+  }
+
+  & .inp-list:focus {
+    border-bottom: 1px solid #004aad;
   }
   & .part {
     display: flex;
@@ -133,67 +290,12 @@ const StyledPageMore = styled.main`
     grid-area: j;
   }
 `;
-
-export default function PageMore() {
-  return (
-    <>
-      <MainHeader />
-      <StyledPageMore>
-        <h1 className="a11y-hidden">더보기</h1>
-        <section className="section-widget">
-          <div className="container">
-            <div className="today">
-              <div className="calendar">
-                <strong>24</strong>
-                <p>화요일</p>
-              </div>
-              <div>
-                <p>To Do List</p>
-                <ul>
-                  <li>물 많이 마시기</li>
-                  <li>걷기</li>
-                  <li>뛰기</li>
-                </ul>
-              </div>
-            </div>
-            <MoreSmallWidget src={Music} alt="음악" />
-            <MoreSmallWidget src={Calorie} alt="칼로리" />
-            <div className="part">
-              <p>운동 부위 추천</p>
-              <div className="part-body">
-                <a href="">
-                  <img src={Leg} alt="하체" />
-                  <div>하체</div>
-                </a>
-                <a href="">
-                  <img src={Shoulder} alt="어깨" />
-                  <div>어깨</div>
-                </a>
-                <a href="">
-                  <img src={Chest} alt="가슴" />
-                  <div>가슴</div>
-                </a>
-                <a href="">
-                  <img src={Back} alt="등" />
-                  <div>등</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="section-category">
-          <h2>카테고리</h2>
-          <div className="category">
-            <MoreCategory src={Location} alt="위치" />
-            <MoreCategory src={Tip} alt="꿀팁" />
-            <MoreCategory src={Partner} alt="파트너" />
-            <MoreCategory src={Challenge} alt="도전" />
-            <MoreCategory src={Store} alt="상점" />
-            <MoreCategory src={Check} alt="출석체크" />
-          </div>
-        </section>
-      </StyledPageMore>
-      <Footer />
-    </>
-  );
-}
+const StyledOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+  background-color: rgba(0, 0, 0, 0.5);
+`;

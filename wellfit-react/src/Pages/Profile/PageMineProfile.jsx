@@ -12,8 +12,9 @@ import { getMyInfo } from '../../api/PostMyInfo';
 import { getProductList } from '../../api/GETProductList';
 import { getMyFeedList } from '../../api/GETMineFeedList';
 
-const StyledMainHeader = styled.header`
-  background-color: #fff;
+const Wrap = styled.div`
+  height: 732px;
+  overflow: auto;
 `;
 
 const StyledOverlay = styled.div`
@@ -89,29 +90,29 @@ export default function PageMineProfile() {
   console.log(myProduct.product);
   return (
     <>
-      <StyledMainHeader>
-        <MainHeader isModal={isModal} onModalClick={handleModalClick} />
-      </StyledMainHeader>
-      <ProfileMine myInfo={myInfo} />
-      {myProduct.data && myProduct.data !== 0 ? (
-        <GoodListMine myProduct={myProduct.product} />
-      ) : null}
-      <ListAlbumSwitch
-        isList={isList}
-        onListClick={handleListClick}
-        onAlbumClick={handleAlbumClick}
-      />
-      {isList ? (
-        <AlbumFeed feedImages={feedImages} />
-      ) : (
-        <ListMineFeed myFeed={myFeed} setFeedImages={setFeedImages} />
-      )}
-      {isModal && (
-        <>
-          <StyledOverlay onClick={handleModalClick} />
-          <ModalUserList isModal={isModal} />
-        </>
-      )}
+      <MainHeader isModal={isModal} onModalClick={handleModalClick} />
+      <Wrap>
+        <ProfileMine myInfo={myInfo} />
+        {myProduct.data && myProduct.data !== 0 ? (
+          <GoodListMine myProduct={myProduct.product} />
+        ) : null}
+        <ListAlbumSwitch
+          isList={isList}
+          onListClick={handleListClick}
+          onAlbumClick={handleAlbumClick}
+        />
+        {isList ? (
+          <AlbumFeed feedImages={feedImages} />
+        ) : (
+          <ListMineFeed myFeed={myFeed} setFeedImages={setFeedImages} />
+        )}
+        {isModal && (
+          <>
+            <StyledOverlay onClick={handleModalClick} />
+            <ModalUserList isModal={isModal} />
+          </>
+        )}
+      </Wrap>
       <Footer />
     </>
   );
