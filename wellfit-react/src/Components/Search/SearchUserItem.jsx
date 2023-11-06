@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import profileImg from '../../images/basic-profile-small.svg';
+import { useNavigate } from 'react-router-dom';
 
 const StyledSearchUserItem = styled.li`
   & + li {
@@ -14,6 +15,8 @@ const StyledSearchUserItem = styled.li`
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
       rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+    cursor: pointer;
   }
   & .user-followers {
     float: right;
@@ -40,10 +43,14 @@ const StyledSearchUserItem = styled.li`
 `;
 
 export default function SearchUserItem({ user, keyword }) {
+  const navigate = useNavigate();
+  const goProfile = () => {
+    navigate(`/userProfile/${user.accountname}`);
+  };
   const parts = user.username.split(new RegExp(`(${keyword})`, 'gi'));
   return (
     <StyledSearchUserItem>
-      <article className="search-result">
+      <article className="search-result" onClick={goProfile}>
         <h3 className="a11y-hidden">검색된 유저</h3>
         <div className="img-profile">
           <img src={profileImg} alt="프로필 사진" />
