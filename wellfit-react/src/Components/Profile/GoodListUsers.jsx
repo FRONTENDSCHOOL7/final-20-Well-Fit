@@ -23,7 +23,7 @@ const StyledGoodList = styled.article`
     display: flex;
     align-items: center;
     gap: 10px;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
   }
   & .store-wrapper > p {

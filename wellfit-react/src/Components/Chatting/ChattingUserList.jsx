@@ -11,5 +11,5 @@ export default function ChattingUserList({ myFollowList }) {
   if (!myFollowList) {
     return <div>Loading...</div>;
   }
-  return <ol>{renderChattingUserItems()};</ol>;
+  return <ol>{renderChattingUserItems()}</ol>;
 }

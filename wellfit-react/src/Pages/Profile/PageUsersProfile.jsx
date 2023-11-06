@@ -13,13 +13,14 @@ import { getUserInfo } from '../../api/GETUserInfo';
 import { getUserPost } from '../../api/GETUserListPost';
 import { getProductList } from '../../api/GETProductList';
 
-const StyledMainHeader = styled.header`
-  background-color: #fff;
-`;
-
 const StyledPage = styled.div`
   width: 100%;
   height: 100%;
+`;
+
+const Wrap = styled.div`
+  height: 732px;
+  overflow: auto;
 `;
 
 const StyledOverlay = styled.div`
@@ -86,29 +87,29 @@ export default function PageUsersProfile() {
   };
   return (
     <StyledPage>
-      <StyledMainHeader>
-        <MainHeader isModal={isModal} onModalClick={handleModalClick} />
-      </StyledMainHeader>
-      <ProfileUsers userInfo={userInfo} />
-      {productList.data && productList !== 0 ? (
-        <GoodListUsers productList={productList.product} />
-      ) : null}
-      <ListAlbumSwitch
-        isList={isList}
-        onListClick={handleListClick}
-        onAlbumClick={handleAlbumClick}
-      />
-      {isList ? (
-        <AlbumFeed feedImages={feedImages} />
-      ) : (
-        <ListUserFeed userFeed={userFeed} setFeedImages={setFeedImages} />
-      )}
-      {isModal && (
-        <>
-          <StyledOverlay onClick={handleModalClick} />
-          <ModalUserList />
-        </>
-      )}
+      <MainHeader isModal={isModal} onModalClick={handleModalClick} />
+      <Wrap>
+        <ProfileUsers userInfo={userInfo} />
+        {productList.data && productList !== 0 ? (
+          <GoodListUsers productList={productList.product} />
+        ) : null}
+        <ListAlbumSwitch
+          isList={isList}
+          onListClick={handleListClick}
+          onAlbumClick={handleAlbumClick}
+        />
+        {isList ? (
+          <AlbumFeed feedImages={feedImages} />
+        ) : (
+          <ListUserFeed userFeed={userFeed} setFeedImages={setFeedImages} />
+        )}
+        {isModal && (
+          <>
+            <StyledOverlay onClick={handleModalClick} />
+            <ModalUserList />
+          </>
+        )}
+      </Wrap>
       <Footer />
     </StyledPage>
   );
