@@ -4,9 +4,10 @@ import { styled } from 'styled-components';
 import HomeContent from '../../Components/Home/HomeContent';
 import Footer from '../../Components/common/Footer/Footer';
 import HomeNonFeed from '../../Components/Home/HomeNonFeed';
-import { getMyInfo } from '../../api/PostMyInfo';
 import { getMyFollowList } from '../../api/GETMyFollowList';
 import { getFollowedUserFeedList } from '../../api/GETFollowedFeedList';
+import Loading from '../../Components/common/Loading/Loading';
+
 const StyledHomePage = styled.div`
   width: 390px;
   height: 732px;
@@ -20,7 +21,6 @@ const StyledHomePage = styled.div`
 export default function PageHome() {
   // 내가 팔로우한 상대 게시물 상태
   const [followedUserFeedList, setFollowedUserFeedList] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // followList 상태
   const [hasFollowList, setHasFollowList] = useState(false);
@@ -28,7 +28,6 @@ export default function PageHome() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         setError(null);
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -49,8 +48,6 @@ export default function PageHome() {
       } catch (error) {
         console.error(error);
         setError(error);
-      } finally {
-        setLoading(false);
       }
     };
     if (token) {
@@ -62,19 +59,12 @@ export default function PageHome() {
     console.log(followedUserFeedList);
   }, [followedUserFeedList]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   if (error) {
     return <div>에러가 발생했습니다: {error.message}</div>;
   }
 
-  // if (!followedUserFeedList) {
-  //   return <div>팔로우한 사용자가 없습니다.</div>;
-  // }
-  if (loading) {
-    return <div>Loading...</div>;
+  if (!followedUserFeedList) {
+    return <Loading />;
   }
   return (
     <>

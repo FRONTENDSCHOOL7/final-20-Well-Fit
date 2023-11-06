@@ -1,8 +1,8 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import profileImage from '../../images/basic-profile-small.svg';
+import { useNavigate } from 'react-router-dom';
+import { unFollow } from '../../api/DELETEFollow';
 
 const StyledFollowItem = styled.li`
   & + li {
@@ -26,6 +26,7 @@ const StyledFollowItem = styled.li`
     background-color: #dbdbdb;
     border-radius: 50%;
     vertical-align: middle;
+    cursor: pointer;
   }
   & .user-info {
     display: flex;
@@ -56,11 +57,36 @@ const StyledFollowItem = styled.li`
   }
 `;
 
-export default function FollowItem() {
+export default function FollowItem({ user }) {
+  const navigate = useNavigate();
+  const SERVER_STANDARD_IMG_URL = 'http://146.56.183.55:5050/Ellipse.png';
   const [isActive, setIsActive] = useState(true);
   const onClickActiveHnadler = () => {
     setIsActive((prevState) => !prevState);
   };
+
+  // 서버 기본이미지인지 확인
+  const checkAuthorImg = (authorImage) => {
+    if (authorImage === SERVER_STANDARD_IMG_URL) {
+      return profileImage;
+    } else {
+      return authorImage;
+    }
+  };
+  const goProfile = () => {
+    navigate(`/userProfile/${user.accountname}`);
+  };
+
+  // useEffect(() => {
+  //   const doUnfollow = async () => {
+  //     if (!isActive) {
+  //       console.log(user);
+  //       const response = await unFollow();
+  //       console.log(response);
+  //     }
+  //   };
+  //   doUnfollow();
+  // }, [isActive]);
 
   return (
     <StyledFollowItem>
@@ -68,10 +94,14 @@ export default function FollowItem() {
         <h3 className="a11y-hidden">팔로우 유저</h3>
         <div className="user-wrap">
           <div className="img-profile">
-            <img src={profileImage} alt="프로필 이미지" />
+            <img
+              src={checkAuthorImg(user.image)}
+              alt="프로필 이미지"
+              onClick={goProfile}
+            />
           </div>
           <div className="user-info">
-            <p className="user-name">애월읍 한라봉 최고 맛집</p>
+            <p className="user-name">{user.username}</p>
             <p className="user-comment">정성을 다해 농사짓는 한라봉</p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import Loading from '../common/Loading/Loading';
 import PostCommentItem from './PostCommentItem';
 
 const StyledPostCommentList = styled.section`
@@ -26,7 +27,7 @@ const StyledPostCommentList = styled.section`
 
 export default function PostCommentList({ commentList, modalHandler }) {
   if (!commentList) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <StyledPostCommentList>
