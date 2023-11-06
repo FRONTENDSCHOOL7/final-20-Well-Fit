@@ -14,10 +14,10 @@ const StyledSmallWidget = styled.div`
     height: 40px;
   }
 `;
-export default function MoreSmallWidget({ src, alt }) {
+export default function MoreSmallWidget({ src, alt, text }) {
   return (
     <StyledSmallWidget>
-      <p>추천 음악</p>
+      <p>{text}</p>
       <a href="">
         <img src={src} alt={alt} />
       </a>
