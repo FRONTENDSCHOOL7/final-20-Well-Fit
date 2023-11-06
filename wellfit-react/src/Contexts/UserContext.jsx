@@ -45,6 +45,7 @@ export const UserProvider = ({ children }) => {
       image: '',
     });
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('token');
   };
 
   return (

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { UserContext } from '../../../Contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const StyledModalLogout = styled.article`
   margin: 0 auto;
@@ -44,6 +46,13 @@ const StyledModalLogout = styled.article`
 `;
 
 export default function ModalLogout({ isLogout, handleCancelClick }) {
+  const { logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/mainlogin');
+  };
   return (
     <StyledModalLogout>
       <div className="logout-alert">
@@ -57,7 +66,7 @@ export default function ModalLogout({ isLogout, handleCancelClick }) {
         >
           취소
         </button>
-        <button className="btn-logout" type="button">
+        <button className="btn-logout" onClick={handleLogout}>
           로그아웃
         </button>
       </span>
