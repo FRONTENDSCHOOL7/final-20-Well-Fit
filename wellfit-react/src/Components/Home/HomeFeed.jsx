@@ -10,10 +10,11 @@ import { useNavigate } from 'react-router-dom';
 const StyledHomeFeed = styled.li`
   display: flex;
   gap: 12px;
+  padding: 20px 16px 0;
 
-  & + li {
+  /* & + li {
     margin-top: 24px;
-  }
+  } */
   & .img-profile img {
     width: 42px;
     height: 42px;

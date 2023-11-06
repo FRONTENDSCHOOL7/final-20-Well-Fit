@@ -10,6 +10,7 @@ const StyledHomeHeader = styled.header`
   border-bottom: 1px solid #dbdbdb;
   display: flex;
   justify-content: space-between;
+  background-color: #fff;
 
   & .btn-search {
     width: 24px;

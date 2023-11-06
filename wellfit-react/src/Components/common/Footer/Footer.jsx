@@ -82,8 +82,8 @@ export default function Footer() {
 }
 
 const StyledMainFooter = styled.footer`
-  position: fixed;
-  top: 783px;
+  /* position: absolute;
+  bottom: 0; */
 
   & .tapbar {
     display: flex;
