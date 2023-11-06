@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import SearchContent from '../../Components/Search/SearchContent';
 import SearchHeader from '../../Components/Search/SearchHeader';
 import Footer from '../../Components/common/Footer/Footer';
+import { useEffect } from 'react';
 
 const StyledSearchPage = styled.div`
   width: 390px;
@@ -16,11 +17,17 @@ const StyledSearchPage = styled.div`
 `;
 
 export default function PageSearch() {
+  const [keyword, setKeyword] = useState('');
+
+  useEffect(() => {
+    console.log(keyword);
+  }, [keyword]);
+
   return (
     <>
       <StyledSearchPage>
-        <SearchHeader />
-        <SearchContent />
+        <SearchHeader setKeyword={setKeyword} />
+        <SearchContent keyword={keyword} />
       </StyledSearchPage>
       <Footer />
     </>

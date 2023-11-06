@@ -11,6 +11,12 @@ const StyledSearchUserItem = styled.li`
     /* 여기서 이미지가 살짝 뜨는 문제 물어보기 */
     align-items: center;
     gap: 12px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  }
+  & .user-followers {
+    float: right;
   }
   & .img-profile img {
     width: 42px;
@@ -28,9 +34,13 @@ const StyledSearchUserItem = styled.li`
     font-size: 12px;
     color: #767676;
   }
+  & strong {
+    color: red;
+  }
 `;
 
-export default function SearchUserItem() {
+export default function SearchUserItem({ user, keyword }) {
+  const parts = user.username.split(new RegExp(`(${keyword})`, 'gi'));
   return (
     <StyledSearchUserItem>
       <article className="search-result">
@@ -39,9 +49,18 @@ export default function SearchUserItem() {
           <img src={profileImg} alt="프로필 사진" />
         </div>
         <div className="user-info">
-          <p className="user-name">애월읍 위니브 감귤농장</p>
-          <p className="user-email">&#64; weniv_Mandarin</p>
+          <p className="user-name">
+            {parts.map((part, idx) =>
+              part.toLowerCase() === keyword.toLowerCase() ? (
+                <strong key={idx}>{part}</strong>
+              ) : (
+                part
+              )
+            )}
+          </p>
+          <p className="user-email">&#64; {user.accountname}</p>
         </div>
+        <p className="user-followers">팔로워 : {user.followerCount}</p>
       </article>
     </StyledSearchUserItem>
   );
