@@ -27,10 +27,14 @@ const StyledSearchPageHeader = styled.header`
   }
 `;
 
-export default function SearchHeader() {
+export default function SearchHeader({ setKeyword }) {
   const navigate = useNavigate();
   const goback = () => {
     navigate(-1);
+  };
+
+  const handleKeyword = (e) => {
+    setKeyword(e.target.value);
   };
   return (
     <StyledSearchPageHeader>
@@ -38,10 +42,15 @@ export default function SearchHeader() {
         <button type="button" className="btn-goback" onClick={goback}>
           <img src={gobackIcon} alt="뒤로가기" />
         </button>
-        <label for="input-search" className="a11y-hidden">
+        <label htmlFor="input-search" className="a11y-hidden">
           계정 검색
         </label>
-        <input type="text" id="input-search" placeholder="계정 검색" />
+        <input
+          type="text"
+          id="input-search"
+          placeholder="계정 검색"
+          onChange={handleKeyword}
+        />
       </div>
     </StyledSearchPageHeader>
   );
