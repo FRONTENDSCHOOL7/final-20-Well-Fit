@@ -6,6 +6,7 @@ import { styled } from 'styled-components';
 import { getPostCommentList } from '../../api/GETPostCommentList';
 import { getMyInfo } from '../../api/PostMyInfo';
 import { useParams } from 'react-router-dom';
+import Loading from '../../Components/common/Loading/Loading';
 
 const StyledHr = styled.hr`
   border: 1px solid #dbdbdb;
@@ -44,6 +45,9 @@ export default function PostContent({ modalHandler, currentPostDetail }) {
     console.log(currentPostDetail);
   }, [myPostDetail]);
 
+  if (!currentPostDetail) {
+    return <Loading />;
+  }
   return (
     <main>
       <PostFeed currentPostDetail={currentPostDetail} />

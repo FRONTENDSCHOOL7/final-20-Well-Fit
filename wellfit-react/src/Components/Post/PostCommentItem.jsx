@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import moreVerticalIcon from '../../images/s-icon-more-vertical.svg';
 import profileBasicImage from '../../images/basic-profile-small.svg';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../common/Loading/Loading';
 
 const StyledPostCommentItem = styled.li`
   /* section-comment 시작 */
@@ -97,7 +98,7 @@ export default function PostCommentItem({ modalHandler, comment }) {
   };
 
   if (!comment) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <StyledPostCommentItem>

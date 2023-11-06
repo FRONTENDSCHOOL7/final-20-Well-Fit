@@ -7,6 +7,7 @@ import heartEmpty from '../../images/icon-heart.svg';
 import commentCircle from '../../images/icon-message-circle.svg';
 import moreIcon from '../../images/s-icon-more-vertical.svg';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../common/Loading/Loading';
 
 const StyledPostFeed = styled.article`
   display: flex;
@@ -31,6 +32,11 @@ const StyledPostFeed = styled.article`
   /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: darkgrey transparent; /* 스크롤 바 색상, 스크롤 바 배경 색상 */
+  & .img-profile img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+  }
   & .post-detail-mine-content .feed .img-feed {
     width: 304px;
     height: 228px;
@@ -141,6 +147,14 @@ export default function PostFeed({ currentPostDetail }) {
   const onClickHeartHandler = () => {
     setIsHeartClick((prevState) => !prevState);
   };
+  // 서버 기본이미지인지 확인
+  const checkAuthorImg = (authorImage) => {
+    if (authorImage === SERVER_STANDARD_IMG_URL) {
+      return profileImage;
+    } else {
+      return authorImage;
+    }
+  };
 
   // 파일 업로드 시 이미지 없으면 서버주소/null
   // 파일 업로드 시 이미지 있으면 서부주소/이미지이름.확장자
@@ -164,7 +178,7 @@ export default function PostFeed({ currentPostDetail }) {
   }, []);
 
   if (!currentPostDetail || Object.keys(currentPostDetail).length === 0) {
-    return <div>Loading....</div>;
+    return <Loading />;
   }
 
   return (
@@ -172,7 +186,7 @@ export default function PostFeed({ currentPostDetail }) {
       <h2 className="a11y-hidden">게시물 자세히보기</h2>
       <div className="img-profile">
         <img
-          src={profileImage}
+          src={checkAuthorImg(currentPostDetail.author.image)}
           alt="프로필 사진"
           onClick={handleMovingProfile(currentPostDetail.author.accountname)}
         />
