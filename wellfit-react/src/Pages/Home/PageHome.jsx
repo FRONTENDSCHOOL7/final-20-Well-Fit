@@ -44,6 +44,8 @@ export default function PageHome() {
           const feedList = await getFollowedUserFeedList();
           setFollowedUserFeedList(feedList.posts);
           console.log('followedUserFeedList 실행후');
+        } else {
+          setFollowedUserFeedList([]);
         }
       } catch (error) {
         console.error(error);
@@ -59,9 +61,9 @@ export default function PageHome() {
     console.log(followedUserFeedList);
   }, [followedUserFeedList]);
 
-  if (error) {
-    return <div>에러가 발생했습니다: {error.message}</div>;
-  }
+  // if (error) {
+  //   return <div>에러가 발생했습니다: {error.message}</div>;
+  // }
 
   if (!followedUserFeedList) {
     return <Loading />;
