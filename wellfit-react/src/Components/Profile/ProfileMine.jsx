@@ -8,7 +8,6 @@ const StyledProfileMine = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 375px;
   background-color: #ffffff;
   padding: 30px 0;
   gap: 16px;
