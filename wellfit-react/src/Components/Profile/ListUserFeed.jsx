@@ -4,7 +4,7 @@ import ImgHeart from '../../images/icon-heart.svg';
 import ImgMessage from '../../images/icon-message-circle.svg';
 import ImgBasicProfileSmall from '../../images/basic-profile-small.svg';
 import ImgMore from '../../images/s-icon-more-vertical.svg';
-import ModalListPost from '../common/Modal/ModalListPost';
+import ModalDeclareComment from '../../Components/common/Modal/ModalDeclareComment';
 import { useNavigate } from 'react-router-dom';
 
 const StyledListFeed = styled.section`
@@ -154,10 +154,12 @@ export default function ListFeed({ userFeed }) {
                 <span className="writting-contents">
                   {post.content ? post.content : ''}
                 </span>
-                <img
-                  src={post.image ? SERVER_IMG_UPLOAD_URL + post.image : ''}
-                  alt="피드 사진"
-                />
+                {post.image && (
+                  <img
+                    src={SERVER_IMG_UPLOAD_URL + post.image}
+                    alt="피드 사진"
+                  />
+                )}
 
                 <div className="writting-btn-wrapper">
                   <span>
@@ -203,8 +205,7 @@ export default function ListFeed({ userFeed }) {
       {isModal && (
         <>
           <StyledOverlay onClick={handleModalClick} />
-          <ModalListPost />
-          {/* 이 부분은 우선 모달로 넣어놨는데 성우님 신고하기 모달로 대체해야함 */}
+          <ModalDeclareComment />
         </>
       )}
     </>
