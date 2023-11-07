@@ -47,7 +47,6 @@ const StyledHomeFeed = styled.li`
     box-sizing: border-box;
     object-fit: cover;
     width: 304px;
-    height: 228px;
     cursor: pointer;
   }
   /* 좋아요 버튼, 메세지 버튼 스타일 시작 */
