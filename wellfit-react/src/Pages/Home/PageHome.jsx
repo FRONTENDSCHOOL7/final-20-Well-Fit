@@ -32,18 +32,12 @@ export default function PageHome() {
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        console.log('getUserProfileData 실행전');
         const myFollowList = await getMyFollowList();
-        console.log('나의 팔로우 리스트');
-        console.log(myFollowList);
         setHasFollowList(myFollowList.length !== 0);
-        console.log('getUserProfileData 실행후');
 
         if (myFollowList.length !== 0) {
-          console.log('followedUserFeedList 실행전');
           const feedList = await getFollowedUserFeedList();
           setFollowedUserFeedList(feedList.posts);
-          console.log('followedUserFeedList 실행후');
         } else {
           setFollowedUserFeedList([]);
         }
@@ -56,10 +50,6 @@ export default function PageHome() {
       fetchData();
     }
   }, [token]);
-
-  useEffect(() => {
-    console.log(followedUserFeedList);
-  }, [followedUserFeedList]);
 
   if (!followedUserFeedList) {
     return <Loading />;

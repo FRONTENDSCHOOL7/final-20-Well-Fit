@@ -6,6 +6,7 @@ import PostCommentItem from './PostCommentItem';
 const StyledPostCommentList = styled.section`
   padding: 20px 16px;
   height: 235px;
+  border-bottom: 2px solid #dbdbdb;
   overflow-y: scroll;
 
   /* Chrome, Safari */

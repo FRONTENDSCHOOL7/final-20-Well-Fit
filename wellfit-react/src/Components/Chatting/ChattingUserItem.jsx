@@ -60,8 +60,16 @@ const StyledChattingUserItem = styled.li`
 `;
 
 export default function ChattingUserItem({ user }) {
-  console.log('팔로우한 유저 정보');
-  console.log(user);
+  const SERVER_STANDARD_IMG_URL = 'http://146.56.183.55:5050/Ellipse.png';
+
+  // 서버 기본이미지인지 확인
+  const checkAuthorImg = (authorImage) => {
+    if (authorImage === SERVER_STANDARD_IMG_URL) {
+      return profileImage;
+    } else {
+      return authorImage;
+    }
+  };
 
   const navigate = useNavigate();
   const goChattingRomm = () => {
@@ -74,7 +82,7 @@ export default function ChattingUserItem({ user }) {
         <div className="user-wrap">
           <div className="img-profile">
             <span className="notification-icon"></span>
-            <img src={profileImage} alt="프로필 사진" />
+            <img src={checkAuthorImg(user.image)} alt="프로필 사진" />
           </div>
           <div className="user-info">
             <p className="user-name">{user.username}</p>

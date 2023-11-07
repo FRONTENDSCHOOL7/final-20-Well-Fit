@@ -47,7 +47,6 @@ const StyledHomeFeed = styled.li`
     box-sizing: border-box;
     object-fit: cover;
     width: 304px;
-    height: 228px;
     cursor: pointer;
   }
   /* 좋아요 버튼, 메세지 버튼 스타일 시작 */
@@ -208,8 +207,8 @@ export default function HomeFeed({ post }) {
           </div>
           <time dateTime="2020-10-21">
             <span>{feedCreatedAtDate.createyear}년</span>
-            <span>{feedCreatedAtDate.createmonth}년</span>
-            <span>{feedCreatedAtDate.createday}년</span>
+            <span>{feedCreatedAtDate.createmonth}월</span>
+            <span>{feedCreatedAtDate.createday}일</span>
           </time>
         </div>
       </section>
