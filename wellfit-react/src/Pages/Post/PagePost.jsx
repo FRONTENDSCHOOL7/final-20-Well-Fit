@@ -3,8 +3,10 @@ import { styled } from 'styled-components';
 import ModalDeleteComment from '../../Components/common/Modal/ModalDeleteComment';
 import PostContent from '../../Components/Post/PostContent';
 import PostHeader from '../../Components/Post/PostHeader';
+import ModalUserList from '../../Components/common/Modal/ModalUserList';
 import { useParams } from 'react-router-dom';
 import { getFollowedPostDetail } from '../../api/GETFollowedPostDetail';
+
 const StyledPostPage = styled.div`
   width: 390px;
   height: 820px;
@@ -27,14 +29,29 @@ const StyledModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
+const StyledOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
 export default function PagePost() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPostDetail, setCurrentPostDetail] = useState({});
+  const [isModal, setIsModal] = useState(false);
   const params = useParams();
   console.log(params);
 
   const modalHandler = () => {
     setIsModalOpen((prevState) => !prevState);
+  };
+
+  const handleModalClick = () => {
+    setIsModal(!isModal);
   };
 
   useEffect(() => {
@@ -53,7 +70,7 @@ export default function PagePost() {
   return (
     <>
       <StyledPostPage>
-        <PostHeader />
+        <PostHeader isModal={isModal} onModalClick={handleModalClick} />
         <PostContent
           modalHandler={modalHandler}
           currentPostDetail={currentPostDetail}
@@ -63,6 +80,12 @@ export default function PagePost() {
       {isModalOpen ? (
         <StyledModalBackground onClick={modalHandler}></StyledModalBackground>
       ) : null}
+      {isModal && (
+        <>
+          <StyledOverlay onClick={handleModalClick} />
+          <ModalUserList isModal={isModal} />
+        </>
+      )}
     </>
   );
 }
