@@ -61,10 +61,6 @@ export default function PageHome() {
     console.log(followedUserFeedList);
   }, [followedUserFeedList]);
 
-  // if (error) {
-  //   return <div>에러가 발생했습니다: {error.message}</div>;
-  // }
-
   if (!followedUserFeedList) {
     return <Loading />;
   }

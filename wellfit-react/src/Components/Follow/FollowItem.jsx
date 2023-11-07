@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import profileImage from '../../images/basic-profile-small.svg';
 import { useNavigate } from 'react-router-dom';
-import { unFollow } from '../../api/DELETEFollow';
 
 const StyledFollowItem = styled.li`
   & + li {
