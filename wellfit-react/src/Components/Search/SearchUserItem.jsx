@@ -9,7 +9,6 @@ const StyledSearchUserItem = styled.li`
   }
   & .search-result {
     display: flex;
-    /* 여기서 이미지가 살짝 뜨는 문제 물어보기 */
     align-items: center;
     gap: 12px;
     border-radius: 10px;

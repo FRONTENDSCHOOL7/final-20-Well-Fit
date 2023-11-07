@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { styled } from 'styled-components';
 import moreVerticalIcon from '../../images/s-icon-more-vertical.svg';
 import profileBasicImage from '../../images/basic-profile-small.svg';

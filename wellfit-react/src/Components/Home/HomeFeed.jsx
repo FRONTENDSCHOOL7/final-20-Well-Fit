@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
-import feedImage from './images/unsplash_FWtiv70Z_ZY.png';
 import heartFill from '../../images/icon-heart-fill.svg';
 import profileImage from '../../images/basic-profile-small.svg';
 import heartEmpty from '../../images/icon-heart.svg';

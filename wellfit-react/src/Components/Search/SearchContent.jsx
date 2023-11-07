@@ -12,7 +12,6 @@ const StyledSearchContent = styled.main`
 
   /* Chrome, Safari */
   &::-webkit-scrollbar {
-    /* display: none; */ /* 스크롤 바 숨기기 */
     width: 5px;
   }
   &::-webkit-scrollbar-thumb {

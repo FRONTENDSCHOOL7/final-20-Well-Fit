@@ -13,10 +13,7 @@ const StyledPostPageUser = styled.div`
   margin: 0 auto;
   border: 1px solid #dbdbdb;
   font-size: 14px;
-  /* background-color: ${(props) =>
-    props.isModalOpen ? 'rgba(0,0,0,.5)' : '#fff'}; */
-  /* filter: ${(props) => (props.isModalOpen ? 'blur(1px)' : 'none')}; */
-  /* pointer-events: ${(props) => (props.isModalOpen ? 'none' : 'auto')}; */
+
   /* 화면 넘치면 숨김 */
   background-color: #fff;
   overflow: hidden;

@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import sample from './images/album_sample.png';
-import ImgMany from '../../images/icon-img-layers.svg';
 
 const StyledAlbumFeed = styled.section`
   display: grid;
