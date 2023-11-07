@@ -30,6 +30,7 @@ PW: wellfit12!@
 
 |FE 신민재|FE 장성우|FE 조예슬|FE 이수현|
 |---|---|---|---|
-|이미지|이미지|이미지|이미지|
+|<img width="241" alt="민재 프로필" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/13c263a9-3679-44f4-b622-3046bb0ea328">|
+<img width="326" alt="성우프로필" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/9a04546a-5cfd-4c27-87a1-43749d874ac5">|![예슬 프로필](https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/59b5d8e8-690e-42d7-9e3f-c134fc8f72a1)|<img width="342" alt="수현 프로필" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/2a0e507c-54f6-48c7-a20b-d7f09445eac7">|
 |[🔗GitHub](https://github.com/SMJ426)|[🔗GitHub](https://github.com/swJaNG12)|[🔗GitHub](https://github.com/yeslcho)|[🔗GitHub](https://github.com/Lee99-dev)|
 
