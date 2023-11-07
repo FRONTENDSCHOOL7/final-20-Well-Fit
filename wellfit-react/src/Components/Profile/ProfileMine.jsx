@@ -120,8 +120,12 @@ export default function ProfileMine({ myInfo }) {
           alt="프로필로고"
         />
         <span className="span-followings">
-          <p className="followings count">{myInfo && myInfo.followingCount}</p>
-          <p className="followings content">followings</p>
+          <Link to="/myprofile/follow">
+            <p className="followings count">
+              {myInfo && myInfo.followingCount}
+            </p>
+            <p className="followings content">followings</p>
+          </Link>
         </span>
       </div>
 

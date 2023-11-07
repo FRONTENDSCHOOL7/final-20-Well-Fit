@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ImgBasicProfile from '../../images/basic-profile.svg';
 import ImgMessage from '../../images/icon-message-circle-1.svg';
 import ImgShare from '../../images/icon-share.svg';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const StyledProfileUsers = styled.section`
   display: flex;
@@ -14,6 +14,11 @@ const StyledProfileUsers = styled.section`
   padding: 30px 0;
   gap: 16px;
 
+  & .profile-img-big {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+  }
   & .profile-wrapper {
     display: flex;
     justify-content: center;
@@ -137,10 +142,12 @@ export default function ProfileUsers({ userInfo }) {
       {/* 팔로워 프로필 팔로잉 */}
       <div className="profile-wrapper">
         <span className="span-followers">
-          <p className="followers count">
-            {userInfo ? userInfo.followerCount : ''}
-          </p>
-          <p className="followers content">followers</p>
+          <Link to="/myprofile/follow">
+            <p className="followers count">
+              {userInfo ? userInfo.followerCount : ''}
+            </p>
+            <p className="followers content">followers</p>
+          </Link>
         </span>
         <img
           src={
@@ -149,12 +156,15 @@ export default function ProfileUsers({ userInfo }) {
               : userInfo.image
           }
           alt="프로필로고"
+          className="profile-img-big"
         />
         <span className="span-followings">
-          <p className="followings count">
-            {userInfo ? userInfo.followingCount : ''}
-          </p>
-          <p className="followings content">followings</p>
+          <Link to="/myprofile/follow">
+            <p className="followings count">
+              {userInfo ? userInfo.followingCount : ''}
+            </p>
+            <p className="followings content">followings</p>
+          </Link>
         </span>
       </div>
 
