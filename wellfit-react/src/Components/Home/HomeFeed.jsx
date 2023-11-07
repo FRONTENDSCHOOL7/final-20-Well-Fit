@@ -208,8 +208,8 @@ export default function HomeFeed({ post }) {
           </div>
           <time dateTime="2020-10-21">
             <span>{feedCreatedAtDate.createyear}년</span>
-            <span>{feedCreatedAtDate.createmonth}년</span>
-            <span>{feedCreatedAtDate.createday}년</span>
+            <span>{feedCreatedAtDate.createmonth}월</span>
+            <span>{feedCreatedAtDate.createday}일</span>
           </time>
         </div>
       </section>
