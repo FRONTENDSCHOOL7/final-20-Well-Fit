@@ -27,3 +27,9 @@ PW: wellfit12!@
 
 
 ## 2. 🤼 팀원 소개
+---
+|FE 신민재|FE 장성우|FE 조예슬|FE 이수현|
+|---|---|---|---|
+|이미지|이미지|이미지|이미지|
+|[🔗GitHub](https://github.com/SMJ426)|[🔗GitHub](https://github.com/swJaNG12)|[🔗GitHub](https://github.com/yeslcho)|[🔗GitHub](https://github.com/Lee99-dev)|
+
