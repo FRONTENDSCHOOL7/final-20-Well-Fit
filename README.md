@@ -4,7 +4,7 @@
 <details><summary>목차
 </summary>
 
-1. [Well-Fit 소개](#-Well-Fit-소개)
+1. [Well-Fit 소개](#Well-Fit-소개)
 2. 팀원 소개
 3. 개발 기간
 4. 개발 환경 및 기술 스택
@@ -14,7 +14,7 @@
 8. 프로젝트 폴더 구조
 9. 이슈와 해결 방안
 10. Refectoring 계획
-11. [느낀점](#-느낀점)
+11. [느낀점](#느낀점)
 </details>
 
 ---
