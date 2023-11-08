@@ -23,7 +23,12 @@ ID: wellfit20@test.com
 PW: wellfit12!@
 ```
 
-
+- HTML, CSS
+- React
+- JavaScript
+- styled-components
+- Context API
+- npm
 
 
 ## 2. 🤼 팀원 소개
@@ -48,7 +53,7 @@ PW: wellfit12!@
 
 |FrontEnd|BackEnd|Design|협업방식|컨벤션|
 |---|---|---|---|---|
-|1. HTML,CSS <br/> 2. React|제공 API|Figma|Git|Preffier|
+|1. HTML,CSS <br/> 2. React <br/> 3. JavaScript <br/> 4.Styeld-Components <br/> 5. Context-API <br/> 6. npm|제공 API|Figma|Git|Preffier|
 
 
 
