@@ -4,7 +4,7 @@
 <details><summary>목차
 </summary>
 
-1. [Well-Fit 소개](#1.Well-Fit-소개)
+1. [Well-Fit 소개](#-1-Well-Fit-소개)
 2. 팀원 소개
 3. 개발 기간
 4. 개발 환경 및 기술 스택
