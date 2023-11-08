@@ -63,6 +63,6 @@ PW: wellfit12!@
 ## 6. 🗺️ 서비스 정보 구조도
 ---
 
-<img width="1757" alt="정보구조도" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/7b613213-0ceb-4352-a245-57355b0288ce">
+<img width="1600" alt="정보구조도" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/7b613213-0ceb-4352-a245-57355b0288ce">
 
 
