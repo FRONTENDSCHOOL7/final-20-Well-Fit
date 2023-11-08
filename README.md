@@ -41,7 +41,7 @@ PW: wellfit12!@
 ## 2.🤼 팀원 소개
 
 |FE 신민재|FE 장성우|FE 조예슬|FE 이수현|
-|---|---|---|---|
+|---|:---:|---|:---:|
 |<img alt="민재 프로필" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/13c263a9-3679-44f4-b622-3046bb0ea328" width="200" height="200">|<img width="200" height="200" alt="성우프로필" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/9a04546a-5cfd-4c27-87a1-43749d874ac5">|<img width="200" height="200" alt="예슬프로필" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/76619ee5-3410-4d35-b785-338809470448">|<img width="200" height="200" alt="수현 프로필" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/2a0e507c-54f6-48c7-a20b-d7f09445eac7">|
 |[🔗GitHub](https://github.com/SMJ426)|[🔗GitHub](https://github.com/swJaNG12)|[🔗GitHub](https://github.com/yeslcho)|[🔗GitHub](https://github.com/Lee99-dev)|
 | - GitHub 관리 <br> - 전체적인 플젝 계획 수립 <br> - 회의록 작성  <br> - 리드미 작성 <br> - 배포 <br> - 재롱 떠는 막내(?) | - 전반적인 Api 통신  <br> - 전반적인 계정 생성 및 test 담당 <br> - 팀내 각종 질문 및 상담 전문  <br> - 팀내 장교수(?)| - 전반적인 유효성 검사 담당 <br> - UI 디테일 수정 <br> - 리드미 작성 <br> - 오류 및 예외사항 찾기 마스터 <br> - 분위기 메이커 담당(?) |- 페이지별 마크업 오류 검사 <br> - 아이디어 호수 <br> - 오프라인 만남 총무(?) 담당|
