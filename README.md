@@ -173,9 +173,32 @@ PW: wellfit12!@
 
 
 
-## 7.🔧서비스 기능 소개
+## 7. 🔧 서비스 기능 소개
 
- - 움짤로 완성하기 (민재가 할겁니당)
+|스플래쉬|로그인|회원가입|
+|---|---|---|
+|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/5afd2eed-10e3-4c9a-a9aa-fbe4daa76537">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/b24e6c3f-41da-4c79-9f99-829112f4f5b8">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/991228dd-042a-40c4-a3a5-dc52dca175d2">|
+
+
+|회원가입 프로필 설정|계정 검색|팔로잉&팔로워|
+|---|---|---|
+|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/5cf9c671-cd99-4b02-bbd8-d4e6ae58ecad">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/5be61739-0dd0-41a6-8c28-67308bdb9e2a">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/8b340152-b5e3-4ad2-924f-6bde7efae1a9">|
+
+
+|메인|좋아요|댓글 등록|
+|---|---|---|
+|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/6912266a-aa31-4bf2-b516-4e8eba3fd6bf">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/a4241065-494c-4fe0-9c8b-d79879a8194b">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/23458e8c-b1f1-40b6-b77a-78494559e152">|
+
+
+|상품 등록|게시글 등록|내 프로필|
+|---|---|---|
+|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/c9bb9883-c6dd-40b1-9b7b-5fe1100281ae">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/2c0c8d22-1344-45c1-993a-3c02916f34ea">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/20fae851-3d27-4900-8358-90a5645552d2">|
+
+
+|유저 프로필|로그아웃|더보기(캘린더+할일)|
+|---|---|---|
+|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/0308bd1d-cda3-4c6f-9891-c8b8c2e619fb">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/e27b4d56-e9f0-419e-bdbe-2e431aa60317">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/a586aa3c-74a3-4bb4-86f8-14a7258d75bd">|
+
 
 
 ## 8.📂프로젝트 폴더 구조
