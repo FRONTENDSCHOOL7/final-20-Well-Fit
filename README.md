@@ -48,8 +48,7 @@ PW: wellfit12!@
 
 |FrontEnd|BackEnd|Design|협업방식|컨벤션|
 |---|---|---|---|---|
-|1. HTML,CSS
-2. React|제공 API|Figma|Git|Preffier|
+|1. HTML,CSS 2. React|제공 API|Figma|Git|Preffier|
 
 
 
