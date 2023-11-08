@@ -46,10 +46,59 @@ PW: wellfit12!@
 |[🔗GitHub](https://github.com/SMJ426)|[🔗GitHub](https://github.com/swJaNG12)|[🔗GitHub](https://github.com/yeslcho)|[🔗GitHub](https://github.com/Lee99-dev)|
 | - GitHub 관리 <br> - 전체적인 플젝 계획 수립 <br> - 회의록 작성  <br> - 리드미 작성 <br> - 배포 <br> - 재롱 떠는 막내(?) | - 전반적인 Api 통신  <br> - 전반적인 계정 생성 및 test 담당 <br> - 팀내 각종 질문 및 상담 전문  <br> - 팀내 장교수(?)| - 전반적인 유효성 검사 담당 <br> - UI 디테일 수정 <br> - 리드미 작성 <br> - 오류 및 예외사항 찾기 마스터 <br> - 분위기 메이커 담당(?) |- 페이지별 마크업 오류 검사 <br> - 아이디어 호수 <br> - 오프라인 만남 총무(?) 담당|
 | <img alt="프론트엔드" src="https://img.shields.io/badge/Frontend-brightgreen"><br /><img alt="팀 리더" src="https://img.shields.io/badge/Team%20Leader-yellow"> | <img alt="프론트엔드" src="https://img.shields.io/badge/Frontend-brightgreen"><br /><img alt="테크닉 리더" src="https://img.shields.io/badge/Technique%20Leader-blue"> | <img alt="프론트엔드" src="https://img.shields.io/badge/Frontend-brightgreen"><br /><img alt="디벨롭 리더" src="https://img.shields.io/badge/Development%20Leader-8A2BE2"> | <img alt="프론트엔드" src="https://img.shields.io/badge/Frontend-brightgreen"><br /><img alt="커뮤니케이션 리더" src="https://img.shields.io/badge/Communication%20Leader-orange"> |
+  <br>
+
   
 ### 😁 팀 목표
  - 열심히 운동하면서 작업하기
  - 건강하게 개발하기
+
+
+<br>
+
+
+
+<details>
+  <summary>  🔥우리의 추억(?)🔥</summary>
+  <div markdown="1">
+
+  <br>
+
+  
+  <img width="254" alt="스크린샷 2023-11-08 오후 5 09 56" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/cfd4d059-cce1-462f-ab4a-f433317c1a48"> <br>
+😬 이렇게 어색하게 만난게 엊그제 같은데.. <br>
+
+<br>
+
+
+<img width="261" alt="image" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/42eebbbc-4819-4c88-9d56-9fb005903697"> <br>
+😩 설상가상으로 다 다른 성향을 가진 우리.. 잘 할 수 있을까? <br>
+
+
+<br>
+
+
+<img width="359" alt="image" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/aee9082a-bb87-4ca6-bdb1-6725d278bbcc">
+<img width="360" alt="영수증" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/2de563e0-e3e7-404a-b2da-eb2b56961f49"> <br>
+🤤 하지만 식성이 같은 저흰 바로 첫 오프라인 만남을 가졌고! (음식 사진 안찍고 영수증 찍는 우리)<br>
+
+
+<br>
+
+
+<img width="693" alt="image" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/06cb719a-ea28-4568-8ad5-8d796ec74f4f"> <br>
+🤒 실연이 다가와도 격려와 응원하는 마음과 함께 프로젝트를 진행했습니다!
+<br>
+
+
+<br> 저희가 함께 작업한 결과물을 함께 보시죠!
+
+</div>
+</details>
+
+
+<br>
+
 
 ## 3.📆 개발 기간
 ---
