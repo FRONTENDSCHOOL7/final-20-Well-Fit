@@ -1,10 +1,10 @@
 # 🏋️ Well-Fit
 ---
-## 목차 (누르면 이동할 수 있게 리드미 작업)
+## 목차 
 <details><summary>목차
 </summary>
 
-1. Well-Fit 소개
+1. [Well-Fit 소개](#-Well-Fit-소개)
 2. 팀원 소개
 3. 개발 기간
 4. 개발 환경 및 기술 스택
