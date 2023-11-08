@@ -191,6 +191,10 @@ PW: wellfit12!@
  - 게시글 상세보기
  - 프로필 url 복사, 공유하기
 
+
+<br>
+
+   
 >### 장성우
 #### 🎨 UI
  - 홈 피드 페이지
@@ -240,6 +244,7 @@ PW: wellfit12!@
  - 이미지 1~3장 업로드
 
 
+<br>
 
 
 
@@ -247,6 +252,9 @@ PW: wellfit12!@
 ---
 
 <img width="1600" alt="정보구조도" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/7b613213-0ceb-4352-a245-57355b0288ce">
+
+
+<br>
 
 
 
@@ -275,6 +283,10 @@ PW: wellfit12!@
 |유저 프로필|로그아웃|더보기(캘린더+할일)|
 |---|---|---|
 |<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/0308bd1d-cda3-4c6f-9891-c8b8c2e619fb">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/e27b4d56-e9f0-419e-bdbe-2e431aa60317">|<img width="270" height="570" src="https://github.com/FRONTENDSCHOOL7/final-20-Well-Fit/assets/122437649/a586aa3c-74a3-4bb4-86f8-14a7258d75bd">|
+
+
+
+<br>
 
 
 
@@ -325,12 +337,24 @@ PW: wellfit12!@
 ```
 
 
+<br>
+
+
+
 ## 9.🐛 이슈와 해결 방안
 - 있는 사람만 작성( 제일 후순위)
 
 
+<br>
+
+
+
 ## 10.♻️ Refactoring 계획
 - 정리
+
+
+<br>
+
 
 ## 11.🗣️ 느낀점
 - #### 신민재
