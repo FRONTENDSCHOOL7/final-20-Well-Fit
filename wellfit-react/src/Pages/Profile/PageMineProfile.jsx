@@ -11,109 +11,116 @@ import Footer from '../../Components/common/Footer/Footer';
 import { getMyInfo } from '../../api/PostMyInfo';
 import { getProductList } from '../../api/GETProductList';
 import { getMyFeedList } from '../../api/GETMineFeedList';
+import Loading from '../../Components/common/Loading/Loading';
 
 const Wrap = styled.div`
-  height: 732px;
-  overflow: auto;
+	height: 732px;
+	overflow: auto;
 `;
 
 const StyledOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 90;
-  background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 90;
+	background-color: rgba(0, 0, 0, 0.5);
 `;
 export default function PageMineProfile() {
-  const [isList, setIsList] = useState(false);
-  const [isModal, setIsModal] = useState(false);
-  const [myInfo, setMyInfo] = useState({});
-  const [myFeed, setMyFeed] = useState([]);
-  const [myProduct, setMyProduct] = useState({});
-  const [feedImages, setFeedImages] = useState([]); // 앨범형으로 넘길 이미지 상태 관리
+	const [isList, setIsList] = useState(false);
+	const [isModal, setIsModal] = useState(false);
+	const [myInfo, setMyInfo] = useState({});
+	const [myFeed, setMyFeed] = useState([]);
+	const [myProduct, setMyProduct] = useState({});
+	const [feedImages, setFeedImages] = useState([]); // 앨범형으로 넘길 이미지 상태 관리
+	const [isLoading, setIsLoading] = useState(true);
 
-  const myProfileData = async () => {
-    try {
-      const myData = await getMyInfo();
-      setMyInfo(myData.user);
-      return myData.user.accountname;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const myProfileData = async () => {
+		try {
+			const myData = await getMyInfo();
+			setMyInfo(myData.user);
+			return myData.user.accountname;
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  const myProductList = async (accountname) => {
-    try {
-      const myProductData = await getProductList(accountname);
-      if (myProductData) {
-        setMyProduct(myProductData);
-      } else {
-        console.error('No product found');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const myProductList = async (accountname) => {
+		try {
+			const myProductData = await getProductList(accountname);
+			if (myProductData) {
+				setMyProduct(myProductData);
+			} else {
+				console.error('No product found');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  const myFeedData = async () => {
-    try {
-      const myData = await getMyFeedList();
-      setMyFeed(myData.post);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const myFeedData = async () => {
+		try {
+			const myData = await getMyFeedList();
+			setMyFeed(myData.post);
+		} catch (error) {
+			console.error(error);
+		}
+		setIsLoading(false);
+	};
 
-  useEffect(() => {
-    myProfileData().then((accountname) => {
-      if (accountname) {
-        myProductList(accountname);
-      }
-      myFeedData();
-    });
-  }, []);
+	useEffect(() => {
+		myProfileData().then((accountname) => {
+			if (accountname) {
+				myProductList(accountname);
+			}
+			myFeedData();
+		});
+	}, []);
 
-  const handleModalClick = () => {
-    setIsModal(!isModal);
-  };
+	const handleModalClick = () => {
+		setIsModal(!isModal);
+	};
 
-  const handleListClick = () => {
-    setIsList(false);
-  };
+	const handleListClick = () => {
+		setIsList(false);
+	};
 
-  const handleAlbumClick = () => {
-    setIsList(true);
-  };
+	const handleAlbumClick = () => {
+		setIsList(true);
+	};
 
-  console.log(myProduct.product);
-  return (
-    <>
-      <MainHeader isModal={isModal} onModalClick={handleModalClick} />
-      <Wrap>
-        <ProfileMine myInfo={myInfo} />
-        {myProduct.data && myProduct.data !== 0 ? (
-          <GoodListMine myProduct={myProduct.product} />
-        ) : null}
-        <ListAlbumSwitch
-          isList={isList}
-          onListClick={handleListClick}
-          onAlbumClick={handleAlbumClick}
-        />
-        {isList ? (
-          <AlbumFeed feedImages={feedImages} />
-        ) : (
-          <ListMineFeed myFeed={myFeed} setFeedImages={setFeedImages} />
-        )}
-        {isModal && (
-          <>
-            <StyledOverlay onClick={handleModalClick} />
-            <ModalUserList isModal={isModal} />
-          </>
-        )}
-      </Wrap>
-      <Footer />
-    </>
-  );
+	console.log(myProduct.product);
+	if (isLoading) {
+		return <Loading />;
+	}
+	if (myProduct)
+		return (
+			<>
+				<MainHeader isModal={isModal} onModalClick={handleModalClick} />
+				<Wrap>
+					<ProfileMine myInfo={myInfo} />
+					{myProduct.data && myProduct.data !== 0 ? (
+						<GoodListMine myProduct={myProduct.product} />
+					) : null}
+					<ListAlbumSwitch
+						isList={isList}
+						onListClick={handleListClick}
+						onAlbumClick={handleAlbumClick}
+					/>
+					{isList ? (
+						<AlbumFeed feedImages={feedImages} />
+					) : (
+						<ListMineFeed myFeed={myFeed} setFeedImages={setFeedImages} />
+					)}
+					{isModal && (
+						<>
+							<StyledOverlay onClick={handleModalClick} />
+							<ModalUserList isModal={isModal} />
+						</>
+					)}
+				</Wrap>
+				<Footer />
+			</>
+		);
 }
