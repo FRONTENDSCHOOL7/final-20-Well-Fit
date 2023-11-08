@@ -353,7 +353,10 @@ PW: wellfit12!@
 
 
 ## 10.♻️ Refactoring 계획
-- 정리
+<details><summary>반응형 작업
+</summary>
+- 다양한 기기가 많아진 만큼 다양한 사용자들이 편하게 이용할 수 있게 만들고 싶습니다.<br /> 시간과 역량이 조금 부족해 마크업 작업 시, 
+</details>
 
 
 <br>
