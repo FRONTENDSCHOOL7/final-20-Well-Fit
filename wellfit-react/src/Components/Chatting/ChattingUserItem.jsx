@@ -86,11 +86,11 @@ export default function ChattingUserItem({ user }) {
           </div>
           <div className="user-info">
             <p className="user-name">{user.username}</p>
-            <p className="user-comment">이번에 정정 언제하맨마씸?</p>
+            <p className="user-comment">같이 운동할 사람~!</p>
           </div>
         </div>
         <div className="chat-date">
-          <time dateTime="2020-10-21">2020.10.25</time>
+          <time dateTime="2020-10-21">2020.11.07</time>
         </div>
       </article>
     </StyledChattingUserItem>
